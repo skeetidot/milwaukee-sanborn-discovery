@@ -20,7 +20,12 @@ function createMap(){
 function getData(map){
 
   //add OSM baselayer
-  var satellite = L.tileLayer('https://lio.milwaukeecounty.org/arcgis/rest/services/Historical/Sanborn1910_32054/MapServer/tile/{z}/{y}/{x}').addTo(monumentMap);
+  var satellite = L.tileLayer('https://lio.milwaukeecounty.org/arcgis/rest/services/Historical/Sanborn1910_32054/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Milwaukee County',
+      tileSize: 1024,
+      zoomOffset: -12
+      // Need to convert the tiling scheme to EPSG 3857 (Web Mercator)
+  }).addTo(monumentMap);
 
   //load the data
   jQuery.ajax("data/monuments.geojson",{
