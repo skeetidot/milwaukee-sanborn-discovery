@@ -1,0 +1,185 @@
+/*whole map*/
+html, body, #map {
+  height: 100%;
+  width: 100%;
+}
+
+/* browser adds margin by default, and that adds a scrollbar, but we don't want that*/
+body {
+  margin: 0;
+}
+
+/*title div of map */
+#title {
+  position: fixed;
+  z-index: 100000;
+  top: 0;
+  left: 0;
+  width:100%;
+  padding-top:10px;
+  padding-bottom:20px;
+  background-color: rgba(0,0,0, .75);
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  color: white;
+
+}
+ .leaflet-control{
+   display:none;
+ }
+
+/* browser interprets title as h1 so use this for styling title */
+h1{
+  margin-left: 15px;
+  margin-right:15px;
+  margin-top:4px;
+  font-size: 36px;
+  background-color: rgba (0,0,0,0)
+
+}
+
+
+.custom-popup .leaflet-popup-content-wrapper {
+  background: rgba(0,0,0, .75);
+  color:white;
+  font-family:'Lato', sans-serif;
+  font-weight: 400;
+  font-size:14px;
+  line-height:24px;
+  width: auto;
+  height:auto;
+}
+
+.custom-popup .leaflet-popup-content {
+  margin: 1em;
+}
+
+/*.custom-popup .leaflet-popup-tip-container {
+    width:30px;
+    height:15px;
+}*/
+
+/* this gets rid of the option to turn off or change base layers && also the separator line in between  */
+/* base layer choices and overlay image choices  */
+.leaflet-control-layers-base, .leaflet-control-layers-separator {
+  display: none;
+}
+
+
+/* put the map on the top */
+.leaflet-top{
+  z-index: 9999999999999999999;
+}
+
+/*opted for bootstrap modal rather than leaflet popup, but if want to revert back, this is the styling for popups*/
+.leaflet-popup-content-wrapper, .leaflet-popup-tip{
+  background: rgba(0, 0, 0, 0.6);
+}
+
+
+/* link to article div */
+#globe {
+  display: block;
+  position: fixed;
+  left: 15px;
+  bottom: 0;
+  border-radius: 4px;
+  height:15px;
+  width:215px;
+  z-index: 100000;
+  background-color: rgba(0,0,0, .55);
+  padding-top:.5em;
+  padding-left: 1em;
+  padding-bottom:2em;
+  color: white;
+  font-family:'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+
+
+/* RESPONSIVE STUFF */
+@media (max-width: 1360px) {
+  h1{
+    font-size:38px;
+  }
+}
+
+@media (max-width: 1320px) {
+  h1{
+    font-size:36px;
+  }
+}
+
+@media (max-width: 1260px) {
+  h1{
+    font-size:34px;
+  }
+}
+
+@media (max-width: 1198px) {
+  h1{
+    font-size:32px;
+  }
+}
+
+@media (max-width: 1135px) {
+  h1{
+    font-size:30px;
+  }
+}
+
+@media (max-width: 1072px) {
+  h1{
+    font-size:28px;
+  }
+}
+
+@media (max-width: 1009px) {
+  h1{
+    font-size:26px;
+  }
+}
+
+@media (max-width: 946px) {
+  h1{
+    font-size:24px;
+  }
+}
+
+@media (max-width: 880px) {
+  h1{
+    font-size:22px;
+  }
+}
+
+@media (max-width: 821px) {
+  h1{
+    font-size:20px;
+  }
+}
+
+@media (max-width: 758px) {
+  #title{
+    padding-bottom:10px;
+  }
+
+  h1 {
+    margin-bottom: 0;
+    font-size:18px;
+  }
+}
+
+@media (max-width: 600px){
+  #globe{
+    position:fixed;
+    font-size: 10px;
+    height:15px;
+    width:180px;
+    padding-bottom:1.8em;
+    left:10px;
+    padding-left:.5em;
+    padding-right:.5em;
+  }
+}
