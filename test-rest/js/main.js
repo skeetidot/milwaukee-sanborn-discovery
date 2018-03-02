@@ -44,10 +44,6 @@ function getData(map) {
     
         // Create a Leaflet GeoJson layer for the sheet boundaries and add it to the map
         sheetBoundaries = L.geoJson(data, {
-            
-            onEachFeature: function (feature) {
-                console.log(feature.properties);
-            },
         
             // Create a style for the sheet boundaries
             style: function (feature) {
@@ -57,24 +53,21 @@ function getData(map) {
                     fillOpacity: 0, // override default fill opacity
                     opacity: 1   
                 };
+            },
+            
+            // Loop through each feature and create and bind a popup
+            // When the feature is clicked, display its title
+            onEachFeature: function(feature, layer) {
+                
+                layer.on('click', function() { 
+                    var popup = feature.properties.Title; 
+                    layer.bindPopup(popup);
+                    //console.log(feature.properties);
+                });                
             }
+            
         }).addTo(map);        
-        
-//    // Move the sheet boundaries to the front of the layer order
-//    sheetBoundaries.bringToFront();
     });
-    
-    map.on('zoom', function () {
-        console.log(map.getZoom());
-        
-//        sheetBoundaries.eachLayer(function (layer) {
-//            console.log(layer.feature.properties);
-//        });
-
-    });
-    
-    
-
 
 //    $.getJSON("../data/sheet_boundaries_3857.json"),
 //        function (data) {
