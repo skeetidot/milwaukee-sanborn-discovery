@@ -1,31 +1,32 @@
 // DECLARE MAP IN GLOBAL SCOPE TO GET SOME THINGS WORKING
-var sanbornDiscoveryMap;
+var map;
 
 //FUNCTION TO INSTANTIATE LEAFLET MAP
 function createMap() {
-    sanbornDiscoveryMap = new L.map('map', {
+    map = L.map('map', {
         center: [43.028279, -87.961136],
         zoom: 15,
         minZoom: 11,
         maxZoom: 19
     });
+    
     //call getData function
-    getData(sanbornDiscoveryMap);
+    getData(map);
 }
 
-//FUNCTION TO RETRIEVE DATA AND PLACE IT ON THE MAP (:
+// FUNCTION TO RETRIEVE DATA AND PLACE IT ON THE MAP (:
 function getData(map) {
 
     // Default basemap tiles
     var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
         maxZoom: 16
-    }).addTo(sanbornDiscoveryMap);
+    }).addTo(map);
 
     var Esri_WorldGrayReference = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
         maxZoom: 16
-    }).addTo(sanbornDiscoveryMap);
+    }).addTo(map);
 
     //add Sanborn map tiles
     // Wisconsin South State Plane REST Service: https://lio.milwaukeecounty.org/arcgis/rest/services/Historical/Sanborn1910_32054/MapServer
@@ -36,26 +37,44 @@ function getData(map) {
         minZoom: 17,
         maxZoom: 19,
         opacity: 0.7
-    }).addTo(sanbornDiscoveryMap);
-    
-    //Use JQuery's getJSON() method to load the city boundary data asynchronously
-    $.getJSON("../data/sheet_boundaries_3857.json", function (data) {
-    // Create a Leaflet GeoJson layer for the city boundary and add it to the map
-    sheetBoundaries = L.geoJson(data, {
-        // Create a style for the city boundary
-        style: function (feature) {
-            return {
-                color: '#3d3d3d', // set stroke color
-                weight: 2, // set stroke weight
-                fillOpacity: 0, // override default fill opacity
-                opacity: 1   
-            };
-        }
     }).addTo(map);
+    
+    //Use JQuery's getJSON() method to load the sheet boundary data asynchronously
+    $.getJSON("../data/sheet_boundaries_wgs84.json", function (data) {
+    
+        // Create a Leaflet GeoJson layer for the sheet boundaries and add it to the map
+        sheetBoundaries = L.geoJson(data, {
+            
+            onEachFeature: function (feature) {
+                console.log(feature.properties);
+            },
+        
+            // Create a style for the sheet boundaries
+            style: function (feature) {
+                return {
+                    color: '#3d3d3d', // set stroke color
+                    weight: 2, // set stroke weight
+                    fillOpacity: 0, // override default fill opacity
+                    opacity: 1   
+                };
+            }
+        }).addTo(map);        
+        
+//    // Move the sheet boundaries to the front of the layer order
+//    sheetBoundaries.bringToFront();
+    });
+    
+    map.on('zoom', function () {
+        console.log(map.getZoom());
+        
+//        sheetBoundaries.eachLayer(function (layer) {
+//            console.log(layer.feature.properties);
+//        });
 
-    // Move the city boundary to the bottom of the layer order
-    sheetBoundaries.bringToBack();
-});
+    });
+    
+    
+
 
 //    $.getJSON("../data/sheet_boundaries_3857.json"),
 //        function (data) {
@@ -108,4 +127,4 @@ function getData(map) {
     //    });
 }
 
-jQuery(document).ready(createMap);
+$(document).ready(createMap);
