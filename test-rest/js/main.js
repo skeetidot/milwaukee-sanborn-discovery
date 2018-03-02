@@ -38,7 +38,7 @@ function getData(map) {
         , opacity: 0.7
     }).addTo(monumentMap);
     
-    $.getJSON("../data/sheet_boundaries.geojson"), function (data) {
+    $.getJSON("../data/sheet_boundaries.json"), function (data) {
         // add GeoJSON layer to the map once the file is loaded
         L.geoJson(data).addTo(map);
     }
