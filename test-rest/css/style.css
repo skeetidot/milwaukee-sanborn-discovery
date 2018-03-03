@@ -17,11 +17,11 @@ body {
   left: 0;
   width:100%;
   padding-top:10px;
-  padding-bottom:20px;
-  background-color: rgba(0,0,0, .75);
+  padding-bottom:.5;
+  background-color: rgba(75,75,69, .85);
   font-family: 'Lato', sans-serif;
   font-weight: 400;
-  color: white;
+  color: rgb(255, 189, 0);
 
 }
  .leaflet-control{
@@ -37,6 +37,18 @@ h1{
   background-color: rgba (0,0,0,0)
 
 }
+
+.item-key{
+	color: rgb(255, 189, 0);
+	font-family: 'Lato', sans-serif;
+
+}
+
+.item-value{
+	color:white;
+	font-family: 'Lato', sans-serif;
+}
+	
 
 
 .custom-popup .leaflet-popup-content-wrapper {
@@ -78,23 +90,23 @@ h1{
 
 
 /* link to article div */
-#globe {
+#uwm-website {
   display: block;
   position: fixed;
+  text-decoration: none;
   left: 15px;
   bottom: 0;
-  border-radius: 4px;
   height:15px;
-  width:215px;
+  width:170px;
   z-index: 100000;
-  background-color: rgba(0,0,0, .55);
+  background-color: rgba(255,189,0, .55);
   padding-top:.5em;
-  padding-left: 1em;
-  padding-bottom:2em;
-  color: white;
+  padding-left: .5em;
+  padding-bottom:.85em;
+  color: black;
   font-family:'Lato', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
+  font-weight: 900;
+  font-size: 14px;
 }
 
 
@@ -169,10 +181,12 @@ h1{
     margin-bottom: 0;
     font-size:18px;
   }
+  
+ 
 }
 
 @media (max-width: 600px){
-  #globe{
+  #uwm-website{
     position:fixed;
     font-size: 10px;
     height:15px;
@@ -181,5 +195,7 @@ h1{
     left:10px;
     padding-left:.5em;
     padding-right:.5em;
+	font-size:12px;
   }
 }
+
