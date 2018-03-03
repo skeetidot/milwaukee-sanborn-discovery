@@ -1,4 +1,5 @@
 /*whole map*/
+/*whole map*/
 html, body, #map {
   height: 100%;
   width: 100%;
@@ -18,8 +19,8 @@ body {
   width:100%;
   padding-top:10px;
   padding-bottom:.5;
-  background-color: rgba(75,75,69, .85);
-  font-family: 'Lato', sans-serif;
+  background-color: rgba(35, 31, 32,1);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: rgb(255, 189, 0);
 
@@ -40,21 +41,22 @@ h1{
 
 .item-key{
 	color: rgb(255, 189, 0);
-	font-family: 'Lato', sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 }
 
 .item-value{
 	color:white;
-	font-family: 'Lato', sans-serif;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 	
 
 
 .custom-popup .leaflet-popup-content-wrapper {
-  background: rgba(0,0,0, .75);
+  background-color: rgba(0,0,0, .80);
   color:white;
-  font-family:'Lato', sans-serif;
+  border-radius:8px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size:14px;
   line-height:24px;
@@ -97,14 +99,14 @@ h1{
   left: 15px;
   bottom: 0;
   height:15px;
-  width:170px;
+  width:195px;
   z-index: 100000;
   background-color: rgba(255,189,0, .55);
   padding-top:.5em;
   padding-left: .5em;
   padding-bottom:.85em;
   color: black;
-  font-family:'Lato', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
   font-size: 14px;
 }
