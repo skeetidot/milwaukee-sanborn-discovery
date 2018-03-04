@@ -1,6 +1,8 @@
 // DECLARE MAP IN GLOBAL SCOPE TO GET SOME THINGS WORKING
 var map;
 
+
+
 //FUNCTION TO INSTANTIATE LEAFLET MAP
 function createMap() {
     map = L.map('map', {
@@ -23,7 +25,7 @@ function getData(map) {
         maxZoom: 16
     }).addTo(map);
 
-    var Esri_WorldGrayReference = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    var ESRI_Grey = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
         maxZoom: 16
     }).addTo(map);
@@ -38,9 +40,11 @@ function getData(map) {
         maxZoom: 19,
         opacity: 0.7
     }).addTo(map);
+	
+	
     
     //Use JQuery's getJSON() method to load the sheet boundary data asynchronously
-    $.getJSON("/data/sheet_boundaries_wgs84.json", function (data) {
+    $.getJSON("data/sheet_boundaries_wgs84.json", function (data) {
     
         // Create a Leaflet GeoJson layer for the sheet boundaries and add it to the map
         sheetBoundaries = L.geoJson(data, {
@@ -64,9 +68,16 @@ function getData(map) {
                 });                
             }
             
-        }).addTo(map);  
-		
-		
+        }).addTo(map); 
+
+
+		//SEARCHING BY ADDRESS
+		//uses Leaflet geosearch plugin
+		//called from index.html in lib/geosearch/geosearch.js
+		var geoSearchController = new L.Control.GeoSearch({
+			provider: new L.GeoSearch.Provider.Google()
+		}).addTo(map);
+
 		
 		
 		 //what's going in the popup
@@ -92,5 +103,7 @@ function getData(map) {
 	 });
 	
 	}
+	
+
 
 $(document).ready(createMap);
