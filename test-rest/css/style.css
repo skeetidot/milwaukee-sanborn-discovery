@@ -1,252 +1,252 @@
-/*whole map*/
+/* Whole map */
 html, body, #map {
-  height: 100%;
-  width: 100%;
+    height: 100%;
+    width: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;    
 }
 
-/* browser adds margin by default, and that adds a scrollbar, but we don't want that*/
+#map {
+    position: absolute;
+}
+
+/* Browser adds margin by default, and that adds a scrollbar, but we don't want that */
 body {
-  margin: 0;
+    margin: 0;
 }
 
-/*title div of map */
+
+/* Map title */
 #title {
-  position: fixed;
-  z-index: 100000;
-  top: 0;
-  left: 0;
-  width:100%;
-  padding-top:10px;
-  padding-bottom:.5;
-  background-color: rgba(35, 31, 32,1);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  color: rgb(255, 189, 0);
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+    background-color: rgba(35, 31, 32, 1);
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-weight: 400;
+    color: rgb(255, 189, 0);
+}
 
+/* Browser interprets title as h1 so use this for styling title */
+h1 {
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 28px;
+    background-color: rgba (0, 0, 0, 0)
 }
 
 
- /* .leaflet-control{ */
-   /* display:none; */
- /* } */
- 
- a.leaflet-control-zoom-in, a.leaflet-control-zoom-out{
-	 display:none;
- }
-
-/* browser interprets title as h1 so use this for styling title */
-h1{
-  margin-left: 15px;
-  margin-right:15px;
-  margin-top:4px;
-  font-size: 36px;
-  background-color: rgba (0,0,0,0)
-
+/* Leaflet controls */
+.leaflet-top {
+    position: absolute;
+    margin-top: 50px;
+    z-index: 1000;
 }
 
-.item-key{
-	color: rgb(255, 189, 0);
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-
+/* Hide the zoom buttons */
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+    display: none;
 }
 
-.item-value{
-	color:white;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-	
 
+/* Popup */
+.item-key {
+    color: rgb(255, 189, 0);
+}
+
+.item-value {
+    color: white;
+}
 
 .custom-popup .leaflet-popup-content-wrapper {
-  background-color: rgba(0,0,0, .80);
-  color:white;
-  border-radius:8px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size:14px;
-  line-height:24px;
-  width: auto;
-  height:auto;
+    background-color: rgba(0, 0, 0, .80);
+    color: white;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    width: auto;
+    height: auto;
 }
 
 .custom-popup .leaflet-popup-content {
-  margin: 1em;
+    margin: 1em;
 }
-
-/*.custom-popup .leaflet-popup-tip-container {
-    width:30px;
-    height:15px;
-}*/
 
 /* this gets rid of the option to turn off or change base layers && also the separator line in between  */
-/* base layer choices and overlay image choices  */
-.leaflet-control-layers-base, .leaflet-control-layers-separator {
-  display: none;
-}
 
-
-/* put the map on the top */
-.leaflet-top{
-  z-index: 9999999999999999999;
+/* Base layer choices and overlay image choices  */
+.leaflet-control-layers-base,
+.leaflet-control-layers-separator {
+    display: none;
 }
 
 /*opted for bootstrap modal rather than leaflet popup, but if want to revert back, this is the styling for popups*/
-.leaflet-popup-content-wrapper, .leaflet-popup-tip{
-  background: rgba(0, 0, 0, 0.6);
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+    background: rgba(0, 0, 0, 0.6);
 }
 
 
-/* link to article div */
+/* UWM Digital Collections div */
 #uwm-website {
-  display: block;
-  position: fixed;
-  text-decoration: none;
-  left: 15px;
-  bottom: 0;
-  height:15px;
-  width:195px;
-  z-index: 100000;
-  background-color: rgba(255,189,0, .55);
-  padding-top:.5em;
-  padding-left: .5em;
-  padding-bottom:.85em;
-  color: black;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 900;
-  font-size: 14px;
+    display: block;
+    position: fixed;
+    text-decoration: none;
+    left: 15px;
+    bottom: 0;
+    height: 15px;
+    width: 195px;
+    z-index: 100000;
+    background-color: rgba(255, 189, 0, .55);
+    padding-top: .5em;
+    padding-left: .5em;
+    padding-bottom: .85em;
+    color: black;
+    font-weight: 900;
+    font-size: 14px;
 }
 
+/* Search Bar */
 
-
-
-//Search bar
+/*
 .leaflet-center {
-	width: 40%;
-	margin-left: auto;
-	margin-right: auto;
-	position: relative;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
-.leaflet-control-geosearch, .leaflet-control-geosearch ul {
-	border-radius: 7px;
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
-	margin: 10px 0 0 0;
-	top: 7em;
-	padding: 5px;
-	margin-left:12px;
-	width: 250px;
-	height: auto;
+
+.leaflet-control-geosearch,
+.leaflet-control-geosearch ul {
+    border-radius: 7px;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
+    margin: 10px 0 0 0;
+    top: 7em;
+    padding: 5px;
+    margin-left: 12px;
+    width: 250px;
+    height: auto;
 }
+
 .leaflet-control-geosearch-msg ul {
-	list-style: none;
-	display: none;
-	height: auto;
-	background: none;
-	padding: 0;
+    list-style: none;
+    display: none;
+    height: auto;
+    background: none;
+    padding: 0;
 }
+
 .leaflet-control-geosearch ul li {
-	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.75);
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.75);
     border-radius: 4px;
     margin: 20px 0;
     padding: 4px;
     font: 12px arial;
     text-indent: 4px;
 }
-.leaflet-container .leaflet-control-geosearch input {
-	width: 100%;
-	height: 28px;
-	padding: 0;
-	text-indent: 8px;
-	background: rgba(255, 255, 255, 0.75);			
-	border-radius: 4px;
-	border: none;
-}
 
+.leaflet-container .leaflet-control-geosearch input {
+    width: 100%;
+    height: 28px;
+    padding: 0;
+    text-indent: 8px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 4px;
+    border: none;
+}
+*/
 
 
 /* RESPONSIVE STUFF */
+
+
 @media (max-width: 1360px) {
-  h1{
-    font-size:38px;
-  }
+    h1 {
+        font-size: 36px;
+    }
 }
 
 @media (max-width: 1320px) {
-  h1{
-    font-size:36px;
-  }
+    h1 {
+        font-size: 36px;
+    }
 }
 
 @media (max-width: 1260px) {
-  h1{
-    font-size:34px;
-  }
+    h1 {
+        font-size: 34px;
+    }
 }
 
 @media (max-width: 1198px) {
-  h1{
-    font-size:32px;
-  }
+    h1 {
+        font-size: 32px;
+    }
 }
 
 @media (max-width: 1135px) {
-  h1{
-    font-size:30px;
-  }
+    h1 {
+        font-size: 30px;
+    }
 }
 
 @media (max-width: 1072px) {
-  h1{
-    font-size:28px;
-  }
+    h1 {
+        font-size: 28px;
+    }
 }
 
 @media (max-width: 1009px) {
-  h1{
-    font-size:26px;
-  }
+    h1 {
+        font-size: 26px;
+    }
 }
 
 @media (max-width: 946px) {
-  h1{
-    font-size:24px;
-  }
+    h1 {
+        font-size: 24px;
+    }
 }
 
 @media (max-width: 880px) {
-  h1{
-    font-size:22px;
-  }
+    h1 {
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 821px) {
-  h1{
-    font-size:20px;
-  }
+    h1 {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 758px) {
-  #title{
-    padding-bottom:10px;
-  }
+    #title {
+        padding-bottom: 10px;
+    }
 
-  h1 {
-    margin-bottom: 0;
-    font-size:18px;
-  }
-  
- 
+    h1 {
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+
+
 }
 
-@media (max-width: 600px){
-  #uwm-website{
-    position:fixed;
-    font-size: 10px;
-    height:15px;
-    width:180px;
-    padding-bottom:1.8em;
-    left:10px;
-    padding-left:.5em;
-    padding-right:.5em;
-	font-size:12px;
-  }
+@media (max-width: 600px) {
+    #uwm-website {
+        position: fixed;
+        font-size: 10px;
+        height: 15px;
+        width: 180px;
+        padding-bottom: 1.8em;
+        left: 10px;
+        padding-left: .5em;
+        padding-right: .5em;
+        font-size: 12px;
+    }
 }

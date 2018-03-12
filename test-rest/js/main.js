@@ -1,14 +1,12 @@
-// DECLARE MAP IN GLOBAL SCOPE TO GET SOME THINGS WORKING
+// DECLARE MAP IN GLOBAL SCOPE
 var map;
-
-
 
 // FUNCTION TO INSTANTIATE LEAFLET MAP
 function createMap() {
     map = L.map('map', {
         center: [43.023735, -87.956393],
         zoom: 15,
-        minZoom: 15,
+        minZoom: 11,
         maxZoom: 19
     });
 
@@ -19,12 +17,13 @@ function createMap() {
 // FUNCTION TO RETRIEVE DATA AND PLACE IT ON THE MAP (:
 function getData(map) {
 
-    // Default basemap tiles
+    // Add Esri Light Gray Canvas Basemap
     var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
         maxZoom: 16
     }).addTo(map);
 
+    // Add Esri Light Gray Canvas Reference
     var ESRI_Grey = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
         maxZoom: 16
@@ -40,8 +39,6 @@ function getData(map) {
         maxZoom: 19,
         opacity: 0.7
     }).addTo(map);
-
-
 
     // Use JQuery's getJSON() method to load the sheet boundary data asynchronously
     $.getJSON("data/sheet_boundaries_wgs84.json", function (data) {
@@ -71,38 +68,51 @@ function getData(map) {
         }).addTo(map);
 
 
-        // SEARCHING BY ADDRESS
-        // uses Leaflet geosearch plugin
-        // called from index.html in lib/geosearch/geosearch.js
-        var geoSearchController = new L.Control.GeoSearch({
-            provider: new L.GeoSearch.Provider.Google()
+        // Add Esri Leaflet search control
+        var searchControl = document.getElementById('search')
+        
+        // Create the geocoding control and add it to the map
+        var searchControl = L.esri.Geocoding.geosearch( {
+            expanded: 'true', // keep the control open
+            searchBounds: L.latLngBounds([42.84,-87.82], [43.19,-88.07]), // limit search to Milwaukee County
+            collapseAfterResult: false
         }).addTo(map);
 
+        // Create an empty layer group to store the results and add it to the map
+        var results = L.layerGroup().addTo(map);
 
+        // Listen for the results event and add every result to the map
+        searchControl.on("results", function (data) {
+            results.clearLayers();
+            for (var i = data.results.length - 1; i >= 0; i--) {
+                results.addLayer(L.marker(data.results[i].latlng));
+            }
+        });
+    
 
         // What's going in the popup
         function popupContent(feature, layer) {
 
             // Add fields to the popup
             var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
-            
+
             var year = "<div class= 'item-key'><b>Publication Year:</b></div><div class='item-value'>" + feature.properties['Publicatio'] + "</div>";
-            
+
             var businesses = "<div class= 'item-key'><b>Businesses depicted: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
-            
+
             var publisher = "<div class= 'item-key'><b>Publisher: </b></div><div class='item-value'>" + feature.properties['Publisher'] + "</div>";
-            
+
             var scale = "<div class= 'item-key'><b>Scale: </b></div><div class='item-value'>" + feature.properties['Scale'] + "</div>";
-            
+
             var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
-            
+
             var view = '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item</a>';
 
 
             // Save the popup content to an info variable
             var info = (sheetname + businesses + year + publisher + scale + repository + view);
             // sheetBoundaries.bindPopup(info);
-            
+
             // Bind the popup to the sheet boundaries and open it when the user clicks a feature on the map
             var popup = L.responsivePopup().setContent(info);
             sheetBoundaries.bindPopup(popup).openPopup();
