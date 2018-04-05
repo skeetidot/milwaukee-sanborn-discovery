@@ -5,9 +5,9 @@ var map;
 function createMap() {
     map = L.map('map', {
         center: [43.023735, -87.956393],
-        zoom: 15,
+        zoom: 11,
         minZoom: 11,
-        maxZoom: 19
+        maxZoom: 21
     });
 
     //call getData function
@@ -20,28 +20,43 @@ function getData(map) {
     // Add Esri Light Gray Canvas Basemap
     var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-        maxZoom: 16
+        maxZoom: 19
     }).addTo(map);
 
     // Add Esri Light Gray Canvas Reference
     var ESRI_Grey = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-        maxZoom: 16
+        maxZoom: 19
     }).addTo(map);
 
     // Add Sanborn map tiles
     // Wisconsin South State Plane REST Service: https://lio.milwaukeecounty.org/arcgis/rest/services/Historical/Sanborn1910_32054/MapServer
-    // Web Mercator REST Service: http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornTest/MapServer
+    // Web Mercator REST Service Sample: http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornTest/MapServer
+    // Web Mercator REST Service: http://webgis.uwm.edu/arcgisuwm/rest/services/Sanborn1910/MapServer
     var sanborn = L.tileLayer('http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornTest/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'American Geographical Society Library - UWM Libraries',
         tileSize: 256,
-        minZoom: 15,
-        maxZoom: 19,
+        minZoom: 11,
+        maxZoom: 21,
         opacity: 0.7
     }).addTo(map);
+    
+     console.log(sanborn._tiles);       
+
+//    Dynamic service
+//    var dynamicSanborn = "http://webgis.uwm.edu/arcgisuwm/rest/services/Sanborn1910/MapServer";
+//
+//    L.esri.dynamicMapLayer({
+//      url: dynamicSanborn,
+//      opacity : 0.25,
+//      useCors: false
+//    }).addTo(map);
+//
+//    console.log(Esri_WorldGrayCanvas._tiles);
+//    console.log(dynamicSanborn);
 
     // Use JQuery's getJSON() method to load the sheet boundary data asynchronously
-    $.getJSON("data/sheet_boundaries_wgs84.json", function (data) {
+    $.getJSON("../data/boundaries_mercator.json", function (data) {
 
         // Create a Leaflet GeoJson layer for the sheet boundaries and add it to the map
         sheetBoundaries = L.geoJson(data, {
@@ -52,7 +67,7 @@ function getData(map) {
                     color: '#909090', // set stroke color
                     weight: 2, // set stroke weight
                     fillOpacity: 0, // override default fill opacity
-                    opacity: 0
+                    opacity: 1
                 };
             },
 
@@ -70,11 +85,11 @@ function getData(map) {
 
         // Add Esri Leaflet search control
         var searchControl = document.getElementById('search')
-        
+
         // Create the geocoding control and add it to the map
-        var searchControl = L.esri.Geocoding.geosearch( {
+        var searchControl = L.esri.Geocoding.geosearch({
             expanded: 'true', // keep the control open
-            searchBounds: L.latLngBounds([42.84,-87.82], [43.19,-88.07]), // limit search to Milwaukee County
+            searchBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // limit search to Milwaukee County
             collapseAfterResult: false
         }).addTo(map);
 
@@ -88,7 +103,7 @@ function getData(map) {
                 results.addLayer(L.marker(data.results[i].latlng));
             }
         });
-    
+
 
         // What's going in the popup
         function popupContent(feature, layer) {
@@ -111,7 +126,6 @@ function getData(map) {
 
             // Save the popup content to an info variable
             var info = (sheetname + businesses + year + publisher + scale + repository + view);
-            // sheetBoundaries.bindPopup(info);
 
             // Bind the popup to the sheet boundaries and open it when the user clicks a feature on the map
             var popup = L.responsivePopup().setContent(info);
