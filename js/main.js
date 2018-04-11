@@ -1,4 +1,6 @@
 // DECLARE MAP IN GLOBAL SCOPE TO GET SOME THINGS WORKING
+$(document).ready(function() {
+
 var crs = new L.Proj.CRS('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs', {
     origin: [-2.00377E7, 3.02411E7],
     resolutions: [
@@ -48,16 +50,32 @@ function getData(map) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-    // Add Esri Light Gray Canvas Basemap
-    var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-        maxZoom: 19
-    }).addTo(map);
+//    // Add Esri Light Gray Canvas Basemap
+//    var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+//        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+//        maxZoom: 19
+//    }).addTo(map);
 
-    // Add Esri Light Gray Canvas Reference
-    var ESRI_Grey = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+//    // Add Esri Light Gray Canvas Reference
+//    var ESRI_Grey = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+//        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+//        maxZoom: 19
+//    }).addTo(map);
+    
+    // Add Esri Light Gray Canvas Basemap as an Esri tiled map layer
+    var Esri_WorldGrayCanvas = L.esri.tiledMapLayer({
+        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/',
+        maxZoom: 19,
+        minZoom: 0,
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-        maxZoom: 19
+    }).addTo(map);
+    
+    // Add Esri Light Gray Canvas Reference as an Esri tiled map layer
+    var Esri_WorldGrayReference = L.esri.tiledMapLayer({
+        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer',
+        maxZoom: 19,
+        minZoom: 0,
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     }).addTo(map);
 
 
@@ -66,6 +84,7 @@ function getData(map) {
         url: 'http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/Sanborn/MapServer',
         maxZoom: 21,
         minZoom: 0,
+        attribution: 'American Geographical Society Library, University of Wisconsin-Milwaukee'
     }).addTo(map);
 
 
@@ -160,6 +179,4 @@ function getData(map) {
 
 }
 
-
-
-$(document).ready(createMap);
+});
