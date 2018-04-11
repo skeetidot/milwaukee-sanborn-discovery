@@ -1,21 +1,52 @@
-// DECLARE MAP IN GLOBAL SCOPE
-var map;
+// DECLARE MAP IN GLOBAL SCOPE TO GET SOME THINGS WORKING
+var crs = new L.Proj.CRS('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs', {
+    origin: [-2.00377E7, 3.02411E7],
+    resolutions: [
+      156543.03392800014,
+      78271.51696399994,
+	  39135.75848200009,
+	  19567.87924099992,
+	  9783.93962049996,
+	  4891.96981024998,
+	  2445.98490512499,
+	  1222.992452562495,
+	  611.4962262813797,
+	  305.74811314055756,
+	  152.87405657041106,
+	  76.43702828507324,
+	  38.21851414253662,
+	  19.10925707126831,
+	  9.554628535634155,
+	  4.77731426794937,
+	  2.388657133974685,
+	  1.1943285668550503,
+	  0.5971642835598172,
+	  0.29858214164761665,
+	  0.14929107082380833,
+	  0.07464553541190416
+    ]
+});
 
-// FUNCTION TO INSTANTIATE LEAFLET MAP
-function createMap() {
-    map = L.map('map', {
-        center: [43.023735, -87.956393],
-        zoom: 11,
-        minZoom: 11,
-        maxZoom: 21
-    });
+var map = L.map('map', {
+    crs: crs,
+    center: [43.023735, -87.956393],
+    zoom: 11,
+    minZoom: 11,
+    maxZoom: 21
+}).setView([43.023735, -87.956393], 15);
 
-    //call getData function
-    getData(map);
-}
+
+// call getData function
+getData(map);
 
 // FUNCTION TO RETRIEVE DATA AND PLACE IT ON THE MAP (:
 function getData(map) {
+
+    // Default basemap tiles
+    var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    });
 
     // Add Esri Light Gray Canvas Basemap
     var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
@@ -29,34 +60,17 @@ function getData(map) {
         maxZoom: 19
     }).addTo(map);
 
-    // Add Sanborn map tiles
-    // Wisconsin South State Plane REST Service: https://lio.milwaukeecounty.org/arcgis/rest/services/Historical/Sanborn1910_32054/MapServer
-    // Web Mercator REST Service Sample: http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornTest/MapServer
-    // Web Mercator REST Service: http://webgis.uwm.edu/arcgisuwm/rest/services/Sanborn1910/MapServer
-    var sanborn = L.tileLayer('http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornTest/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'American Geographical Society Library - UWM Libraries',
-        tileSize: 256,
-        minZoom: 11,
+
+    // The min/maxZoom values provided should match the actual cache thats been published. This information can be retrieved from the service endpoint directly.
+    var sanborn = L.esri.tiledMapLayer({
+        url: 'http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/Sanborn/MapServer',
         maxZoom: 21,
-        opacity: 0.7
+        minZoom: 0,
     }).addTo(map);
-    
-     console.log(sanborn._tiles);       
 
-//    Dynamic service
-//    var dynamicSanborn = "http://webgis.uwm.edu/arcgisuwm/rest/services/Sanborn1910/MapServer";
-//
-//    L.esri.dynamicMapLayer({
-//      url: dynamicSanborn,
-//      opacity : 0.25,
-//      useCors: false
-//    }).addTo(map);
-//
-//    console.log(Esri_WorldGrayCanvas._tiles);
-//    console.log(dynamicSanborn);
 
-    // Use JQuery's getJSON() method to load the sheet boundary data asynchronously
-    $.getJSON("../data/boundaries_mercator.json", function (data) {
+    //Use JQuery's getJSON() method to load the sheet boundary data asynchronously
+    $.getJSON("data/boundaries_mercator.json", function (data) {
 
         // Create a Leaflet GeoJson layer for the sheet boundaries and add it to the map
         sheetBoundaries = L.geoJson(data, {
@@ -67,7 +81,7 @@ function getData(map) {
                     color: '#909090', // set stroke color
                     weight: 2, // set stroke weight
                     fillOpacity: 0, // override default fill opacity
-                    opacity: 1
+                    opacity: 0
                 };
             },
 
@@ -82,6 +96,8 @@ function getData(map) {
 
         }).addTo(map);
 
+
+        //SEARCHING BY ADDRESS
 
         // Add Esri Leaflet search control
         var searchControl = document.getElementById('search')
@@ -104,8 +120,15 @@ function getData(map) {
             }
         });
 
+        // LEAFLET SEARCH PLUGIN
+        //uses Leaflet geosearch plugin
+        //called from index.html in lib/geosearch/geosearch.js
+        //        var geoSearchController = new L.Control.GeoSearch({
+        //            provider: new L.GeoSearch.Provider.Google()
+        //        }).addTo(map);
 
-        // What's going in the popup
+
+        // POPUP CONTENT
         function popupContent(feature, layer) {
 
             // Add fields to the popup
@@ -131,6 +154,7 @@ function getData(map) {
             var popup = L.responsivePopup().setContent(info);
             sheetBoundaries.bindPopup(popup).openPopup();
         }
+
 
     });
 
