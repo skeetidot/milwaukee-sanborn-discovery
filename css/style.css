@@ -138,6 +138,56 @@ h1{
 
 
 
+/*MOBILE MENU DROPDOWN*/
+
+/* SHOW THE DROPDOWN MENU ON HOVER */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* POSITION THE CONTAINER */
+.dropdown {
+    float:right;
+    display: inline-block;
+}
+
+
+/* DROPDOWN CONTENT (HIDDEN BY DEFAULT) */
+.dropdown-content {
+    display: none;
+    min-width: 6em;
+    padding-right:1em;
+    padding-top: .em;
+    z-index: 133248223423423;
+}
+
+/* STYLING THE LINKS INSIDE THE DROPDOWN  */
+.dropdown-content a {
+    font-size: 18px !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-top:.5em;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* CHANGE THE COLOR OF DROPDOWN LINKS ON HOVER */
+.dropdown-content a:hover {background-color: #282828}
+
+
+/* GET RID OF THE ICON UPON HOVER */
+.dropdown:hover #menu-icon {
+    display:none;
+}
+
+
+
+
+
+
+
+
 /* LEAFLETTY STUFF */
 
 /* HIDES LEAFLET ZOOM CONTROLS */
@@ -389,8 +439,9 @@ h1{
 
  
  h1 {
-    font-size:24px;
-	line-height:1.3;
+     font-size:26px;
+     line-height:1.3;
+     padding-left:.3em;
   }
 }
 
