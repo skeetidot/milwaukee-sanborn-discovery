@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 //DEFINE CUSTOM TILING SCHEME ALLOWING FOR CLOSE ZOOM TO MAP DATA
-=======
+
 // DECLARE MAP IN GLOBAL SCOPE TO GET SOME THINGS WORKING
 $(document).ready(function() {
 
->>>>>>> 1db45835852b0266470109e98f2d20a8fd9c1307
 var crs = new L.Proj.CRS('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext  +no_defs', {
     origin: [-2.00377E7 , 3.02411E7 ],
     resolutions: [
@@ -54,8 +52,6 @@ function getData(map) {
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-<<<<<<< HEAD
-=======
 //    // Add Esri Light Gray Canvas Basemap
 //    var Esri_WorldGrayCanvas = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
 //        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
@@ -83,8 +79,6 @@ function getData(map) {
         minZoom: 0,
         attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     }).addTo(map);
-
->>>>>>> 1db45835852b0266470109e98f2d20a8fd9c1307
 
     /*ESRI LEAFLET PLUGIN REQUIRED TO CALL THIS MAP SERVICE PUBLISHED WITH A CUSTOM TILING SCHEME.
     THE TILES ARE CACHED IN WEB MERCATOR USING GOOGLE/BING TILING SCHEME, BUT WE ADDED TWO ADDITIONAL
@@ -203,9 +197,6 @@ function getData(map) {
 //BRACKET CLOSING THE GETDATA FUNCTION
 }
 
-<<<<<<< HEAD
 
-$(document).ready(createMap);
-=======
+//BRACKET CLOSING THE ONDOCUMENTREADY FUNCTION
 });
->>>>>>> 1db45835852b0266470109e98f2d20a8fd9c1307
