@@ -19,17 +19,7 @@ body {
   margin: 0;
 }
 
-/* Leaflet controls */
-.leaflet-top {
-    position: absolute;
-    margin-top: 85px;
-    z-index: 1000;
-}
 
-/* Hide the zoom buttons */
-.leaflet-control-zoom.leaflet-bar.leaflet-control {
-    display: none;
-}
 
 /* STYLING AND POSITIONING THE MAIN HEADER */
 #title {
@@ -175,6 +165,17 @@ h1{
 
 /* LEAFLETTY STUFF */
 
+.leaflet-top {
+    position: absolute;
+    margin-top: 6.2em;
+    z-index: 1000;
+}
+
+/* Hide the zoom buttons */
+.leaflet-control-zoom.leaflet-bar.leaflet-control {
+    display: none;
+}
+
 /* HIDES LEAFLET ZOOM CONTROLS */
  a.leaflet-control-zoom-in, a.leaflet-control-zoom-out{
 	 display:none;
@@ -288,40 +289,79 @@ h1{
 }
 
 @media (max-width: 1260px) {
-  h1{
-    font-size:34px;
-  }
+h1{
+font-size:34px;
+}
+
+.leaflet-top {
+    margin-top: 5.8em;
+}
 }
 
 @media (max-width: 1198px) {
   h1{
     font-size:32px;
   }
+
+.leaflet-top {
+    margin-top: 5.6em;
+}
+}
+
+
+@media (max-width: 1160px) {
+    h1{
+        font-size:32px;
+    }
+
+    .leaflet-top {
+        margin-top: 5.3em;
+    }
 }
 
 @media (max-width: 1135px) {
   h1{
     font-size:30px;
   }
+
 }
 
 @media (max-width: 1072px) {
   h1{
     font-size:28px;
   }
+
+.leaflet-top {
+    margin-top: 5em;
+}
 }
 
-@media (max-width: 1009px) {
+@media (max-width: 1024px) {
   h1{
     font-size:26px;
   }
+
+.leaflet-top {
+    margin-top: 4.7em;
+}
+}
+
+
+@media (max-width: 900px) {
+.leaflet-top {
+    margin-top: 4.3em;
+}
 }
 
 
 @media (max-width: 880px) {
-  h1{
-    font-size:22px;
-  }
+h1{
+font-size:22px;
+}
+
+.leaflet-top {
+    margin-top: 4.3em;
+}
 }
 
 @media (max-width: 821px) {
@@ -329,7 +369,9 @@ h1{
     font-size:20px;
   }
 
-  
+.leaflet-top {
+    margin-top: 4em;
+}
 }
 
 
@@ -356,6 +398,10 @@ h1{
     padding-bottom:10px;
   }
 
+.leaflet-top {
+    margin-top: 3.8em;
+}
+
  h1 {
     margin-bottom: 0;
     font-size:22px;
@@ -367,8 +413,14 @@ h1{
 	padding-right: 30px;
 	padding-top: 1em;
 }
- 
 }
+
+@media (max-width: 720px) {
+    .leaflet-top {
+        margin-top: 3.7em;
+    }
+}
+
 
 
 
@@ -402,19 +454,23 @@ h1{
  }
 
 
-    /* GET RID OF MENU OPTIONS AND MAKE MENU ICON*/
-    #about-button{
-        display:none;
-    }
+/* GET RID OF MENU OPTIONS AND MAKE MENU ICON*/
+#about-button{
+    display:none;
+}
 
-    #menu-icon{
-        display:inline;
-        padding-top:.25em;
-    }
+#menu-icon{
+    display:inline;
+    padding-top:.25em;
+}
 
-    .dropdown-content {
-        display: block;
-    }
+.dropdown-content {
+    display: block;
+}
+
+.leaflet-top {
+    margin-top: 7.2em;
+}
 
  
  h1 {
