@@ -38,9 +38,9 @@ function createMap() {
         crs: crs,
         center: [43.041734, -87.904980],
         zoom: 15,
-        minZoom: 11,
-        maxZoom: 21,
-        maxBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // panning bounds so the user doesn't pan too far away from Milwaukee
+        minZoom: 0,
+        maxZoom: 21
+        //maxBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // panning bounds so the user doesn't pan too far away from Milwaukee
     });
 
     // CALL GET DATA FUNCTION
@@ -69,13 +69,13 @@ function getData(map) {
 
 
 //    // Add Esri Light Gray Canvas Reference as an Esri tiled map layer
-//    var Esri_WorldGrayReference = L.esri.tiledMapLayer({
-//        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer',
-//        maxZoom: 21,
-//        minZoom: 0,
-//        maxNativeZoom: 19,
-//        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-//    }).addTo(map);
+    var Esri_WorldGrayCanvas = L.esri.tiledMapLayer({
+        url: 'http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer',
+        //maxZoom: 21,
+        //minZoom: 0,
+        maxNativeZoom: 19,
+        attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+    }).addTo(map);
 
     /*ESRI LEAFLET PLUGIN REQUIRED TO CALL THIS MAP SERVICE PUBLISHED WITH A CUSTOM TILING SCHEME.
     THE TILES ARE CACHED IN WEB MERCATOR USING GOOGLE/BING TILING SCHEME, BUT WE ADDED TWO ADDITIONAL
