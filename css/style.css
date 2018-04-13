@@ -1,4 +1,5 @@
-/* Whole map */
+/*******************************************************************/
+/* CSS TO STYLE THE WHOLE PAGE */
 
 html,
 body,
@@ -23,8 +24,11 @@ body {
 
 
 
+
+
 /**********************************************************************/
-/* STYLING AND POSITIONING THE MAIN HEADER */
+/* CSS TO STYLE THE MAIN HEADER  */
+
 
 #title {
     position: fixed;
@@ -77,12 +81,10 @@ h1 {
 
 
 
-
-
-
-
 /**********************************************************************/
-/* MENU ITEMS POSITIONING */
+/* CSS TO STYLE THE MENU LINKS POSITIONING */
+
+
 
 /*CONTAINER FOR ALL BUTTONS, MOBILE & DESKTOP */
 #top-buttons {
@@ -93,6 +95,15 @@ h1 {
     width: 100%;
     padding-top: 10px;
     padding-bottom: .5;
+}
+
+/* MENU ITEMS TEXT STYLING*/
+#top-buttons a {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: rgb(255, 189, 0);
 }
 
 
@@ -110,6 +121,7 @@ h1 {
      color: rgb(255, 189, 0);
  }
 
+/* MENU ITEM STYLING */
 #data-button {
     cursor:pointer;
     text-transform:uppercase;
@@ -124,14 +136,6 @@ h1 {
 }
 
 
-/* MENU ITEMS TEXT STYLING*/
-#top-buttons a {
-    text-decoration: none;
-    font-size: 20px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    color: rgb(255, 189, 0);
-}
 
 
 
@@ -144,26 +148,33 @@ h1 {
 
 /* THE MODAL (BACKGROUND) */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    /* HIDDEN BY DEFAULT */
+    display: none;
+    /* STAY IN PLACE */
+    position: fixed;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    /* FULL WIDTH */
+    width: 100%;
+    /* FULL HEIGHT */
+    height: 100%;
+    /* ENABLE SCROLL */
+    overflow: auto;
+    /* FALLBACK COLOR */
+    background-color: rgb(0,0,0);
+    /* BLACK WITH OPACITY */
+    background-color: rgba(0,0,0,0.4);
     z-index:999999999999999999999999999999999;
 }
 
 /* MODAL CONTENT BOX*/
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    /* 15% FROM THE TOP AND CENTERED */
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    width: 80%;
 }
 
 /* MODAL CLOSE BUTTON */
@@ -201,12 +212,10 @@ h1 {
 
 
 
-
-
-
-
 /*********************************************************************/
-/* BUTTON TO ADD A POINT */
+/* CSS FOR BUTTON TO ADD A POINT */
+
+
 
 /* BACKGROUND DIV OF THE ADD A POINT BUTTON */
 #add-a-point {
@@ -218,7 +227,7 @@ h1 {
     height:.75em;
     width:1.25em;
     z-index: 100000;
-    background-color: rgba(255, 189, 0, 0.7);
+    background-color: rgba(255, 189, 0, 0.8);
     padding-top:.5em;
     padding-left: 1em;
     padding-bottom:1em;
@@ -226,11 +235,12 @@ h1 {
     font-weight: 500;
     font-size: 20px;
     text-decoration:none;
+    box-shadow: 0 0 2px 2px #303030;
 }
 
 /* MAKE BACKGROUND DIV CHANGE COLOR */
 #add-a-point:hover {
-    background-color: rgba(255, 189, 0, .9);
+    background-color: rgba(255, 189, 0, 1);
 }
 
 #cross {
@@ -253,13 +263,8 @@ h1 {
     /* ADJUSTS THE HEIGHT OF THE HORIZONTAL BAR */
     height: 3px;
     /* ADJUSTS THE WIDTH OF THE HORIZONTAL BAR */
-    width: 24px;
+    width: 25px;
 }
-
-
-
-
-
 
 
 
