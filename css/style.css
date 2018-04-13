@@ -205,6 +205,67 @@ h1 {
 
 
 
+/*********************************************************************/
+/* BUTTON TO ADD A POINT */
+
+/* BACKGROUND DIV OF THE ADD A POINT BUTTON */
+#add-a-point {
+    display: block;
+    position: fixed;
+    left: 92.5%;
+    bottom: 5%;
+    border-radius: 4px;
+    height:.75em;
+    width:1.25em;
+    z-index: 100000;
+    background-color: rgba(255, 189, 0, 0.7);
+    padding-top:.5em;
+    padding-left: 1em;
+    padding-bottom:1em;
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration:none;
+}
+
+/* MAKE BACKGROUND DIV CHANGE COLOR */
+#add-a-point:hover {
+    background-color: rgba(255, 189, 0, .9);
+}
+
+#cross {
+    background-color: rgba(35, 31, 32, 1);
+    position: relative;
+    /* ADJUSTS THE HEIGHT OF THE VERTICAL BAR */
+    height: 25px;
+    /* ADJUSTS THE WIDTH OF THE VERTICAL BAR */
+    width: 3px;
+
+}
+#cross:after {
+    background-color: rgba(35, 31, 32, 1);
+    position: absolute;
+    content: "";
+    /* ADJUSTS THE POSITION LEFT OR RIGHT OF THE HORIZONTAL BAR */
+    left: -10px;
+    /* ADJUSTS THE POSITION UP OR DOWN OF THE HORIZONTAL BAR */
+    top: 11px;
+    /* ADJUSTS THE HEIGHT OF THE HORIZONTAL BAR */
+    height: 3px;
+    /* ADJUSTS THE WIDTH OF THE HORIZONTAL BAR */
+    width: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
 /**********************************************************************/
 /* LEAFLETTY STUFF */
 
@@ -506,6 +567,12 @@ a.leaflet-control-zoom-out {
     .leaflet-top {
         margin-top: 3.7em;
     }
+
+    #add-a-point {
+        left: 85.5%;
+    }
+
+
 }
 
 
