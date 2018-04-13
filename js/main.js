@@ -218,4 +218,38 @@ function getData(map) {
     // BRACKET CLOSING THE GETDATA FUNCTION
 }
 
+
+/*******************************************************************************************/
+/* JAVASCRIPT RELATED TO OPENING AND CLOSING THE DATA AND ABOUT INFORMATION WINDOWS */
+
+// GET THE MODAL
+var modal = document.getElementById('myModal');
+
+// GET THE ID OF THE BUTTON THAT OPENS THE MODAL
+var btn = document.getElementById("about-button");
+
+// GET THE <SPAN> ELEMENT THAT CLOSES THE MODAL
+var span = document.getElementsByClassName("close")[0];
+
+// WHEN THE USER CLICKS ON THE BUTTON, OPEN THE MODAL
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// WHEN THE USER CLICKS ON THE <SPAN> (X), CLOSE THE MODAL
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// WHEN USER CLICKS ANYWHERE OUTSIDE OF THE MODAL, IT CLOSES
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+//*************************************END OF MAIN.JS***********************************/
+
+/* LAST LINE */
 $(document).ready(createMap);
