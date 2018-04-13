@@ -315,6 +315,7 @@ a.leaflet-control-zoom-out {
         font-size: 34px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 5.8em;
     }
@@ -325,6 +326,7 @@ a.leaflet-control-zoom-out {
         font-size: 32px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 5.6em;
     }
@@ -336,6 +338,7 @@ a.leaflet-control-zoom-out {
         font-size: 32px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 5.3em;
     }
@@ -353,6 +356,7 @@ a.leaflet-control-zoom-out {
         font-size: 28px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 5em;
     }
@@ -363,6 +367,7 @@ a.leaflet-control-zoom-out {
         font-size: 26px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 4.7em;
     }
@@ -370,6 +375,7 @@ a.leaflet-control-zoom-out {
 
 
 @media (max-width: 900px) {
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 4.3em;
     }
@@ -381,6 +387,7 @@ a.leaflet-control-zoom-out {
         font-size: 22px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 4.3em;
     }
@@ -391,6 +398,7 @@ a.leaflet-control-zoom-out {
         font-size: 20px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 4em;
     }
@@ -420,6 +428,7 @@ a.leaflet-control-zoom-out {
         padding-bottom: 10px;
     }
 
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 3.8em;
     }
@@ -438,6 +447,7 @@ a.leaflet-control-zoom-out {
 }
 
 @media (max-width: 720px) {
+    /* POSITION SEARCH BAR */
     .leaflet-top {
         margin-top: 3.7em;
     }
@@ -486,15 +496,19 @@ a.leaflet-control-zoom-out {
         padding-top: .25em;
     }
 
+    /* MOBILE LINKS */
     .dropdown-content {
         display: block;
+        padding-top:.2em;
     }
 
+    /* POSITIONING SEARCH BAR */
     .leaflet-top {
         margin-top: 7.2em;
     }
 
 
+    /* TITLE */
     h1 {
         font-size: 24px;
         line-height: 1.3;
