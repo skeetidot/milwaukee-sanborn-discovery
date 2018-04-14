@@ -101,17 +101,15 @@ var map = L.map('map', mapOptions);
 
 
 //SET UP TOUCH EVENT LIBRARY FOR MOBILE
-$.Finger = {
-    pressDuration: 300,
-    doubleTapInterval: 300,
-    flickDuration: 150,
-    motionThreshold: 5
-};
-
-map.on('tap', function(e) {
-    alert("start");
+// direct event
+$('.touch').on('drag', function(e) {
+    alert("woo hoo");
 });
 
+// delegated event
+$('.parent').on('drag', '.touch', function(e) {
+    alert("woo hoo");
+});
 
 
 // CALL GET DATA FUNCTION
