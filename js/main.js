@@ -86,11 +86,6 @@ var map = L.map('map', mapOptions);
             map.dragging.enable();
         });
 
-        //WHEN THE USER CLICKS ON THE SLIDER ELEMENT
-        L.DomEvent.addListener(slider, 'touchend', function (e) {
-            //ALLOW THE USER TO DRAG THE MAP WHEN THEY MOVE OFF OF THE OPACITY SLIDER
-            map.dragging.enable();
-        });
 
         //RETURN THE SLIDER FROM THE ONADD METHOD
         return slider;
@@ -101,6 +96,21 @@ var map = L.map('map', mapOptions);
 
 })();
 //END OF OPACITY SLIDER JAVASCRIPT
+
+
+
+
+//SET UP TOUCH EVENT LIBRARY FOR MOBILE
+$.Finger = {
+    pressDuration: 300,
+    doubleTapInterval: 300,
+    flickDuration: 150,
+    motionThreshold: 5
+};
+
+map.on('tap', function(e) {
+    alert("start");
+});
 
 
 
