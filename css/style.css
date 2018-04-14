@@ -714,6 +714,10 @@ a.leaflet-control-zoom-out {
 
     }
 
+    #opacity-slider{
+        display:none;
+    }
+
 
     /* POSITIONING SEARCH BAR */
     .leaflet-top {
