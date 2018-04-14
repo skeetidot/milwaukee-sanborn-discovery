@@ -1,4 +1,5 @@
 /*******************************************************************/
+
 /* CSS TO STYLE THE WHOLE PAGE */
 
 html,
@@ -27,8 +28,8 @@ body {
 
 
 /**********************************************************************/
-/* CSS TO STYLE THE MAIN HEADER  */
 
+/* CSS TO STYLE THE MAIN HEADER  */
 
 #title {
     position: fixed;
@@ -82,11 +83,11 @@ h1 {
 
 
 /**********************************************************************/
+
 /* CSS TO STYLE THE MENU LINKS POSITIONING */
 
-
-
 /*CONTAINER FOR ALL BUTTONS, MOBILE & DESKTOP */
+
 #top-buttons {
     position: fixed;
     z-index: 100001;
@@ -97,7 +98,8 @@ h1 {
     padding-bottom: .5;
 }
 
-/* MENU ITEMS TEXT STYLING*/
+/* MENU ITEMS TEXT STYLING */
+
 #top-buttons a {
     text-decoration: none;
     font-size: 20px;
@@ -108,23 +110,25 @@ h1 {
 
 
 /* MENU ITEM STYLING */
+
 #about-button {
-    cursor:pointer;
-    text-transform:uppercase;
-     float: right;
-     padding-right: 50px;
-     padding-top: 20px;
-     font-size: 20px;
-     text-decoration: none;
-     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-     font-weight: 400;
-     color: rgb(255, 189, 0);
- }
+    cursor: pointer;
+    text-transform: uppercase;
+    float: right;
+    padding-right: 50px;
+    padding-top: 20px;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: rgb(255, 189, 0);
+}
 
 /* MENU ITEM STYLING */
+
 #data-button {
-    cursor:pointer;
-    text-transform:uppercase;
+    cursor: pointer;
+    text-transform: uppercase;
     float: right;
     padding-right: 50px;
     padding-top: 20px;
@@ -144,9 +148,11 @@ h1 {
 
 
 /************************************************************/
+
 /* CSS RELATED TO MODAL INFORMATION WINDOWS */
 
 /* THE MODAL (BACKGROUND) */
+
 .modal {
     /* HIDDEN BY DEFAULT */
     display: none;
@@ -161,13 +167,14 @@ h1 {
     /* ENABLE SCROLL */
     overflow: auto;
     /* FALLBACK COLOR */
-    background-color: rgb(0,0,0);
+    background-color: rgb(0, 0, 0);
     /* BLACK WITH OPACITY */
-    background-color: rgba(0,0,0,0.4);
-    z-index:999999999999999999999999999999999;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999999999999999999999999999999999;
 }
 
-/* MODAL CONTENT BOX*/
+/* MODAL CONTENT BOX */
+
 .modal-content {
     background-color: #fefefe;
     /* 15% FROM THE TOP AND CENTERED */
@@ -178,6 +185,7 @@ h1 {
 }
 
 /* MODAL CLOSE BUTTON */
+
 .close-data {
     color: #aaa;
     float: right;
@@ -207,38 +215,96 @@ h1 {
     cursor: pointer;
 }
 
+/*********************************************************************/
 
+/* CSS FOR OPACITY SLIDER */
 
+#opacity-slider {
+    position: absolute;
+    width: 80%;
+    margin-top: 50px;
+    padding: 6px 15px 4px 15px;
+    background: white;
+    border-radius: 3px;
+    color: #3d3d3d;
+    border: solid 2px rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+}
+
+.opacity-slider {
+    width: 100%;
+}
+
+#opacity-slider .min {
+    float: left;
+    font-size: 1.2em;
+    margin: 2px 0 2px;
+}
+
+#opacity-slider .max {
+    float: right;
+    font-size: 1.2em;
+    margin: 2px 0 2px;
+}
+
+#currentYearTitle {
+    margin: 0;
+    position: absolute;
+    left: 33%;
+    top: 0;
+    width: 100%;
+    background: #ffea80;
+    /* light Pittsburgh gold */
+    color: #3d3d3d;
+    border-left: 2px solid #3d3d3d;
+    font-weight: 600;
+    text-align: left;
+    font-family: "Merriweather", serif;
+}
+
+#currentYearTitle h1 {
+    background: #ffea80;
+    /* light Pittsburgh gold */
+    color: #3d3d3d;
+}
+
+label {
+    font-weight: 400;
+    font-size: 0.9em;
+/*    font-family: "Merriweather", serif;*/
+    width: 200px;
+}
 
 
 
 /*********************************************************************/
+
 /* CSS FOR BUTTON TO ADD A POINT */
 
-
-
 /* BACKGROUND DIV OF THE ADD A POINT BUTTON */
+
 #add-a-point {
     display: block;
     position: fixed;
     left: 92.5%;
     bottom: 5%;
     border-radius: 4px;
-    height:.75em;
-    width:1.25em;
+    height: .75em;
+    width: 1.25em;
     z-index: 100000;
     background-color: rgba(255, 189, 0, 0.8);
-    padding-top:.5em;
+    padding-top: .5em;
     padding-left: 1em;
-    padding-bottom:1em;
+    padding-bottom: 1em;
     color: black;
     font-weight: 500;
     font-size: 20px;
-    text-decoration:none;
+    text-decoration: none;
     box-shadow: 0 0 2px 2px #303030;
 }
 
 /* MAKE BACKGROUND DIV CHANGE COLOR */
+
 #add-a-point:hover {
     background-color: rgba(255, 189, 0, 1);
 }
@@ -252,6 +318,7 @@ h1 {
     width: 3px;
 
 }
+
 #cross:after {
     background-color: rgba(35, 31, 32, 1);
     position: absolute;
@@ -272,9 +339,11 @@ h1 {
 
 
 /**********************************************************************/
+
 /* LEAFLETTY STUFF */
 
 /* Leaflet top controls */
+
 .leaflet-top {
     position: absolute;
     margin-top: 6.2em;
@@ -283,12 +352,14 @@ h1 {
 }
 
 /* Hide the zoom buttons */
+
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
     display: none;
 }
 
 
 /* HIDES LEAFLET ZOOM CONTROLS */
+
 a.leaflet-control-zoom-in,
 a.leaflet-control-zoom-out {
     display: none;
@@ -296,6 +367,7 @@ a.leaflet-control-zoom-out {
 
 
 /* GETS RID OF BASE LAYER CONTROLS */
+
 .leaflet-control-layers-base,
 .leaflet-control-layers-separator {
     display: none;
@@ -307,6 +379,7 @@ a.leaflet-control-zoom-out {
 
 
 /**********************************************************************/
+
 /* BOUNDARY POPUP STUFF */
 
 .item-key {
@@ -349,9 +422,11 @@ a.leaflet-control-zoom-out {
 
 
 /**********************************************************************/
+
 /* GEOSEARCH STUFF */
 
 /* Search bar */
+
 .leaflet-center {
     width: 40%;
     margin-left: auto;
@@ -403,6 +478,7 @@ a.leaflet-control-zoom-out {
 
 
 /**********************************************************************/
+
 /* MEDIUM SCREEN SIZES (800px - 1360px) */
 
 @media (max-width: 1360px) {
@@ -516,17 +592,18 @@ a.leaflet-control-zoom-out {
 
 
 /* MAKE MENU BUTTONS SMALLER AS PORT GETS SMALLER */
+
 @media (max-width: 946px) {
     h1 {
         font-size: 24px;
     }
 
     #about-button {
-             float: right;
-             font-size: 16px;
-             padding-right: 50px;
-             padding-top: 1em;
-         }
+        float: right;
+        font-size: 16px;
+        padding-right: 50px;
+        padding-top: 1em;
+    }
 
     #data-button {
         float: right;
@@ -583,6 +660,7 @@ a.leaflet-control-zoom-out {
 
 
 /**********************************************************************/
+
 /* PHONE SCREEN SIZES (600px OR LESS) */
 
 @media (max-width: 600px) {
@@ -613,26 +691,26 @@ a.leaflet-control-zoom-out {
 
 
     /* STYLING MENU ITEMS */
-    .mobile-buttons{
+    .mobile-buttons {
         width: 5em;
-        float:right;
+        float: right;
     }
 
 
     #about-button {
         min-width: 3.7em;
         padding-right: 1em;
-        font-size:16px;
-        text-transform:none;
-        padding-top:.7em;
-     }
+        font-size: 16px;
+        text-transform: none;
+        padding-top: .7em;
+    }
 
     #data-button {
         min-width: 3.7em;
         padding-right: 1em;
-        font-size:16px;
-        text-transform:none;
-        padding-top:1em;
+        font-size: 16px;
+        text-transform: none;
+        padding-top: 1em;
 
     }
 
