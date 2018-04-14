@@ -21,6 +21,10 @@ body {
     margin: 0;
 }
 
+#opacity-slider{
+    touch-action: auto;
+    -ms-touch-action: auto;
+}
 
 
 
