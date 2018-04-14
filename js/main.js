@@ -1,7 +1,6 @@
 // DECLARE MAP IN GLOBAL SCOPE
 var map;
 
-
 // DECLARE DEFAULT OPACITY IN GLOBAL SCOPE
 var currentOpacity = 0.7;
 
@@ -13,19 +12,19 @@ var geocodeService = L.esri.Geocoding.geocodeService();
 
 // DECLARE BASEMAPS IN GLOBAL SCOPE
 
-// Political basemap
+// GREY BASEMAP
 var Esri_WorldGrayCanvas = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     maxZoom: 16
 });
 
-// Political basemap labels
+// GREY BASEMAP LABELS
 var Esri_WorldGrayReference = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     maxZoom: 16
 });
 
-// World imagery basemap (for use at detailed scales)
+// WORLD IMAGERY (FOR AT DETAILED SCALES)
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
     minZoom: 17,
@@ -44,6 +43,7 @@ var sanborn = L.esri.tiledMapLayer({
 });
 
 
+
 // SET THE MAP OPTIONS
 var mapOptions = {
     center: [43.041734, -87.904980], // centered in Downtown Milwaukee
@@ -59,10 +59,11 @@ var mapOptions = {
 var map = L.map('map', mapOptions);
 
 
-// PLACE THE OPACITY SLIDER ON THE MAP USING LEAFLET DOMUTIL
+/********************************************************************************/
+/* JAVASCRIPT RELATED TO SETTING UP THE OPACITY SLIDER */
 (function () {
 
-    // Create a Leaflet control object and store a reference to it in a variable
+    //CREATE A LEAFLET CONTROL OBJECT AND STORE A REFERENCE TO IT IN A VARIABLE
     var sliderControl = L.control({
         position: 'topleft',
         bubblingMouseEvents: false
@@ -99,57 +100,175 @@ var map = L.map('map', mapOptions);
 
 
 
-
-//SET UP TOUCH EVENT LIBRARY FOR MOBILE
-// direct event
-$('.touch').on('press', function(e) {
-    alert("woo hoo");
-});
-
-// delegated event
-$('.parent').on('press', '.touch', function(e) {
-    alert("woo hoo");
-});
-
-
-$.Finger = {
-    pressDuration: 300,
-    doubleTapInterval: 300,
-    flickDuration: 150,
-    motionThreshold: 5
-};
-
+// /********************************************************************************/
+// /* JAVASCRIPT RELATED TO TOUCH EVENT LIBRARY */
+// // direct event
+// $('.touch').on('press', function(e) {
+//     alert("woo hoo");
+// });
+//
+// // delegated event
+// $('.parent').on('press', '.touch', function(e) {
+//     alert("woo hoo");
+// });
+//
+// $.Finger = {
+//     pressDuration: 300,
+//     doubleTapInterval: 300,
+//     flickDuration: 150,
+//     motionThreshold: 5
+// };
 
 
-// CALL GET DATA FUNCTION
+/********************************************************************************/
+/* CALL GET DATA FUNCTION */
 getData(map);
-
 
 
 // FUNCTION TO RETRIEVE DATA AND PLACE IT ON THE MAP (:
 function getData(map) {
 
 
-    // Add the basemaps
+    // ADD THE BASEMAPS
     map.addLayer(Esri_WorldGrayCanvas);
     map.addLayer(Esri_WorldGrayReference);
     map.addLayer(Esri_WorldImagery);
 
 
-    // Add the Sanborn maps
+    // ADD THE SANBORNS
     sanborn.addTo(map);
 
 
-    // Call the updateOpacity() function to update the map as the user moves the year slider
+    //CALL THE UPDATEOPACITY() FUNCTION TO UPDATE THE MAP AS THE USER MOVES THE YEAR SLIDER
     updateOpacity(sanborn, currentOpacity);
 
 
+    /********************************************************************************/
+    /* JAVASCRIPT RELATED TO SEARCH BAR AND GEOCODING */
+
+    /*SEARCH BAR (BETA VERSION -- EXPLORING BEST ROUTE TO TAKE)
+    ADD ESRI LEAFLET SEARCH CONTROL */
+    var searchControl = document.getElementById('search')
+
+
+    // CREATE THE GEOCODING CONTROL AND ADD IT TO THE MAP
+    var searchControl = L.esri.Geocoding.geosearch({
+        // KEEP THE CONTROL OPEN
+        expanded: true,
+        // LIMIT SEARCH TO MILWAUKEE COUNTY
+        searchBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]),
+        //allowMultipleResults: false,
+        collapseAfterResult: false,
+        providers: arcgisOnline
+    }).addTo(map);
+
+
+    // CREATE AN EMPTY LAYER GROUP TO STORE THE RESULTS AND ADD TO MAP
+    var results = L.layerGroup().addTo(map);
+
+
+
+    /********************************************************************************/
+    /* JAVASCRIPT RELATED TO REVERSE GEOCODING -- RIGHT CLICK A POINT AND GET ADDRESS */
+
+    map.on('contextmenu', function (e) {
+
+        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
+
+            /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
+            RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
+            RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
+             */
+
+            reverseGeocodeMarker = L.marker(result.latlng);
+            reverseGeocodeMarker.addTo(map);
+
+            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
+            popupContent = result.address.Match_addr;
+
+
+            //SET THE POPUP CONTENT AND BIND IT TO THE MAP
+            var reverseGeocodeMarkerPopup = L.responsivePopup().setContent(popupContent);
+            reverseGeocodeMarker.bindPopup(popupContent).openPopup();
+
+            //MOVE THE MARKER & POPUP WHEN THE POPUP CLOSES
+            reverseGeocodeMarker.on('popupclose', function (e) {
+                reverseGeocodeMarker.remove();
+            });
+
+            //MOVE THE MARKER & POPUP WHEN THE USER RIGHT-CLICKS ON THE MAP
+            map.on('contextmenu', function (e) {
+                reverseGeocodeMarker.remove();
+            });
+        });
+    });
+
+
+    /********************************************************************************/
+    /* TO BE EVALUATED. EITHER GET A BETTER GEOCODER, OR DON'T ADD POINT
+    LISTEN FOR RESULTS EVENT AND ADD EVERY RESULT TO THE MAP */
+    searchControl.on("results", function (data) {
+
+        results.clearLayers();
+        for (var i = data.results.length - 1; i >= 0; i--) {
+            results.addLayer(L.marker(data.results[i].latlng));
+
+            // Create a popup for each feature
+            //                results.eachLayer(function (layer) {
+            //                    layer.bindPopup(data.results[i].text);
+            //                    layer.openPopup();
+            //                })
+        }
+    });
+
+
+    // EXPERIMENTING WITH THE LEAFLET GEOSEARCH PLUGIN FROM
+    // https://github.com/smeijer/leaflet-geosearch
+    // IT DOES NOT ALLOW SEARCHING BY BOUNDS
+    //            var geoSearchController = new L.Control.GeoSearch({
+    //                    provider: new L.GeoSearch.Provider.Google()
+    //
+    //            import { GoogleProvider } from 'leaflet-geosearch';
+    //
+    //            const googleProvider = new GoogleProvider({
+    //                params: {
+    //                    key: 'AIzaSyBo-ggpJr485oHzwkfLkI-j8t6Z1nTrDV0',
+    //                },
+    //            });
+    //
+    //            const googleSearch = new GeoSearchControl({
+    //                provider: googleProvider, // required
+    //                style: 'bar', // optional: bar|button  - default button
+    //                autoComplete: true,
+    //                autoCompleteDelay: 250,
+    //                searchLabel: 'Search for an address'
+    //            }).addTo(map);
+
+
+
+    /********************************************************************************/
+    /* JAVASCRIPT TO HIDE SEARCH BAR WHEN POPUPS ARE ENABLED IN MOBILE
+    DEFINITELY NOT PERFECT, CAN BE SLEEKER IN LATER ITERATIONS. IF SEARCH BAR CODE CHANGES,
+    JUST REPLACE .GEOCODER-CONTROL-INPUT WITH THE DIV CLASS OF THE NEW SEARCH BAR
+    (WHICH YOU CAN FIND BY LOOKING WITH THE CHROME INSPECTOR) */
+    if ($(window).width() < 600) {
+        map.on('popupopen', function (e) {
+            $('.geocoder-control-input').hide();
+        });
+        map.on('popupclose', function (e) {
+            $('.geocoder-control-input').show();
+        });
+    }
+
+
+    /********************************************************************************/
     // USE JQUERY'S GETJSON() METHOD TO LOAD THE SHEET BOUNDARY DATA ASYNCHRONOUSLY
     $.getJSON("data/boundaries_mercator.json", function (data) {
 
 
-        // CREATE A LEAFLET GEOJSON LAYER FOR THE SHEET BOUNDARIES WITH POPUPS AND ADD IT TO THE MAP
+        // CREATE A LEAFLET GEOJSON LAYER FOR THE SHEET BOUNDARIES WITH POPUPS AND ADD TO THE MAP
         sheetBoundaries = L.geoJson(data, {
+
 
             // CREATE STYLING FOR THE BOUNDARY LAYER
             style: function (feature) {
@@ -176,17 +295,11 @@ function getData(map) {
 
             // GRAB AND FORMAT SHEET NUMBER, YEAR, BUSINESSES, PUBLISHER, SCALE, REPOSITORY, AND PERMALINK FROM GEOJSON DATA
             var sheetname = "<div class= 'item-key'><b>Sheet number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
-
             var year = "<div class= 'item-key'><b>Publication Year:</b></div><div class='item-value'>" + feature.properties['Publicatio'] + "</div>";
-
             var businesses = "<div class= 'item-key'><b>Businesses depicted: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
-
             var publisher = "<div class= 'item-key'><b>Publisher: </b></div><div class='item-value'>" + feature.properties['Publisher'] + "</div>";
-
             var scale = "<div class= 'item-key'><b>Scale: </b></div><div class='item-value'>" + feature.properties['Scale'] + "</div>";
-
             var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
-
             var view = '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item</a>';
 
 
@@ -201,86 +314,13 @@ function getData(map) {
         }
 
 
-        // EXPERIMENTING WITH THE LEAFLET GEOSEARCH PLUGIN FROM
-        // https://github.com/smeijer/leaflet-geosearch
-        // IT DOES NOT ALLOW SEARCHING BY BOUNDS
-        //            var geoSearchController = new L.Control.GeoSearch({
-        //                    provider: new L.GeoSearch.Provider.Google()
-        //
-        //            import { GoogleProvider } from 'leaflet-geosearch';
-        //
-        //            const googleProvider = new GoogleProvider({
-        //                params: {
-        //                    key: 'AIzaSyBo-ggpJr485oHzwkfLkI-j8t6Z1nTrDV0',
-        //                },
-        //            });
-        //
-        //            const googleSearch = new GeoSearchControl({
-        //                provider: googleProvider, // required
-        //                style: 'bar', // optional: bar|button  - default button
-        //                autoComplete: true,
-        //                autoCompleteDelay: 250,
-        //                searchLabel: 'Search for an address'
-        //            }).addTo(map);
-
-
-        /* SEARCH BAR (BETA VERSION -- EXPLORING BEST ROUTE TO TAKE)
-        ADD ESRI LEAFLET SEARCH CONTROL */
-        var searchControl = document.getElementById('search')
-
-
-        // CREATE THE GEOCODING CONTROL AND ADD IT TO THE MAP
-        var searchControl = L.esri.Geocoding.geosearch({
-            // KEEP THE CONTROL OPEN
-            expanded: true,
-            // LIMIT SEARCH TO MILWAUKEE COUNTY
-            searchBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]),
-            //allowMultipleResults: false,
-            collapseAfterResult: false,
-            providers: arcgisOnline
-        }).addTo(map);
-
-
-        // CREATE AN EMPTY LAYER GROUP TO STORE THE RESULTS AND ADD TO MAP
-        var results = L.layerGroup().addTo(map);
-
-
-        // LISTEN FOR RESULTS EVENT AND ADD EVERY RESULT TO THE MAP
-        searchControl.on("results", function (data) {
-
-            results.clearLayers();
-            for (var i = data.results.length - 1; i >= 0; i--) {
-                results.addLayer(L.marker(data.results[i].latlng));
-
-                // Create a popup for each feature
-                //                results.eachLayer(function (layer) {
-                //                    layer.bindPopup(data.results[i].text);
-                //                    layer.openPopup();
-                //                })                
-            }
-        });
-
-
-        /* CONDITIONAL JQUERY TO HIDE SEARCH BAR WHEN POPUPS ARE ENABLED IN MOBILE
-        DEFINITELY NOT PERFECT, CAN BE SLEEKER IN LATER ITERATIONS. IF SEARCH BAR CODE CHANGES,
-        JUST REPLACE .GEOCODER-CONTROL-INPUT WITH THE DIV CLASS OF THE NEW SEARCH BAR
-        (WHICH YOU CAN FIND BY LOOKING WITH THE CHROME INSPECTOR) */
-        if ($(window).width() < 600) {
-            map.on('popupopen', function (e) {
-                $('.geocoder-control-input').hide();
-            });
-            map.on('popupclose', function (e) {
-                $('.geocoder-control-input').show();
-            });
-        }
-
         /* BRACKET CLOSING ASYNCHRONOUS GETJSON () METHOD
-        ANY CODE THAT ENGAGES WITH THE BOUNDARY DATA LATER MUST BE BACK IN THIS FUNCTION */
+        ANY CODE THAT ENGAGES WITH THE BOUNDARY DATA LATER MUST BE IN THE FUNCTION THAT HAS JUST ENDED*/
     });
 
 
-    // UPDATE OPACITY
-    // When the user updates the opacity slider, update the historic maps to the selected opacity
+    /********************************************************************************/
+    /* JAVASCRIPT RELATED TO UPDATING THE HISTORIC MAPS WHEN OPACITY SLIDER IS INITIATED */
     function updateOpacity(sanborn, currentOpacity) {
 
         // Select the slider div element
@@ -296,41 +336,11 @@ function getData(map) {
                 sanborn.setOpacity(currentOpacity);
 
             });
+    //BRACKET CLOSING UPDATE OPACITY
+    //WHATEVER FUNCTION IS LAST PLEASE ADD COMMENT DENOTING END OF FUNCTION
+    //THIS IS WHERE IT CAN GET CONFUSING
     }
 
-    // REVERSE GEOCODING
-    // Right-click a point on the map to get its business name or address
-    map.on('contextmenu', function (e) {
-
-        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
-            
-            // callback is called with error, result, and raw response.
-            // result.latlng contains the coordinates of the located address
-            // result.address contains information about the match
-
-            reverseGeocodeMarker = L.marker(result.latlng);
-            reverseGeocodeMarker.addTo(map);
-
-            // Build a popup with the match address (business name and address)
-            popupContent = result.address.Match_addr;
-            
-            //console.log(result.address);
-            
-            // Set the popup content and bind it to the map
-            var reverseGeocodeMarkerPopup = L.responsivePopup().setContent(popupContent);
-            reverseGeocodeMarker.bindPopup(popupContent).openPopup();
-            
-            // Move the marker and popup the next time the user right-clicks on the map
-            reverseGeocodeMarker.on('popupclose', function (e) {
-                    reverseGeocodeMarker.remove();
-            });
-
-            // Move the marker and popup the next time the user right-clicks on the map
-            map.on('contextmenu', function (e) {
-                    reverseGeocodeMarker.remove();
-            });
-        });
-    });
 
 // BRACKET CLOSING THE GETDATA FUNCTION
 }
