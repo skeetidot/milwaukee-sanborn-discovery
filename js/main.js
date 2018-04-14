@@ -34,8 +34,7 @@ var sanborn = L.esri.tiledMapLayer({
     url: 'http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornMaps/MapServer',
     maxZoom: 21,
     minZoom: 0,
-    //opacity: 0,
-    opacity: currentOpacity,
+    opacity: 0.7, // Initial opacity
     attribution: 'American Geographical Society Library, University of Wisconsin-Milwaukee'
 });
 
@@ -59,7 +58,8 @@ var map = L.map('map', mapOptions);
 
     // Create a Leaflet control object and store a reference to it in a variable
     var sliderControl = L.control({
-        position: 'topleft'
+        position: 'topleft',
+        bubblingMouseEvents: false
     });
 
     // When we add this control object to the map
@@ -69,11 +69,18 @@ var map = L.map('map', mapOptions);
         var slider = L.DomUtil.get("opacity-slider");
 
         // When the user clicks on the slider element
-        L.DomEvent.addListener(slider, 'mousedown', function (e) {
+        L.DomEvent.addListener(slider, 'mouseover', function (e) {
 
-            // Prevent the click event from bubbling up to the map
-            L.DomEvent.stopPropagation(e);
+            // Prevent the user from dragging the map while they are hovered on the opacity slider
+            map.dragging.disable();
         });
+        
+        // When the user clicks on the slider element
+        L.DomEvent.addListener(slider, 'mouseout', function (e) {
+
+            // Allow the user to drag the map when they move off of the opacity slider
+            map.dragging.enable();
+        });        
 
         // Return the slider from the onAdd method
         return slider;
@@ -96,13 +103,17 @@ function getData(map) {
 
 
     // Add the basemaps
-    Esri_WorldGrayCanvas.addTo(map);
-    Esri_WorldGrayReference.addTo(map);
-    Esri_WorldImagery.addTo(map);
+    map.addLayer(Esri_WorldGrayCanvas);
+    map.addLayer(Esri_WorldGrayReference);
+    map.addLayer(Esri_WorldImagery);
 
 
     // Add the Sanborn maps
     sanborn.addTo(map);
+    
+    console.log(sanborn);
+    
+    console.log("Initial Sanborn opacity: " + sanborn.options.opacity);
 
 
     // Call the updateOpacity() function to update the map as the user moves the year slider
@@ -232,32 +243,27 @@ function getData(map) {
     // When the user updates the opacity slider, update the historic maps to the selected opacity
     function updateOpacity(sanborn, currentOpacity) {
 
-        // Select the current year label inside the currentYearTitle div element's span tag
-        //var output = $('#currentYearTitle h1 span');
-
         // Select the slider div element
         $('.opacity-slider')
 
             // When the user updates the slider
             .on('input change', function () {
+            
                 // Determine the current opacity
-                currentOpacity = $(this).val();
-                // Update the currentYearTitle div to display the current opacity
-                // output.html(currentYear);
+                currentOpacity = Number($(this).val())/100;
 
-                console.log("Current opacity: " + currentOpacity);
+                console.log("Slider opacity: " + currentOpacity);
 
                 // Update the map to show the map in the current opacity
                 //updateMap(sanborn, currentOpacity);
 
                 // Change the opacity of the Sanborn maps to the current opacity
                 sanborn.setOpacity(currentOpacity);
+            
+                console.log("Sanborn opacity: " + sanborn.options.opacity);
+            
+            return currentOpacity;
 
-                // Hide the details panel
-                //$('#detailsPanel').hide();
-
-                // Show the marker list
-                //$('#markerListPanel').show();
             });
     }
 
@@ -268,7 +274,7 @@ function getData(map) {
 
 
 
-/*******************************************************************************************/
+/********************************************************************************/
 /* JAVASCRIPT RELATED TO OPENING AND CLOSING THE DATA AND ABOUT INFORMATION WINDOWS */
 
 // GET THE MODALS
