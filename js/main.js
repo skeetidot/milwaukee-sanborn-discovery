@@ -68,34 +68,39 @@ var map = L.map('map', mapOptions);
         bubblingMouseEvents: false
     });
 
-    // When we add this control object to the map
+    //WHEN WE ADD THIS CONTROL OBJECT TO THE MAP
     sliderControl.onAdd = function (map) {
 
-        // Select an existing DOM element with an id of "opacity-slider"
+        //SELECT AN EXISTING DOM ELEMENT WITH AN ID OF 'OPACTY-SLIDER'
         var slider = L.DomUtil.get("opacity-slider");
 
-        // When the user clicks on the slider element
+        //WHEN THE USER HOVERS OVER THE SLIDER ELEMENT
         L.DomEvent.addListener(slider, 'mouseover', function (e) {
-
-            // Prevent the user from dragging the map while they are hovered on the opacity slider
+            //PREVENT THE USER FROM DRAGGING THE MAP WHILE THEY ARE HOVERING ON THE OPACITY SLIDER
             map.dragging.disable();
         });
 
-        // When the user clicks on the slider element
+        //WHEN THE USER CLICKS ON THE SLIDER ELEMENT
         L.DomEvent.addListener(slider, 'mouseout', function (e) {
-
-            // Allow the user to drag the map when they move off of the opacity slider
+            //ALLOW THE USER TO DRAG THE MAP WHEN THEY MOVE OFF OF THE OPACITY SLIDER
             map.dragging.enable();
         });
 
-        // Return the slider from the onAdd method
+        //WHEN THE USER CLICKS ON THE SLIDER ELEMENT
+        L.DomEvent.addListener(slider, 'touchend', function (e) {
+            //ALLOW THE USER TO DRAG THE MAP WHEN THEY MOVE OFF OF THE OPACITY SLIDER
+            map.dragging.enable();
+        });
+
+        //RETURN THE SLIDER FROM THE ONADD METHOD
         return slider;
     }
 
-    // Add the control object containing our slider element to the map
+    //ADD THE CONTROL OBJECT CONTAINING THE SLIDER ELEMENT TO THE MAP
     sliderControl.addTo(map);
 
 })();
+//END OF OPACITY SLIDER JAVASCRIPT
 
 
 
