@@ -223,9 +223,8 @@ h1 {
 /* CSS FOR OPACITY SLIDER */
 
 #opacity-slider {
-    position: absolute;
     width: 80%;
-    margin-top: 50px;
+    top: -.3em;
     padding: 6px 15px 4px 15px;
     background: white;
     border-radius: 3px;
@@ -342,6 +341,12 @@ h1 {
 .leaflet-control-zoom{
 display:none;
 }
+
+.leaflet-control-layers{
+    display:none;
+}
+
+
 
 
 
@@ -556,18 +561,45 @@ display:none;
 
 @media (max-width: 600px) {
 
-    /* POSITION ADDRESS SEARCH BOX*/
-    .leaflet-control-geosearch,
-    .leaflet-control-geosearch ul {
-        border-radius: 7px;
-        background: none repeat scroll 0 0 rgba(0, 0, 0, 0.25);
-        margin: 10px 0 0 0;
-        top: 8.75em;
-        padding: 5px;
-        margin-left: 12px;
-        width: 24em;
-        height: auto;
+
+    .leaflet-control-layers{
+        display:block;
+        left: 10px;
+        top:2.3em;
+        width: 50% !important;
     }
+
+    .leaflet-right{
+        width:320px;
+        left:0;
+    }
+
+    .leaflet-left{
+        width:320px;
+        left:0;
+    }
+
+    .leaflet-top{
+        height:400px;
+    }
+
+
+    .geocoder-control{
+        left:10px;
+        width: 80% !important;
+    }
+
+    .leaflet-left .leaflet-control{
+        margin-left:0px;
+    }
+    .leaflet-right .leaflet-control{
+        margin-left:0px;
+        float:left;
+    }
+
+
+
+
 
 
     /* DIFFERENT FORMATTING OF HEADER TITLE ON MOBILE */
