@@ -2,7 +2,7 @@
 var map;
 
 // DECLARE DEFAULT OPACITY IN GLOBAL SCOPE
-var currentOpacity = 0.7;
+var currentOpacity = 1;
 
 
 // DECLARE GLOBAL VARIABLES FOR GEOCODING
@@ -38,7 +38,7 @@ var sanborn = L.esri.tiledMapLayer({
     url: 'http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornMaps/MapServer',
     maxZoom: 21,
     minZoom: 0,
-    opacity: 0.7, // Initial opacity
+    opacity: 1, // Initial opacity
     attribution: 'American Geographical Society Library, University of Wisconsin-Milwaukee'
 });
 
