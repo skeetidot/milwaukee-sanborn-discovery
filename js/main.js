@@ -3,6 +3,8 @@ var map;
 
 // DECLARE DEFAULT OPACITY IN GLOBAL SCOPE
 var currentOpacity = 1;
+
+
 var sheetBoundaries;
 var currentAddress;
 
@@ -45,7 +47,6 @@ var sanborn = L.esri.tiledMapLayer({
 });
 
 
-
 // SET THE MAP OPTIONS
 var mapOptions = {
     center: [43.041734, -87.904980], // centered in Downtown Milwaukee
@@ -65,7 +66,7 @@ var map = L.map('map', mapOptions);
 // SET THE LAYER CONTROLS
 
 // SET THE BASEMAP
-// ONLY SELECT ONE SO THE BASEMAP IS NOT PART OF THE LAYER LIST
+// ONLY INCULDE ONE BASEMAP SO IT IS NOT PART OF THE LAYER LIST
 var baseMaps = {
     "Grayscale": Esri_WorldGrayCanvas
 };
@@ -134,8 +135,6 @@ console.log(sanbornCheckbox);
 //        console.log("unchecked");
 //        sliderControl.hide();
 //    }
-
-
 
 
 // /********************************************************************************/
@@ -216,13 +215,20 @@ function getData(map) {
 
     // CREATE THE GEOCODING CONTROL AND ADD IT TO THE MAP
     var searchControl = L.esri.Geocoding.geosearch({
+
         // KEEP THE CONTROL OPEN
         expanded: true,
+
         // LIMIT SEARCH TO MILWAUKEE COUNTY
         searchBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]),
-        //allowMultipleResults: false,
+
+        // KEEP THE CONTROL OPEN AFTER GETTING RESULTS
         collapseAfterResult: false,
+
+        // USE ARCGIS ONLINE AS A DATA PROVIDER
+        // LOOK INTO A SECOND PROVIDER WITH THE BUSINESSES FROM THE SHEET BOUNDARIES
         providers: arcgisOnline
+
     }).addTo(map);
 
 
@@ -234,37 +240,37 @@ function getData(map) {
     /********************************************************************************/
     /* JAVASCRIPT RELATED TO REVERSE GEOCODING -- RIGHT CLICK A POINT AND GET ADDRESS */
 
-    map.on('contextmenu', function (e) {
-
-        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
-
-            /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
-            RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
-            RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
-             */
-
-            reverseGeocodeMarker = L.marker(result.latlng);
-            reverseGeocodeMarker.addTo(map);
-
-            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
-            popupContent = result.address.Match_addr;
-
-
-            //SET THE POPUP CONTENT AND BIND IT TO THE MAP
-            var reverseGeocodeMarkerPopup = L.responsivePopup().setContent(popupContent);
-            reverseGeocodeMarker.bindPopup(popupContent).openPopup();
-
-            //MOVE THE MARKER & POPUP WHEN THE POPUP CLOSES
-            reverseGeocodeMarker.on('popupclose', function (e) {
-                reverseGeocodeMarker.remove();
-            });
-
-            //MOVE THE MARKER & POPUP WHEN THE USER RIGHT-CLICKS ON THE MAP
-            map.on('contextmenu', function (e) {
-                reverseGeocodeMarker.remove();
-            });
-        });
-    });
+    //    map.on('contextmenu', function (e) {
+    //
+    //        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
+    //
+    //            /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
+    //            RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
+    //            RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
+    //             */
+    //
+    //            reverseGeocodeMarker = L.marker(result.latlng);
+    //            reverseGeocodeMarker.addTo(map);
+    //
+    //            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
+    //            popupContent = result.address.Match_addr;
+    //
+    //
+    //            //SET THE POPUP CONTENT AND BIND IT TO THE MAP
+    //            var reverseGeocodeMarkerPopup = L.responsivePopup().setContent(popupContent);
+    //            reverseGeocodeMarker.bindPopup(popupContent).openPopup();
+    //
+    //            //MOVE THE MARKER & POPUP WHEN THE POPUP CLOSES
+    //            reverseGeocodeMarker.on('popupclose', function (e) {
+    //                reverseGeocodeMarker.remove();
+    //            });
+    //
+    //            //MOVE THE MARKER & POPUP WHEN THE USER RIGHT-CLICKS ON THE MAP
+    //            map.on('contextmenu', function (e) {
+    //                reverseGeocodeMarker.remove();
+    //            });
+    //        });
+    //    });
 
 
     /********************************************************************************/
@@ -329,12 +335,8 @@ function getData(map) {
     // USE JQUERY'S GETJSON() METHOD TO LOAD THE SHEET BOUNDARY DATA ASYNCHRONOUSLY
     $.getJSON("data/boundaries_mercator.json", function (data) {
 
-
         // CREATE A LEAFLET GEOJSON LAYER FOR THE SHEET BOUNDARIES WITH POPUPS AND ADD TO THE MAP
         sheetBoundaries = L.geoJson(data, {
-
-
-
 
 
             // CREATE STYLING FOR THE BOUNDARY LAYER
@@ -348,44 +350,60 @@ function getData(map) {
             },
 
 
-        // LOOP THROUGH EACH FEATURE AND CREATE A POPUP
+            // LOOP THROUGH EACH FEATURE AND CREATE A POPUP
             onEachFeature: function (feature, layer) {
                 layer.on('click', function (e) {
-                    popupContent(feature, layer);
-                    // sheetExtent(feature, layer);
+                    //currentAddress = getCurrentAddress(e);
+
+                    //console.log(currentAddress);
+
+                    popupContent(feature, layer, e);
+                    //sheetExtent(feature, layer);
                 });
             }
         }).addTo(map);
 
+    });
+
+    //    // When the user clicks one of the bridges
+    //    sheetBoundaries.on('click', function (e) {
+    //        // Create and display the details panel when the user clicks a bridge
+    //        createDetailsPanel(bridges, e);
+    //    });
 
 
+    //         function sheetExtent(feature, layer) {
+    //             layer.on({
+    //                 click: function(e) {
+    //                     //calls up the feature clicked on
+    //                     var $layer = e.target;
+    //        
+    //                     var highlightStyle = {
+    //                         opacity: 1,
+    //                         weight: 5
+    //                     };
+    //        
+    //        
+    //                     $layer.bringToFront();
+    //                     $layer.setStyle(highlightStyle);
+    //                 }
+    //             });
+    //         }
 
 
+    function getCurrentAddress(e) {
 
-        //
-        // function sheetExtent(feature, layer) {
-        //     layer.on({
-        //         click: function(e) {
-        //             //calls up the feature clicked on
-        //             var $layer = e.target;
-        //
-        //             var highlightStyle = {
-        //                 opacity: 1,
-        //                 weight: 5
-        //             };
-        //
-        //
-        //             $layer.bringToFront();
-        //             $layer.setStyle(highlightStyle);
-        //         }
-        //     });
-        // }
+        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
 
+            /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
+            RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
+            RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
+             */
 
+            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
+            currentAddress = result.address.Match_addr;
 
-
-        // POPULATE THE POPUP USING ATTRIBUTES FROM THE GEOJSON BOUNDARY DATA
-        function popupContent(feature, layer) {
+            return currentAddress;
 
             // GRAB AND FORMAT SHEET NUMBER, YEAR, BUSINESSES, PUBLISHER, SCALE, REPOSITORY, AND PERMALINK FROM GEOJSON DATA
             var sheetname = "<div class= 'item-key'><b>Sheet number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
@@ -397,33 +415,91 @@ function getData(map) {
             var view = '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item</a>';
 
 
+            console.log(feature.properties['Business_P']);
+
+
             // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
-            var info = (sheetname + businesses + year + publisher + scale + repository + view);
+            var info = (sheetname + businesses + repository + view);
 
 
             /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
             EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
             var popup = L.responsivePopup().setContent(info);
             sheetBoundaries.bindPopup(popup).openPopup();
+
+        });
+    }
+
+
+    // POPULATE THE POPUP USING ATTRIBUTES FROM THE GEOJSON BOUNDARY DATA
+    function popupContent(feature, layer, e) {
+        
+        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
+
+            /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
+            RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
+            RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
+             */
+            
+            //console.log(result.address);
+
+            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
+            currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + result.address.LongLabel; + "</div>";
+
+        });
+        
+        var popupCurrentSubheading = "<div class='item-key'><b>THIS LOCATION TODAY</b></div>"        
+        
+        var popupHistoricSubheading = "<div class='item-key'><b>THIS LOCATION IN 1910</b></div>"
+
+        // GRAB AND FORMAT SHEET NUMBER, YEAR, BUSINESSES, PUBLISHER, SCALE, REPOSITORY, AND PERMALINK FROM GEOJSON DATA
+        var sheetname = "<div class= 'item-key'><b>Sanborn Map Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
+        
+        var year = "<div class= 'item-key'><b>Publication Year:</b></div><div class='item-value'>" + feature.properties['Publicatio'] + "</div>";
+        
+        var businesses = "<div class= 'item-key'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
+        
+        var publisher = "<div class= 'item-key'><b>Publisher: </b></div><div class='item-value'>" + feature.properties['Publisher'] + "</div>";
+        
+        var scale = "<div class= 'item-key'><b>Scale: </b></div><div class='item-value'>" + feature.properties['Scale'] + "</div>";
+        
+        var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
+        
+        var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item at UWM Libraries</a></div>';
+
+        console.log(feature.properties['Business_P']);
+
+        // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
+        if (currentAddress == null) {
+            var info = (sheetname + businesses + repository + view);
+        } else {
+            var info = (currentAddress + "<p>" + "<hr>" + "<p>" + sheetname + businesses + repository + view);
         }
 
 
-
-        // function showSheetBoundary(e) {
-        //
-        //     var sheetextent = {
-        //         'opacity': 1
-        //     };
-        //
-        //     map._layers[sheetBoundaries].setStyle(sheetextent);
-        // }
-        //
-        // map.on('popupopen', showSheetBoundary);
+        /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
+        EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
+        var popup = L.responsivePopup().setContent(info);
+        sheetBoundaries.bindPopup(popup).openPopup();
+    }
 
 
-        /* BRACKET CLOSING ASYNCHRONOUS GETJSON () METHOD
-        ANY CODE THAT ENGAGES WITH THE BOUNDARY DATA LATER MUST BE IN THE FUNCTION THAT HAS JUST ENDED*/
-    });
+
+    // function showSheetBoundary(e) {
+    //
+    //     var sheetextent = {
+    //         'opacity': 1
+    //     };
+    //
+    //     map._layers[sheetBoundaries].setStyle(sheetextent);
+    // }
+    //
+    // map.on('popupopen', showSheetBoundary);
+
+
+    //    /* BRACKET CLOSING ASYNCHRONOUS GETJSON () METHOD
+    //    ANY CODE THAT ENGAGES WITH THE BOUNDARY DATA LATER MUST BE IN THE FUNCTION THAT HAS JUST ENDED*/
+    //});
 
 
     /********************************************************************************/
