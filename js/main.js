@@ -80,10 +80,6 @@ L.control.layers(baseMaps, overlayMaps, {
 }).addTo(map);
 
 
-
-
-
-
 /********************************************************************************/
 /* JAVASCRIPT RELATED TO SETTING UP THE OPACITY SLIDER */
 (function () {
@@ -324,6 +320,7 @@ function getData(map) {
             $('.geocoder-control-input').show();
         });
     }
+
 
 
     /********************************************************************************/
