@@ -357,26 +357,11 @@ display:none;
 .item-key {
     color: rgb(255, 189, 0);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin-top: 10px;
+
 }
 
 .item-value {
     color: white;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.item-link {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin-top: 10px;
-}
-
-.item-link a {
-    color: rgb(255, 189, 0);
-}
-
-.item-link a:hover {
-    color: rgb(255, 189, 0);
-    font-weight: bold;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
