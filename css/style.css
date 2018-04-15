@@ -47,7 +47,6 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     color: rgb(255, 189, 0);
-
 }
 
 /* STYLING & POSITIONING THE MOBILE HEADER */
@@ -251,34 +250,6 @@ h1 {
     margin: 2px 0 2px;
 }
 
-#currentYearTitle {
-    margin: 0;
-    position: absolute;
-    left: 33%;
-    top: 0;
-    width: 100%;
-    background: #ffea80;
-    /* light Pittsburgh gold */
-    color: #3d3d3d;
-    border-left: 2px solid #3d3d3d;
-    font-weight: 600;
-    text-align: left;
-    font-family: "Merriweather", serif;
-}
-
-#currentYearTitle h1 {
-    background: #ffea80;
-    /* light Pittsburgh gold */
-    color: #3d3d3d;
-}
-
-label {
-    font-weight: 400;
-    font-size: 0.9em;
-/*    font-family: "Merriweather", serif;*/
-    width: 200px;
-}
-
 
 
 /*********************************************************************/
@@ -357,17 +328,21 @@ label {
 
 /* Hide the zoom buttons */
 
+/*
 .leaflet-control-zoom.leaflet-bar.leaflet-control {
     display: none;
 }
+*/
 
 
 /* HIDES LEAFLET ZOOM CONTROLS */
+/*
 
 a.leaflet-control-zoom-in,
 a.leaflet-control-zoom-out {
     display: none;
 }
+*/
 
 
 /* GETS RID OF BASE LAYER CONTROLS */
@@ -378,6 +353,9 @@ a.leaflet-control-zoom-out {
 }
 
 
+.leaflet-touch .leaflet-control-layers {
+    width: 200px;
+}
 
 
 
@@ -424,7 +402,6 @@ a.leaflet-control-zoom-out {
 
 
 
-
 /**********************************************************************/
 
 /* GEOSEARCH STUFF */
@@ -447,7 +424,7 @@ a.leaflet-control-zoom-out {
     padding: 5px;
     margin-left: 12px;
     width: 250px;
-    height: auto;
+    height: auto;  
 }
 
 .leaflet-control-geosearch-msg ul {
@@ -475,10 +452,13 @@ a.leaflet-control-zoom-out {
     background: rgba(255, 255, 255, 0.75);
     border-radius: 4px;
     border: none;
+
 }
 
-
-
+#geocoder-control-input {
+    position: absolute;
+    width: 200px;
+}
 
 
 /**********************************************************************/
@@ -679,7 +659,6 @@ a.leaflet-control-zoom-out {
         padding: 5px;
         margin-left: 12px;
         width: 24em;
-        ;
         height: auto;
     }
 
@@ -719,7 +698,7 @@ a.leaflet-control-zoom-out {
     }
 
     #opacity-slider{
-        display:none;
+        display: none;
     }
 
 

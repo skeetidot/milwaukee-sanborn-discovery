@@ -50,8 +50,9 @@ var mapOptions = {
     zoom: 15,
     minZoom: 11,
     maxZoom: 21,
-    maxBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // panning bounds so the user doesn't pan too far away from Milwaukee,
-    bounceAtZoomLimits: false //Set it to false if you don't want the map to zoom beyond min/max zoom and then bounce back when pinch-zooming.
+    maxBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // panning bounds so the user doesn't pan too far away from Milwaukee
+    bounceAtZoomLimits: false, // Set it to false if you don't want the map to zoom beyond min/max zoom and then bounce back when pinch-zooming
+    layers: [Esri_WorldGrayCanvas, sanborn] // Set the layers to build into the layer control
 }
 
 
@@ -59,44 +60,83 @@ var mapOptions = {
 var map = L.map('map', mapOptions);
 
 
+// SET THE LAYER CONTROLS
+
+// SET THE BASEMAP
+// ONLY SELECT ONE SO THE BASEMAP IS NOT PART OF THE LAYER LIST
+var baseMaps = {
+    "Grayscale": Esri_WorldGrayCanvas
+};
+
+// SET THE OVERLAYS
+var overlayMaps = {
+    "1910 Sanborn Maps": sanborn
+    // We can add the landmarks layer here when it is ready
+};
+
+// ADD THE LAYER CONTROL TO THE MAP
+L.control.layers(baseMaps, overlayMaps, {
+    collapsed: false // Keep the layer list open
+}).addTo(map);
+
+
+
+
+
+
 /********************************************************************************/
 /* JAVASCRIPT RELATED TO SETTING UP THE OPACITY SLIDER */
 (function () {
 
-    //CREATE A LEAFLET CONTROL OBJECT AND STORE A REFERENCE TO IT IN A VARIABLE
+    // CREATE A LEAFLET CONTROL OBJECT AND STORE A REFERENCE TO IT IN A VARIABLE
     var sliderControl = L.control({
-        position: 'topleft',
+        position: 'topright',
         bubblingMouseEvents: false
     });
 
-    //WHEN WE ADD THIS CONTROL OBJECT TO THE MAP
+    // WHEN WE ADD THIS CONTROL OBJECT TO THE MAP
     sliderControl.onAdd = function (map) {
 
-        //SELECT AN EXISTING DOM ELEMENT WITH AN ID OF 'OPACTY-SLIDER'
+        // SELECT AN EXISTING DOM ELEMENT WITH AN ID OF 'OPACTY-SLIDER'
         var slider = L.DomUtil.get("opacity-slider");
 
-        //WHEN THE USER HOVERS OVER THE SLIDER ELEMENT
+        // WHEN THE USER HOVERS OVER THE SLIDER ELEMENT
         L.DomEvent.addListener(slider, 'mouseover', function (e) {
             //PREVENT THE USER FROM DRAGGING THE MAP WHILE THEY ARE HOVERING ON THE OPACITY SLIDER
             map.dragging.disable();
         });
 
-        //WHEN THE USER CLICKS ON THE SLIDER ELEMENT
+        // WHEN THE USER CLICKS ON THE SLIDER ELEMENT
         L.DomEvent.addListener(slider, 'mouseout', function (e) {
             //ALLOW THE USER TO DRAG THE MAP WHEN THEY MOVE OFF OF THE OPACITY SLIDER
             map.dragging.enable();
         });
 
 
-        //RETURN THE SLIDER FROM THE ONADD METHOD
+        // RETURN THE SLIDER FROM THE ONADD METHOD
         return slider;
     }
 
-    //ADD THE CONTROL OBJECT CONTAINING THE SLIDER ELEMENT TO THE MAP
+    // ADD THE CONTROL OBJECT CONTAINING THE SLIDER ELEMENT TO THE MAP
     sliderControl.addTo(map);
 
 })();
-//END OF OPACITY SLIDER JAVASCRIPT
+// END OF OPACITY SLIDER JAVASCRIPT
+
+
+// Need to aAdd a DOM Event Listener to hide the opacity slider if the Sanborn layer is unchecked
+var sanbornCheckbox = $('.leaflet-control-layers-overlays input[type="checkbox"]');
+
+console.log(sanbornCheckbox);
+//
+//    if (sanbornCheckbox.prop('checked')) {
+//        console.log("checked");
+//        sliderControl.show();
+//    } else {
+//        console.log("unchecked");
+//        sliderControl.hide();
+//    }
+
 
 
 
@@ -361,13 +401,13 @@ function getData(map) {
                 sanborn.setOpacity(currentOpacity);
 
             });
-    //BRACKET CLOSING UPDATE OPACITY
-    //WHATEVER FUNCTION IS LAST PLEASE ADD COMMENT DENOTING END OF FUNCTION
-    //THIS IS WHERE IT CAN GET CONFUSING
+        //BRACKET CLOSING UPDATE OPACITY
+        //WHATEVER FUNCTION IS LAST PLEASE ADD COMMENT DENOTING END OF FUNCTION
+        //THIS IS WHERE IT CAN GET CONFUSING
     }
 
 
-// BRACKET CLOSING THE GETDATA FUNCTION
+    // BRACKET CLOSING THE GETDATA FUNCTION
 }
 
 
