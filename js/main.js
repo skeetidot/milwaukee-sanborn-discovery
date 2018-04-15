@@ -350,7 +350,7 @@ function getData(map) {
             onEachFeature: function (feature, layer) {
                 layer.on('click', function (e) {
                     popupContent(feature, layer);
-                    sheetExtent(feature, layer);
+                    // sheetExtent(feature, layer);
                 });
             }
         }).addTo(map);
@@ -360,24 +360,24 @@ function getData(map) {
 
 
 
-
-        function sheetExtent(feature, layer) {
-            layer.on({
-                click: function(e) {
-                    //calls up the feature clicked on
-                    var $layer = e.target;
-
-                    var highlightStyle = {
-                        opacity: 1,
-                        weight: 5
-                    };
-
-
-                    $layer.bringToFront();
-                    $layer.setStyle(highlightStyle);
-                }
-            });
-        }
+        //
+        // function sheetExtent(feature, layer) {
+        //     layer.on({
+        //         click: function(e) {
+        //             //calls up the feature clicked on
+        //             var $layer = e.target;
+        //
+        //             var highlightStyle = {
+        //                 opacity: 1,
+        //                 weight: 5
+        //             };
+        //
+        //
+        //             $layer.bringToFront();
+        //             $layer.setStyle(highlightStyle);
+        //         }
+        //     });
+        // }
 
 
 
