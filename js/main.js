@@ -332,23 +332,53 @@ function getData(map) {
         sheetBoundaries = L.geoJson(data, {
 
 
+
+
+
             // CREATE STYLING FOR THE BOUNDARY LAYER
             style: function (feature) {
                 return {
-                    color: '#909090', // Stroke Color
+                    color: '#585858', // Stroke Color
                     weight: 2, // Stroke Weight
                     fillOpacity: 0, // Override the default fill opacity
                     opacity: 0 // Border opacity
                 };
             },
 
-            // LOOP THROUGH EACH FEATURE AND CREATE A POPUP
+
+        // LOOP THROUGH EACH FEATURE AND CREATE A POPUP
             onEachFeature: function (feature, layer) {
                 layer.on('click', function (e) {
                     popupContent(feature, layer);
+                    sheetExtent(feature, layer);
                 });
             }
         }).addTo(map);
+
+
+
+
+
+
+
+        function sheetExtent(feature, layer) {
+            layer.on({
+                click: function(e) {
+                    //calls up the feature clicked on
+                    var $layer = e.target;
+
+                    var highlightStyle = {
+                        opacity: 1,
+                        weight: 5
+                    };
+
+
+                    $layer.bringToFront();
+                    $layer.setStyle(highlightStyle);
+                }
+            });
+        }
+
 
 
 
@@ -374,6 +404,19 @@ function getData(map) {
             var popup = L.responsivePopup().setContent(info);
             sheetBoundaries.bindPopup(popup).openPopup();
         }
+
+
+
+        // function showSheetBoundary(e) {
+        //
+        //     var sheetextent = {
+        //         'opacity': 1
+        //     };
+        //
+        //     map._layers[sheetBoundaries].setStyle(sheetextent);
+        // }
+        //
+        // map.on('popupopen', showSheetBoundary);
 
 
         /* BRACKET CLOSING ASYNCHRONOUS GETJSON () METHOD
