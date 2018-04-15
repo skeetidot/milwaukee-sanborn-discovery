@@ -564,9 +564,9 @@ display:none;
 
     .leaflet-control-layers{
         display:block;
-        left: 10px;
-        top:2.3em;
-        width: 50% !important;
+        left: 5px;
+        top:-.5em;
+        width: 45% !important;
     }
 
     .leaflet-right{
@@ -585,7 +585,8 @@ display:none;
 
 
     .geocoder-control{
-        left:10px;
+        top:2.2em;
+        left:5px;
         width: 80% !important;
     }
 
