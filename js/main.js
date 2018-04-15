@@ -3,6 +3,8 @@ var map;
 
 // DECLARE DEFAULT OPACITY IN GLOBAL SCOPE
 var currentOpacity = 1;
+var sheetBoundaries;
+var currentAddress;
 
 
 // DECLARE GLOBAL VARIABLES FOR GEOCODING
