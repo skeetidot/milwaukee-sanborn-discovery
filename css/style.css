@@ -338,10 +338,28 @@ h1 {
     width: 200px;
 }
 
-/*CONROL ZOOM */
-.leaflet-control-zoom{
-display:none;
+/* /*CONROL ZOOM */ */
+/* .leaflet-control-zoom{ */
+/* display:none; */
+/* } */
+
+
+.leaflet-top .leaflet-left .leaflet-control-zoom {
+	display:none;
 }
+
+ 
+.leaflet-left{
+        width:320px;
+    }
+	
+.leaflet-top{
+	height:800px;
+	bottom:0;
+}
+
+
+
 
 
 
@@ -474,7 +492,7 @@ display:none;
 	
 	
 	
-		    .leaflet-control-layers{
+	.leaflet-control-layers{
         display:block;
         left: 5px;
         top:-.5em;
@@ -515,12 +533,7 @@ display:none;
         display: none;
     }
 	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -615,6 +628,17 @@ display:none;
 /* PHONE SCREEN SIZES (600px OR LESS) */
 
 @media (max-width: 600px) {
+	
+	
+	.leaflet-control-layers{
+		top:.6em;
+	}
+	
+	
+	.geocoder-control{
+        top:3.35em;
+    }
+
 	
 
 

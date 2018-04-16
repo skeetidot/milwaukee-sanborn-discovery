@@ -49,7 +49,7 @@ var sanborn = L.esri.tiledMapLayer({
 // SET THE MAP OPTIONS
 var mapOptions = {
     center: [43.041734, -87.904980], // centered in Downtown Milwaukee
-    zoom: 15,
+    zoom: 13,
     minZoom: 11,
     maxZoom: 21,
     maxBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // panning bounds so the user doesn't pan too far away from Milwaukee
@@ -60,6 +60,9 @@ var mapOptions = {
 
 // CREATE A NEW LEAFLET MAP WITH THE MAP OPTIONS
 var map = L.map('map', mapOptions);
+
+
+map.zoomControl.setPosition('bottomright');
 
 
 
