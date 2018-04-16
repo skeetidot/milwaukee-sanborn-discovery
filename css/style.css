@@ -640,16 +640,15 @@ h1 {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    width: 250px;
+    max-width: 250px;
 	overflow: auto;
-	height: 250px;
+	max-height: 250px;
 	bottom: 5px;
 }
 
 .leaflet-popup{
 	margin-top:20px;
-	width:250px;
-	height:250px;
+
 }
 
 
