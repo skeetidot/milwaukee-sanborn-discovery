@@ -49,7 +49,7 @@ var sanborn = L.esri.tiledMapLayer({
 // SET THE MAP OPTIONS
 var mapOptions = {
     center: [43.041734, -87.904980], // centered in Downtown Milwaukee
-    zoom: 13,
+    zoom: 14,
     minZoom: 11,
     maxZoom: 21,
     maxBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // panning bounds so the user doesn't pan too far away from Milwaukee
