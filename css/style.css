@@ -471,6 +471,59 @@ display:none;
     h1 {
         font-size: 26px;
     }
+	
+	
+	
+		    .leaflet-control-layers{
+        display:block;
+        left: 5px;
+        top:-.5em;
+        width: 45% !important;
+    }
+
+    .leaflet-right{
+        width:320px;
+        left:0;
+    }
+
+    .leaflet-left{
+        width:320px;
+        left:0;
+    }
+
+    .leaflet-top{
+        height:400px;
+    }
+
+
+    .geocoder-control{
+        top:2.25em;
+        left:5px;
+        width: 70% !important;
+    }
+
+    .leaflet-left .leaflet-control{
+        margin-left:0px;
+    }
+    .leaflet-right .leaflet-control{
+        margin-left:0px;
+        float:left;
+    }
+	
+	
+	#opacity-slider{
+        display: none;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
 
@@ -563,44 +616,7 @@ display:none;
 
 @media (max-width: 600px) {
 	
-	
-	    .leaflet-control-layers{
-        display:block;
-        left: 5px;
-        top:-.5em;
-        width: 45% !important;
-    }
 
-    .leaflet-right{
-        width:320px;
-        left:0;
-    }
-
-    .leaflet-left{
-        width:320px;
-        left:0;
-    }
-
-    .leaflet-top{
-        height:400px;
-    }
-
-
-    .geocoder-control{
-        top:2.25em;
-        left:5px;
-        width: 70% !important;
-    }
-
-    .leaflet-left .leaflet-control{
-        margin-left:0px;
-    }
-    .leaflet-right .leaflet-control{
-        margin-left:0px;
-        float:left;
-    }
-	
-	
 
 
     /* DIFFERENT FORMATTING OF HEADER TITLE ON MOBILE */
@@ -637,9 +653,7 @@ display:none;
 
     }
 
-    #opacity-slider{
-        display: none;
-    }
+
 
 
 
