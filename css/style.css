@@ -343,6 +343,9 @@ h1 {
 display:none;
 }
 
+.leaflet-control-layers{
+    display:none;
+}
 
 
 
@@ -370,15 +373,6 @@ display:none;
     margin-top: 10px;
 }
 
-.item-link a {
-    color: rgb(255, 189, 0);
-}
-
-.item-link a:hover {
-    color: rgb(255, 189, 0);
-    font-weight: bold;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
 
 .custom-popup .leaflet-popup-content-wrapper {
     background-color: rgba(0, 0, 0, .80);
@@ -420,6 +414,8 @@ display:none;
     top:-.3em;
     position:absolute;
 }
+
+
 
 
 
@@ -570,6 +566,56 @@ display:none;
 /* PHONE SCREEN SIZES (600px OR LESS) */
 
 @media (max-width: 600px) {
+	
+	
+	 .leaflet-control-layers{
+        display:block;
+        left: 5px;
+        top:-.5em;
+        width: 45% !important;
+    }
+
+    .leaflet-right{
+        width:320px;
+        left:0;
+    }
+
+    .leaflet-left{
+        width:320px;
+        left:0;
+    }
+
+    .leaflet-top{
+        height:400px;
+    }
+
+
+    .geocoder-control{
+        top:2.25em;
+        left:5px;
+        width: 70% !important;
+    }
+
+    .leaflet-left .leaflet-control{
+        margin-left:0px;
+    }
+    .leaflet-right .leaflet-control{
+        margin-left:0px;
+        float:left;
+    }
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
     /* POSITION ADDRESS SEARCH BOX*/
     .leaflet-control-geosearch,

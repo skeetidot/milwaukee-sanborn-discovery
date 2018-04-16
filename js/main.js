@@ -62,7 +62,7 @@ var mapOptions = {
 var map = L.map('map', mapOptions);
 
 
-// SET THE LAYER CONTROLS
+
 
 // SET THE BASEMAP
 // ONLY INCULDE ONE BASEMAP SO IT IS NOT PART OF THE LAYER LIST
@@ -121,39 +121,6 @@ L.control.layers(baseMaps, overlayMaps, {
 })();
 // END OF OPACITY SLIDER JAVASCRIPT
 
-
-// Need to aAdd a DOM Event Listener to hide the opacity slider if the Sanborn layer is unchecked
-var sanbornCheckbox = $('.leaflet-control-layers-overlays input[type="checkbox"]');
-
-console.log(sanbornCheckbox);
-//
-//    if (sanbornCheckbox.prop('checked')) {
-//        console.log("checked");
-//        sliderControl.show();
-//    } else {
-//        console.log("unchecked");
-//        sliderControl.hide();
-//    }
-
-
-// /********************************************************************************/
-// /* JAVASCRIPT RELATED TO TOUCH EVENT LIBRARY */
-// // direct event
-// $('.touch').on('press', function(e) {
-//     alert("woo hoo");
-// });
-//
-// // delegated event
-// $('.parent').on('press', '.touch', function(e) {
-//     alert("woo hoo");
-// });
-//
-// $.Finger = {
-//     pressDuration: 300,
-//     doubleTapInterval: 300,
-//     flickDuration: 150,
-//     motionThreshold: 5
-// };
 
 
 function touchHandler(event) {
@@ -270,27 +237,7 @@ function getData(map) {
     });
 
 
-    // EXPERIMENTING WITH THE LEAFLET GEOSEARCH PLUGIN FROM
-    // https://github.com/smeijer/leaflet-geosearch
-    // IT DOES NOT ALLOW SEARCHING BY BOUNDS
-    //            var geoSearchController = new L.Control.GeoSearch({
-    //                    provider: new L.GeoSearch.Provider.Google()
-    //
-    //            import { GoogleProvider } from 'leaflet-geosearch';
-    //
-    //            const googleProvider = new GoogleProvider({
-    //                params: {
-    //                    key: 'AIzaSyBo-ggpJr485oHzwkfLkI-j8t6Z1nTrDV0',
-    //                },
-    //            });
-    //
-    //            const googleSearch = new GeoSearchControl({
-    //                provider: googleProvider, // required
-    //                style: 'bar', // optional: bar|button  - default button
-    //                autoComplete: true,
-    //                autoCompleteDelay: 250,
-    //                searchLabel: 'Search for an address'
-    //            }).addTo(map);
+
 
 
 
@@ -341,23 +288,6 @@ function getData(map) {
     });
 
 
-    //         function sheetExtent(feature, layer) {
-    //             layer.on({
-    //                 click: function(e) {
-    //                     //calls up the feature clicked on
-    //                     var $layer = e.target;
-    //        
-    //                     var highlightStyle = {
-    //                         opacity: 1,
-    //                         weight: 5
-    //                     };
-    //        
-    //        
-    //                     $layer.bringToFront();
-    //                     $layer.setStyle(highlightStyle);
-    //                 }
-    //             });
-    //         }
 
 
     // POPULATE THE POPUP USING ATTRIBUTES FROM THE GEOJSON BOUNDARY DATA
@@ -392,7 +322,7 @@ function getData(map) {
 
         var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
 
-        var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item at UWM Libraries</a></div>';
+        var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item in UWM Libraries Digital Collections</a></div>';
 
         console.log(feature.properties['Business_P']);
 
