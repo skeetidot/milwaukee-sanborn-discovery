@@ -363,51 +363,68 @@ function getData(map) {
     // POPULATE THE POPUP USING ATTRIBUTES FROM THE GEOJSON BOUNDARY DATA
     function buildPopupContent(feature, layer, e) {
 
-        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
+        var xhttp = geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
 
             /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
             RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
             RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
              */
 
-            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
-            currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + result.address.LongLabel; + "</div>";
+//            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
+//            currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + result.address.LongLabel; + "</div>";
 
         });
 
-        var popupCurrentSubheading = "<div class='item-key'><b>THIS LOCATION TODAY</b></div>"
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
 
-        var popupHistoricSubheading = "<div class='item-key'><b>THIS LOCATION IN 1910</b></div>"
+                var geocodeResponse = this.response;
 
-        // GRAB AND FORMAT SHEET NUMBER, YEAR, BUSINESSES, PUBLISHER, SCALE, REPOSITORY, AND PERMALINK FROM GEOJSON DATA
-        var sheetname = "<div class= 'item-key'><b>Sanborn Map Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
+                var geocodeJSON = JSON.parse(geocodeResponse);
 
-        var year = "<div class= 'item-key'><b>Publication Year:</b></div><div class='item-value'>" + feature.properties['Publicatio'] + "</div>";
+                console.log(geocodeJSON);
+                
+                //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
+                currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + geocodeJSON.address.LongLabel + "</div>";
 
-        var businesses = "<div class= 'item-key'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
+                console.log(currentAddress);
 
-        var publisher = "<div class= 'item-key'><b>Publisher: </b></div><div class='item-value'>" + feature.properties['Publisher'] + "</div>";
+                var popupCurrentSubheading = "<div class='item-key'><b>THIS LOCATION TODAY</b></div>"
 
-        var scale = "<div class= 'item-key'><b>Scale: </b></div><div class='item-value'>" + feature.properties['Scale'] + "</div>";
+                var popupHistoricSubheading = "<div class='item-key'><b>THIS LOCATION IN 1910</b></div>"
 
-        var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
+                // GRAB AND FORMAT SHEET NUMBER, YEAR, BUSINESSES, PUBLISHER, SCALE, REPOSITORY, AND PERMALINK FROM GEOJSON DATA
+                var sheetname = "<div class= 'item-key'><b>Sanborn Map Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
 
-        var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item at UWM Libraries</a></div>';
+                var year = "<div class= 'item-key'><b>Publication Year:</b></div><div class='item-value'>" + feature.properties['Publicatio'] + "</div>";
 
-        console.log(feature.properties['Business_P']);
+                var businesses = "<div class= 'item-key'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
 
-        // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
-        if (currentAddress == null) {
-            var info = (sheetname + businesses + repository + view);
-        } else {
-            var info = (currentAddress + "<p>" + "<hr>" + "<p>" + sheetname + businesses + repository + view);
+                var publisher = "<div class= 'item-key'><b>Publisher: </b></div><div class='item-value'>" + feature.properties['Publisher'] + "</div>";
+
+                var scale = "<div class= 'item-key'><b>Scale: </b></div><div class='item-value'>" + feature.properties['Scale'] + "</div>";
+
+                var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
+
+                var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item at UWM Libraries</a></div>';
+
+                //console.log(feature.properties['Business_P']);
+
+                // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
+                if (currentAddress == null) {
+                    var info = (sheetname + businesses + repository + view);
+                } else {
+                    var info = (currentAddress + "<p>" + "<hr>" + "<p>" + sheetname + businesses + repository + view);
+                }
+                
+                /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
+                EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
+                var popup = L.responsivePopup().setContent(info);
+                sheetBoundaries.bindPopup(popup).openPopup();
+            }
         }
+        
 
-
-        /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
-        EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
-        var popup = L.responsivePopup().setContent(info);
-        sheetBoundaries.bindPopup(popup).openPopup();
     }
 
 
