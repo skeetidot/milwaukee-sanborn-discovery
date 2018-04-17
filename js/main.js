@@ -328,13 +328,15 @@ function getData(map) {
         var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item in UWM Libraries Digital Collections</a></div>';
 
         console.log(feature.properties['Business_P']);
+        
+        var info = (sheetname + businesses + repository + view);
 
-        // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
-        if (currentAddress == null) {
-            var info = (sheetname + businesses + repository + view);
-        } else {
-            var info = (currentAddress + "<p>" + "<hr>" + "<p>" + sheetname + businesses + repository + view);
-        }
+//        // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
+//        if (currentAddress == null) {
+//            var info = (sheetname + businesses + repository + view);
+//        } else {
+//            var info = (currentAddress + "<p>" + "<hr>" + "<p>" + sheetname + businesses + repository + view);
+//        }
 
 
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
