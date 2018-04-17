@@ -329,7 +329,7 @@ function getData(map) {
 
         console.log(feature.properties['Business_P']);
         
-        var info = (sheetname + businesses + repository + view);
+        var info = (view + sheetname + businesses + repository );
 
 //        // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
 //        if (currentAddress == null) {
