@@ -225,21 +225,57 @@ h1 {
 
 /* CSS FOR OPACITY SLIDER */
 
-#opacity-slider {
-    position: absolute;
-    width: 80%;
-    margin-top: 50px;
-    padding: 6px 15px 4px 15px;
-    background: white;
-    border-radius: 3px;
-    color: #3d3d3d;
-    border: solid 2px rgba(0, 0, 0, 0.2);
-    background-clip: padding-box;
+
+
+.opacity-slider {
+    -webkit-appearance: none;
+    height: .005em;
+    border-radius: 1em;
+    background: #707070;
+    outline: none;
+    opacity: .7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-top: 0px;
+    margin-right:6.5em;
+    padding: 2px 1px 4px 1px;
 }
 
 .opacity-slider {
-    width: 100%;
+    width: 94%;
 }
+
+.opacity-slider: hover{
+    opacity: 1;
+}
+
+
+.opacity-slider .leaflet-control{
+margin-top:0px;}
+
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.opacity-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border:gray;
+    border-radius: 50%;
+    background: rgba(253, 255, 254, 1);
+    cursor: pointer;
+    box-shadow: 0 0 1px 1px #707070;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+
 
 #opacity-slider .min {
     float: left;
@@ -255,61 +291,49 @@ h1 {
 
 
 
+
+
+
 /*!*********************************************************************!*/
 
-/*!* CSS FOR BUTTON TO ADD A POINT *!*/
+/* CSS FOR BUTTON TO ADD A POINT */
 
-/*!* BACKGROUND DIV OF THE ADD A POINT BUTTON *!*/
+/* BACKGROUND DIV OF THE ADD A POINT BUTTON */
 
-/*#add-a-point {*/
-    /*display: block;*/
-    /*position: fixed;*/
-    /*left: 92.5%;*/
-    /*bottom: 5%;*/
-    /*border-radius: 4px;*/
-    /*height: .75em;*/
-    /*width: 1.25em;*/
-    /*z-index: 100000;*/
-    /*background-color: rgba(255, 189, 0, 0.8);*/
-    /*padding-top: .5em;*/
-    /*padding-left: 1em;*/
-    /*padding-bottom: 1em;*/
-    /*color: black;*/
-    /*font-weight: 500;*/
-    /*font-size: 20px;*/
-    /*text-decoration: none;*/
-    /*box-shadow: 0 0 2px 2px #303030;*/
-/*}*/
+#make-history-box {
+    display: block;
+    position: fixed;
+    right: 2%;
+    top: 9em;
+    border-radius: 4px;
+    height: 1.5em;
+    width: 9em;
+    z-index: 100000;
+    background-color: rgba(226, 140, 169, 0.8);
+    padding-top: .5em;
+    padding-left: 1em;
+    padding-bottom: 1em;
+    color: black;
+    font-weight: 500;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: 0 0 2px 2px #707070;
+}
 
-/*!* MAKE BACKGROUND DIV CHANGE COLOR *!*/
+/* MAKE BACKGROUND DIV CHANGE COLOR */
 
-/*#add-a-point:hover {*/
-    /*background-color: rgba(255, 189, 0, 1);*/
-/*}*/
+#make-history-box:hover {
+    background-color: rgba(226, 140, 169, 1);
+}
 
-/*#cross {*/
-    /*background-color: rgba(35, 31, 32, 1);*/
-    /*position: relative;*/
-    /*!* ADJUSTS THE HEIGHT OF THE VERTICAL BAR *!*/
-    /*height: 25px;*/
-    /*!* ADJUSTS THE WIDTH OF THE VERTICAL BAR *!*/
-    /*width: 3px;*/
+/* STYLE MAKE HISTORY TEXT */
+h4 {
+    margin:0;
+    font-size:14px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#303030;
+}
 
-/*}*/
-
-/*#cross:after {*/
-    /*background-color: rgba(35, 31, 32, 1);*/
-    /*position: absolute;*/
-    /*content: "";*/
-    /*!* ADJUSTS THE POSITION LEFT OR RIGHT OF THE HORIZONTAL BAR *!*/
-    /*left: -10px;*/
-    /*!* ADJUSTS THE POSITION UP OR DOWN OF THE HORIZONTAL BAR *!*/
-    /*top: 11px;*/
-    /*!* ADJUSTS THE HEIGHT OF THE HORIZONTAL BAR *!*/
-    /*height: 3px;*/
-    /*!* ADJUSTS THE WIDTH OF THE HORIZONTAL BAR *!*/
-    /*width: 25px;*/
-/*}*/
 
 
 
@@ -360,6 +384,22 @@ h1 {
 	height:800px;
 	bottom:0;
 }
+
+
+.leaflet-control-layers{
+    background: rgba(255,255,255,1);
+    font-size: 16px;
+    text-shadow: 0 0 4px white;
+    font-weight:bold;
+}
+
+
+.leaflet-control-layers-expanded{
+    background-color: rgba(255,255,255,1);
+    border-bottom-color: rgba (255, 255, 255, 0);
+    right: 2%;
+}
+
 
 
 

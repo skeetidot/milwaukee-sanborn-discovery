@@ -80,9 +80,24 @@ var overlayMaps = {
 };
 
 // ADD THE LAYER CONTROL TO THE MAP
-L.control.layers(baseMaps, overlayMaps, {
+var toggleControls = L.control.layers(baseMaps, overlayMaps,
+    {
     collapsed: false // Keep the layer list open
 }).addTo(map);
+
+//
+// // WHEN SANBORNS ARE DESELECTED, HIDE OPACITY SLIDER
+$(".leaflet-control-layers input:checkbox").change(function() {
+    var ischecked= $(this).is(':checked');
+    if(!ischecked)
+        $('.opacity-slider').hide();
+});
+$(".leaflet-control-layers input:checkbox").change(function() {
+    var ischecked= $(this).is(':checked');
+    if(ischecked)
+        $('.opacity-slider').show();
+});
+
 
 
 /********************************************************************************/
@@ -313,15 +328,10 @@ function getData(map) {
         var popupHistoricSubheading = "<div class='item-key'><b>THIS LOCATION IN 1910</b></div>"
 
         // GRAB AND FORMAT SHEET NUMBER, YEAR, BUSINESSES, PUBLISHER, SCALE, REPOSITORY, AND PERMALINK FROM GEOJSON DATA
-        var sheetname = "<div class= 'item-key'><b>Sanborn Map Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
+        var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
 
-        var year = "<div class= 'item-key'><b>Publication Year:</b></div><div class='item-value'>" + feature.properties['Publicatio'] + "</div>";
 
         var businesses = "<div class= 'item-key'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
-
-        var publisher = "<div class= 'item-key'><b>Publisher: </b></div><div class='item-value'>" + feature.properties['Publisher'] + "</div>";
-
-        var scale = "<div class= 'item-key'><b>Scale: </b></div><div class='item-value'>" + feature.properties['Scale'] + "</div>";
 
         var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
 
@@ -329,7 +339,7 @@ function getData(map) {
 
         console.log(feature.properties['Business_P']);
         
-        var info = (view + sheetname + businesses + repository );
+        var info = (view + repository + sheetname + businesses );
 
 //        // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
 //        if (currentAddress == null) {
@@ -424,6 +434,8 @@ aboutSpan.onclick = function () {
 dataSpan.onclick = function () {
     dataModal.style.display = "none";
 }
+
+
 
 
 
