@@ -17,33 +17,33 @@ var geocodeService = L.esri.Geocoding.geocodeService();
 
 // GREY BASEMAP
 var Esri_WorldGrayCanvas = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     maxZoom: 16
 });
 
 // GREY BASEMAP LABELS
 var Esri_WorldGrayReference = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
     maxZoom: 16
 });
-
-// WORLD IMAGERY (FOR AT DETAILED SCALES)
-var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-    minZoom: 17,
-    maxNativeZoom: 20,
-    maxZoom: 21
-});
-
 
 // DECLARE SANBORN MAPS IN GLOBAL SCOPE
 var sanborn = L.esri.tiledMapLayer({
     url: 'http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornMaps/MapServer',
     maxZoom: 21,
     minZoom: 0,
-    opacity: 1, // Initial opacity
+    opacity: .8, // Initial opacity
     attribution: 'American Geographical Society Library, University of Wisconsin-Milwaukee'
 });
+
+
+
+// WORLD IMAGERY (FOR AT DETAILED SCALES)
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    minZoom: 17,
+    maxNativeZoom: 20,
+    maxZoom: 21
+});
+
+
 
 
 // SET THE MAP OPTIONS
@@ -352,6 +352,19 @@ function getData(map) {
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
         var popup = L.responsivePopup().setContent(info);
+		
+		
+		// $("#find-history-text input:checkbox").change(function() {
+			// var ischecked= $(this).is(':checked');
+			// if(ischecked)
+			// sheetBoundaries.bindPopup(popup).openPopup();
+		// });
+		
+		
+	
+		
+		
+		
         sheetBoundaries.bindPopup(popup).openPopup();
     }
 

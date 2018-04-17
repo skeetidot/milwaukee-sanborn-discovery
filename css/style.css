@@ -221,6 +221,9 @@ h1 {
     cursor: pointer;
 }
 
+
+
+
 /*********************************************************************/
 
 /* CSS FOR OPACITY SLIDER */
@@ -277,20 +280,6 @@ margin-top:0px;}
 
 
 
-#opacity-slider .min {
-    float: left;
-    font-size: 1.2em;
-    margin: 2px 0 2px;
-}
-
-#opacity-slider .max {
-    float: right;
-    font-size: 1.2em;
-    margin: 2px 0 2px;
-}
-
-
-
 
 
 
@@ -298,7 +287,7 @@ margin-top:0px;}
 
 /* CSS FOR BUTTON TO ADD A POINT */
 
-/* BACKGROUND DIV OF THE ADD A POINT BUTTON */
+/* BACKGROUND DIV OF THE MAKE HISTORY WINDOW */
 
 #make-history-box {
     display: block;
@@ -306,19 +295,19 @@ margin-top:0px;}
     right: 2%;
     top: 9em;
     border-radius: 4px;
-    height: 1.5em;
-    width: 9em;
+    height: 7em;
+    width: 9.5em;
     z-index: 100000;
     background-color: rgba(226, 140, 169, 0.8);
-    padding-top: .5em;
-    padding-left: 1em;
-    padding-bottom: 1em;
+    padding-left: .5em;
+    padding-bottom: .5em;
     color: black;
     font-weight: 500;
     font-size: 20px;
     text-decoration: none;
     box-shadow: 0 0 2px 2px #707070;
 }
+
 
 /* MAKE BACKGROUND DIV CHANGE COLOR */
 
@@ -332,6 +321,23 @@ h4 {
     font-size:14px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color:#303030;
+}
+
+#options{
+	font-size:14px;
+	/* text-align: center; */
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#303030;
+	margin-left:0px;
+	font-weight:700;
+	line-height: 1.25em;
+	
+}
+
+#options p{
+	font-size:16px;
+	margin-top:.5em;
+	margin-bottom: .5em;
 }
 
 
@@ -365,11 +371,6 @@ h4 {
     width: 200px;
 }
 
-/* /*CONROL ZOOM */ */
-/* .leaflet-control-zoom{ */
-/* display:none; */
-/* } */
-
 
 .leaflet-top .leaflet-left .leaflet-control-zoom {
 	display:none;
@@ -388,19 +389,25 @@ h4 {
 
 .leaflet-control-layers{
     background: rgba(255,255,255,1);
+	box-shadow: 0 0 2px 2px #707070;
     font-size: 16px;
-    text-shadow: 0 0 4px white;
     font-weight:bold;
 }
 
 
 .leaflet-control-layers-expanded{
     background-color: rgba(255,255,255,1);
-    border-bottom-color: rgba (255, 255, 255, 0);
+    border-bottom-color: rgba (255, 255, 255, 1);
     right: 2%;
 }
 
+.leaflet-touch .leaflet-control-layers {
+	border: 1.3px solid rgba(96, 96, 96, .6)
+}
 
+.leaflet-touch .leaflet-bar {
+	border: 1.3px solid rgba(96,96,96,.6);
+}
 
 
 
@@ -430,7 +437,6 @@ h4 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-top: 10px;
 }
-
 
 
 .custom-popup .leaflet-popup-content-wrapper {
@@ -533,9 +539,16 @@ h4 {
         font-size: 26px;
     }
 	
-	
+	.leaflet-control-layers{
+    background: rgba(255,255,255,1);
+	box-shadow: 0 0 2px 2px #707070;
+    font-size: 16px;
+    font-weight:bold;
+}
 	
 	.leaflet-control-layers{
+		font-size:12px;
+		font-weight: normal;
         display:block;
         left: 5px;
         top:-.5em;
@@ -575,6 +588,10 @@ h4 {
 	#opacity-slider{
         display: none;
     }
+	
+	#make-history-box{
+		display: none;
+	}
 	
 
 	
@@ -657,9 +674,6 @@ h4 {
 
 @media (max-width: 720px) {
 
-    #add-a-point {
-        left: 85.5%;
-    }
 
 
 }
@@ -673,8 +687,8 @@ h4 {
 @media (max-width: 600px) {
 	
 	
-	
-	.custom-popup .leaflet-popup-content-wrapper {
+/* POPUP STUFF */	
+.custom-popup .leaflet-popup-content-wrapper {
     background-color: rgba(0, 0, 0, .80);
     color: white;
 	margin-top:20px;
@@ -701,62 +715,63 @@ h4 {
 
 
 
-	.leaflet-control-layers{
-		top:.6em;
-	}
+.leaflet-control-layers{
+	top:.6em;
+}
 	
 	
-	.geocoder-control{
-        top:3.5em;
-    }
+/* POSITION SEARCH BAR FOR MOBILE */
+.geocoder-control{
+    top:3.5em;
+}
 
 	
 
 
 
-    /* DIFFERENT FORMATTING OF HEADER TITLE ON MOBILE */
-    #title {
-        display: none;
-    }
+/* DIFFERENT FORMATTING OF HEADER TITLE ON MOBILE */
+#title {
+	display: none;
+}
 
-    #mobile-title {
-        display: block;
-    }
-
-
-    /* STYLING MENU ITEMS */
-    .mobile-buttons {
-        width: 5em;
-        float: right;
-    }
+#mobile-title {
+	display: block;
+}
 
 
-    #about-button {
-        min-width: 3.7em;
-        padding-right: 1em;
-        font-size: 16px;
-        text-transform: none;
-        padding-top: .7em;
-    }
-
-    #data-button {
-        min-width: 3.7em;
-        padding-right: 1em;
-        font-size: 16px;
-        text-transform: none;
-        padding-top: 1em;
-
-    }
+/* STYLING MENU ITEMS */
+.mobile-buttons {
+	width: 5em;
+	float: right;
+}
 
 
+#about-button {
+	min-width: 3.7em;
+	padding-right: 1em;
+	font-size: 16px;
+	text-transform: none;
+	padding-top: .7em;
+}
+
+#data-button {
+	min-width: 3.7em;
+	padding-right: 1em;
+	font-size: 16px;
+	text-transform: none;
+	padding-top: 1em;
+
+}
 
 
 
 
-    /* TITLE */
-    h1 {
-        font-size: 24px;
-        line-height: 1.3;
-        padding-left: .3em;
-    }
+
+
+/* TITLE */
+h1 {
+	font-size: 24px;
+	line-height: 1.3;
+	padding-left: .3em;
+}
 }
