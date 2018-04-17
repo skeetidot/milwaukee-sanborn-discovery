@@ -2,16 +2,22 @@
 
 /* CSS TO STYLE THE WHOLE PAGE */
 
-html,
-body,
-#map {
+html, body {
+    margin: 0;
+    padding: 0;    
     height: 100%;
     width: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 #map {
     position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;   
 }
 
 
@@ -25,9 +31,6 @@ body {
     touch-action: auto;
     -ms-touch-action: auto;
 }
-
-
-
 
 
 
@@ -321,7 +324,7 @@ h1 {
 
 .leaflet-top {
     position: absolute;
-    margin-top: 6.2em;
+    margin-top: 7.2em;
     z-index: 1000;
 }
 
