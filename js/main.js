@@ -334,48 +334,46 @@ function getData(map) {
 
 
 
-
-    // POPULATE THE POPUP USING ATTRIBUTES FROM THE GEOJSON BOUNDARY DATA
+	/********************************************************************************/
+	/* POPULATE THE POPUP USING ATTRIBUTES FROM THE GEOJSON BOUNDARY DATA */
     function buildPopupContent(feature, layer, e) {
+		
+		
+		/********************************************************************************/
+		/* COMMENTED OUT REVERSE GEOCODER STUFF */
+        // geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
 
-        geocodeService.reverse().latlng(e.latlng).run(function (error, result) {
+            // /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
+            // RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
+            // RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
+             // */
 
-            /* CALLBACK IS CALLED WITH ERROR, RESULT & RAW RESPONSE
-            RESULT.LATLNG CONTAINS THE COORDINATES OF THE LOCATED ADDRESS
-            RESULT.ADDRESS CONTAINS INFORMATION ABOUT THE MATCH
-             */
+            // BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
+            // currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + result.address.LongLabel; + "</div>";
 
-            //BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
-            currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + result.address.LongLabel; + "</div>";
+        // });
 
-        });
+        // var popupCurrentSubheading = "<div class='item-key'><b>THIS LOCATION TODAY</b></div>"
+		// var popupHistoricSubheading = "<div class='item-key'><b>THIS LOCATION IN 1910</b></div>"
 
-        var popupCurrentSubheading = "<div class='item-key'><b>THIS LOCATION TODAY</b></div>"
-
-        var popupHistoricSubheading = "<div class='item-key'><b>THIS LOCATION IN 1910</b></div>"
-
-        // GRAB AND FORMAT SHEET NUMBER, YEAR, BUSINESSES, PUBLISHER, SCALE, REPOSITORY, AND PERMALINK FROM GEOJSON DATA
-        var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
-
-
-        var businesses = "<div class= 'item-key'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
-
-        var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
-
-        var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item in UWM Libraries Digital Collections</a></div>';
-
-        console.log(feature.properties['Business_P']);
         
-        var info = (view + repository + sheetname + businesses );
+		
+		
+		
+		
+		/********************************************************************************/
+		/* GET THE FEATURES FROM THE GEOJSON AND ADD TO A POPUP */
+        // var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
+		// var businesses = "<div class= 'item-key'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
+		// var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
+		var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item in UWM Libraries Digital Collections</a></div>';
+		
+		var findHistoryButton = "<div id ='findHistoryButton'><div id='findHistoryText'>"  + '<a href="' + feature.properties['Reference'] + '"target= "_blank">' +'View map sheet</a></div></div>';
+		var makeHistoryButton = "<div id ='makeHistoryButton'><div id = 'makeHistoryText'> Add information about <br>historic building</div></div>"
+        var info = (findHistoryButton + makeHistoryButton );
 
-//        // CREATE A SUCCINCT VARIABLE WITH ALL THE DATA WE WANT TO PUSH TO THE POPUP
-//        if (currentAddress == null) {
-//            var info = (sheetname + businesses + repository + view);
-//        } else {
-//            var info = (currentAddress + "<p>" + "<hr>" + "<p>" + sheetname + businesses + repository + view);
-//        }
 
-
+		
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
         var popup = L.responsivePopup().setContent(info);	

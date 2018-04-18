@@ -289,6 +289,105 @@ margin-top:0px;}
 
 /* BACKGROUND DIV OF THE MAKE HISTORY WINDOW */
 
+
+.custom-popup .leaflet-popup-content-wrapper {
+    max-width: 250px;
+	overflow: auto;
+	max-height: 250px;
+}
+
+.leaflet-popup{
+	margin-top:20px;
+
+}
+
+
+
+
+#findHistoryButton{
+	border-radius: 4px;
+	margin-top:15px;
+	margin-left:2px;
+	width:200px;
+	height: 3em;
+	background-color: rgba(213, 139, 155, .9);
+	max-width: 250px;
+	cursor:pointer;
+}
+
+#makeHistoryButton{
+	position:relative;
+	border-radius: 4px;
+	width: 200px;
+	margin-top:15px;
+	margin-left:2px;
+	height: 4em;
+	background-color: rgba(213, 139, 155, .9);
+	max-width: 220px;
+	cursor:pointer;
+	
+}
+
+
+
+#findHistoryButton:hover {
+    background-color: rgba(213, 139, 155, 1);
+}
+
+#makeHistoryButton:hover {
+    background-color: rgba(213, 139, 155, 1);
+}
+
+
+
+
+#findHistoryButton a{
+	text-decoration:none;
+}
+
+#findHistoryText{
+	position:relative;
+	left: .5em;
+	top: .7em;
+	
+}
+
+
+#findHistoryText a{
+	font-size:18px;
+	/* text-align: center; */
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#303030;
+	padding-left:10px;
+	margin-top:10px;
+	font-weight:700;
+	line-height: 1.25em;
+}
+
+
+
+
+#makeHistoryText{
+	position:absolute;
+	font-size:16px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color:#303030;
+	margin-left:12px;
+	margin-right:4px;
+	margin-top:10px;
+	font-weight:700;
+	line-height: 1.25em;
+}
+
+
+
+
+
+
+
+
+
+
 #make-history-box {
     display: block;
     position: fixed;
@@ -440,7 +539,7 @@ h4 {
 
 
 .custom-popup .leaflet-popup-content-wrapper {
-    background-color: rgba(0, 0, 0, .80);
+    background-color: rgba(0, 0, 0, .60);
     color: white;
     border-radius: 8px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
