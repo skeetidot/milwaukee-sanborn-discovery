@@ -92,7 +92,8 @@ var toggleControls = L.control.layers(baseMaps, overlayMaps, {
     collapsed: false // Keep the layer list open
 }).addTo(map);
 
-
+<<<<<<< HEAD
+//
 // // WHEN SANBORNS ARE DESELECTED, HIDE OPACITY SLIDER
 $(".leaflet-control-layers input:checkbox").change(function() {
     var ischecked= $(this).is(':checked');
@@ -146,6 +147,8 @@ jQuery.event.special.touchstart = {
 		
 
 
+=======
+>>>>>>> 5211c11d25318efce5cc9750b0dc7fc3669ca620
 
 /********************************************************************************/
 /* SET UP THE OPACITY SLIDER */
@@ -372,14 +375,14 @@ function getData(map) {
             onEachFeature: function (feature, layer) {
 
                 layer.on('click', function (e) {
-
+<<<<<<< HEAD
 					console.log(e.latlng);
                     buildPopupContent(feature, layer, e);
                     
-
+=======
                     // BUILD THE POPUP FOR EACH FEATURE
                     buildPopup(feature, layer, e);
-
+>>>>>>> 5211c11d25318efce5cc9750b0dc7fc3669ca620
                 });
 
             }
@@ -387,14 +390,14 @@ function getData(map) {
         }).addTo(map);
 		
 
-
+<<<<<<< HEAD
     });
 	
 	
-
+=======
         // POPULATE THE POPUP USING ATTRIBUTES FROM THE GEOJSON BOUNDARY DATA
         function buildPopup(feature, layer, e) {
-
+>>>>>>> 5211c11d25318efce5cc9750b0dc7fc3669ca620
 
             //currentAddress = getCurrentAddress(e);
 
@@ -445,7 +448,7 @@ function getData(map) {
 
 
 
-
+<<<<<<< HEAD
         // console.log(feature.properties['Business_P']);
         
         var info = (view + repository + sheetname + businesses );
@@ -473,6 +476,8 @@ function getData(map) {
 	
 	
 
+=======
+>>>>>>> 5211c11d25318efce5cc9750b0dc7fc3669ca620
 
 
 
