@@ -99,6 +99,46 @@ $(".leaflet-control-layers input:checkbox").change(function() {
 });
 
 
+/*OVERRIDE CHROME SETTINGS */
+jQuery.event.special.touchstart = {
+    setup: function( _, ns, handle ){
+        if ( ns.includes("noPreventDefault") ) {
+            this.addEventListener("touchstart", handle, { passive: false });
+        } else {
+            this.addEventListener("touchstart", handle, { passive: true });
+        }
+    }
+};
+
+
+// /* CREATE GETLAYER FUNCTION TO RETURN GEOJSON GLOBALLY AS "BOUNDARY LAYER" */
+// function getLayer (layer, sheetBoundaries){
+	// var boundaryLayer = layer;
+	// return boundaryLayer;
+// };
+
+
+// /* SET UP LISTENER -- ON LAYERADD TO THE MAP, CALL GET LAYER FUNCTION */
+// /* ON LAYER ADD: RETURN THE GEOJSON LAYER AS A GLOBAL VARIABLE */
+// /* ASSIGN THAT RETURNED LAYER TO VARIABLE "GLOBALLAYER"  */
+// var globalLayer = map.on('layeradd', getLayer);
+// console.log(globalLayer);
+
+
+
+
+
+
+// $("#make-history-text").change(function (e) {
+    // var ischecked = e.currentTarget.checked;
+    // if (ischecked) 
+        // checking.unbindPopup(popup);              
+// });
+
+
+		
+
+
 
 /********************************************************************************/
 /* JAVASCRIPT RELATED TO SETTING UP THE OPACITY SLIDER */
@@ -281,6 +321,7 @@ function getData(map) {
 
         // CREATE A LEAFLET GEOJSON LAYER FOR THE SHEET BOUNDARIES WITH POPUPS AND ADD TO THE MAP
         sheetBoundaries = L.geoJson(data, {
+					
 
 
             // CREATE STYLING FOR THE BOUNDARY LAYER
@@ -297,13 +338,17 @@ function getData(map) {
             // LOOP THROUGH EACH FEATURE AND CREATE A POPUP
             onEachFeature: function (feature, layer) {
                 layer.on('click', function (e) {
+					console.log(e.latlng);
                     buildPopupContent(feature, layer, e);
-                    //sheetExtent(feature, layer);
+                    
                 });
             }
         }).addTo(map);
+		
 
     });
+	
+	
 
 
 
@@ -337,7 +382,7 @@ function getData(map) {
 
         var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item in UWM Libraries Digital Collections</a></div>';
 
-        console.log(feature.properties['Business_P']);
+        // console.log(feature.properties['Business_P']);
         
         var info = (view + repository + sheetname + businesses );
 
@@ -352,21 +397,18 @@ function getData(map) {
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
         var popup = L.responsivePopup().setContent(info);
-		
-		
-		// $("#find-history-text input:checkbox").change(function() {
-			// var ischecked= $(this).is(':checked');
-			// if(ischecked)
-			// sheetBoundaries.bindPopup(popup).openPopup();
-		// });
-		
-		
+		sheetBoundaries.bindPopup(popup).openPopup();
+
 	
 		
 		
 		
-        sheetBoundaries.bindPopup(popup).openPopup();
+		
+		
     }
+	
+	
+
 
 
 
