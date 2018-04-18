@@ -100,6 +100,33 @@ $(".leaflet-control-layers input:checkbox").change(function() {
 
 
 
+
+// /* CREATE GETLAYER FUNCTION TO RETURN GEOJSON GLOBALLY AS "BOUNDARY LAYER" */
+// function getLayer (layer, sheetBoundaries){
+	// var boundaryLayer = layer;
+	// return boundaryLayer;
+// };
+
+
+// /* SET UP LISTENER -- ON LAYERADD TO THE MAP, CALL GET LAYER FUNCTION */
+// /* ON LAYER ADD: RETURN THE GEOJSON LAYER AS A GLOBAL VARIABLE */
+// /* ASSIGN THAT RETURNED LAYER TO VARIABLE "GLOBALLAYER"  */
+// var globalLayer = map.on('layeradd', getLayer);
+// console.log(globalLayer);
+
+
+
+
+
+
+// $("#make-history-text").change(function (e) {
+    // var ischecked = e.currentTarget.checked;
+    // if (ischecked) 
+        // checking.unbindPopup(popup);              
+// });
+
+
+
 /********************************************************************************/
 /* JAVASCRIPT RELATED TO SETTING UP THE OPACITY SLIDER */
 (function () {
@@ -351,35 +378,10 @@ function getData(map) {
 
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
-        var popup = L.responsivePopup().setContent(info);
-		
-		
-		// $("#find-history-text input:checkbox").change(function() {
-			// var ischecked= $(this).is(':checked');
-			// if(ischecked)
-			// sheetBoundaries.bindPopup(popup).openPopup();
-		// });
-		
-		
-	
-		
-		
-		
+        var popup = L.responsivePopup().setContent(info);	
         sheetBoundaries.bindPopup(popup).openPopup();
     }
 
-
-
-    // function showSheetBoundary(e) {
-    //
-    //     var sheetextent = {
-    //         'opacity': 1
-    //     };
-    //
-    //     map._layers[sheetBoundaries].setStyle(sheetextent);
-    // }
-    //
-    // map.on('popupopen', showSheetBoundary);
 
 
     //    /* BRACKET CLOSING ASYNCHRONOUS GETJSON () METHOD
