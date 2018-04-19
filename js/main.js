@@ -380,7 +380,7 @@ function getData(map) {
 		
 		/*form elements */
 		
-		var histAddress = 'Historic street address:<br><input type="text" name="histAddress value = "e.g. 619 Wells Street"><br>';
+		var historicAddress = 'Historic street address:<br><input type="text" name="historicAddress"><br>';
 		var buildingCode = 'Is this a: <br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Not Sure<br>';
 		var designation = 'If provided, please enter the title of the building on the map (e.g. Pabst Theater, Dormitory, Bowling Alley, etc.):<br><input type="text" name="designation"><br>';
 		var historicBlogs = 'Link to article or blog related to history of this property<br><input type="text" name="historicBlogs"><br>';
@@ -391,7 +391,7 @@ function getData(map) {
 		
 		
 		
-        var info = (sheetname + businesses + view + makeHistoryButton + hint + histAddress + buildingCode + designation + historicBlogs + comments + submitHistory);
+        var info = (sheetname + businesses + view + makeHistoryButton + hint + historicAddress + buildingCode + designation + historicBlogs + comments + submitHistory);
 		
 		
 		

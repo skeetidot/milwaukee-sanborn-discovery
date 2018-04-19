@@ -496,7 +496,8 @@ h4 {
     line-height: 24px;
     width: auto;
     height: 300px;
-	overflow:auto;
+	overflow-x:auto;
+	overflow-y:none;
 }
 
 
