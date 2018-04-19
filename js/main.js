@@ -325,6 +325,7 @@ function getData(map) {
             onEachFeature: function (feature, layer) {
                 layer.on('click', function (e) {
                     buildPopupContent(feature, layer, e);
+					addMarker(e)
                     //sheetExtent(feature, layer);
                 });
             }
@@ -363,22 +364,44 @@ function getData(map) {
 		
 		/********************************************************************************/
 		/* GET THE FEATURES FROM THE GEOJSON AND ADD TO A POPUP */
-        // var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
-		// var businesses = "<div class= 'item-key'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
-		// var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
-		var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View item in UWM Libraries Digital Collections</a></div>';
+        var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
+		var businesses = '';
+		for (var business in feature.properties){
+			var value = feature.properties['Business_P'];
+			if (value !== null){
+				businesses = "<div class= 'item-key' id = 'business'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
+			}
+		}
+		var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
+		var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View in UWM Digital Collections</a></div>';
+		var makeHistoryButton = "<div id = 'makeHistoryText'>Add information about historic building:</div>"
+        var info = (sheetname + repository + businesses + view + makeHistoryButton );
 		
-		var findHistoryButton = "<div id ='findHistoryButton'><div id='findHistoryText'>"  + '<a href="' + feature.properties['Reference'] + '"target= "_blank">' +'View map sheet</a></div></div>';
-		var makeHistoryButton = "<div id ='makeHistoryButton'><div id = 'makeHistoryText'> Add information about <br>historic building</div></div>"
-        var info = (findHistoryButton + makeHistoryButton );
+		
 
 
 		
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
         var popup = L.responsivePopup().setContent(info);	
-        sheetBoundaries.bindPopup(popup).openPopup();
+        sheetBoundaries.bindPopup(popup, {offset: new L.Point(20, 20)}).openPopup();
     }
+	
+	
+	
+	function addMarker(e){
+		// Add marker to map at click location; add popup window
+		var newMarker = new L.marker(e.latlng).addTo(map);
+		map.on('popupclose', function(e){
+				map.removeLayer(newMarker);
+			});
+	}
+	
+
+	
+	
+	
+	
 
 
 

@@ -291,94 +291,14 @@ margin-top:0px;}
 
 
 .custom-popup .leaflet-popup-content-wrapper {
-    max-width: 250px;
+    max-width: 300px;
 	overflow: auto;
-	max-height: 250px;
 }
 
 .leaflet-popup{
 	margin-top:20px;
 
 }
-
-
-
-
-#findHistoryButton{
-	border-radius: 4px;
-	margin-top:15px;
-	margin-left:2px;
-	width:200px;
-	height: 3em;
-	background-color: rgba(213, 139, 155, .9);
-	max-width: 250px;
-	cursor:pointer;
-}
-
-#makeHistoryButton{
-	position:relative;
-	border-radius: 4px;
-	width: 200px;
-	margin-top:15px;
-	margin-left:2px;
-	height: 4em;
-	background-color: rgba(213, 139, 155, .9);
-	max-width: 220px;
-	cursor:pointer;
-	
-}
-
-
-
-#findHistoryButton:hover {
-    background-color: rgba(213, 139, 155, 1);
-}
-
-#makeHistoryButton:hover {
-    background-color: rgba(213, 139, 155, 1);
-}
-
-
-
-
-#findHistoryButton a{
-	text-decoration:none;
-}
-
-#findHistoryText{
-	position:relative;
-	left: .5em;
-	top: .7em;
-	
-}
-
-
-#findHistoryText a{
-	font-size:18px;
-	/* text-align: center; */
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color:#303030;
-	padding-left:10px;
-	margin-top:10px;
-	font-weight:700;
-	line-height: 1.25em;
-}
-
-
-
-
-#makeHistoryText{
-	position:absolute;
-	font-size:16px;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color:#303030;
-	margin-left:12px;
-	margin-right:4px;
-	margin-top:10px;
-	font-weight:700;
-	line-height: 1.25em;
-}
-
 
 
 
@@ -414,6 +334,10 @@ margin-top:0px;}
     background-color: rgba(226, 140, 169, 1);
 }
 
+#make-history-box p{
+	margin-bottom: 10px;
+}
+
 /* STYLE MAKE HISTORY TEXT */
 h4 {
     margin:0;
@@ -436,7 +360,7 @@ h4 {
 #options p{
 	font-size:16px;
 	margin-top:.5em;
-	margin-bottom: .5em;
+	margin-bottom: .8em;
 }
 
 
@@ -524,7 +448,7 @@ h4 {
 .item-key {
     color: rgb(255, 189, 0);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin-top: 10px;
+    margin-top: 12px;
 }
 
 .item-value {
@@ -534,12 +458,29 @@ h4 {
 
 .item-link {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin-top: 10px;
+    margin-top: 12px;
+	padding:3px 3px 3px 3px;
+	margin-bottom:12px;
+	font-weight:bold;
+	background-color: rgba(255, 189, 0, .95);
+	border-radius: 4px;
+	cursor:pointer;
+	height: 1.5em;
+	width: 85%;
+}
+
+.item-link:hover{
+	background-color: rgba(255, 189, 0, 1);
+}
+
+.item-link a{
+	margin-left: 5px;
 }
 
 
+
 .custom-popup .leaflet-popup-content-wrapper {
-    background-color: rgba(0, 0, 0, .60);
+    background-color: rgba(0, 0, 0, .75);
     color: white;
     border-radius: 8px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -548,6 +489,7 @@ h4 {
     line-height: 24px;
     width: auto;
     height: auto;
+	overflow:auto;
 }
 
 .custom-popup .leaflet-popup-content {
