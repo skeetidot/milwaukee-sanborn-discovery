@@ -374,16 +374,16 @@ function getData(map) {
 		}
 		var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
 		var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View in UWM Digital Collections</a></div>';
-		var makeHistoryButton = "<div id = 'makeHistoryText'>Add information about historic building:</div>"
-		var hint = "<div id = 'hint'>Hint: make sure the marker is placed directly on the building.</div>"
+		var makeHistoryButton = "<div class = 'makeHistoryText'>Add information about historic building:</div>"
+		var hint = "<div id = 'hint'>Hint: make sure the marker is placed directly on the building.</div><br>"
 		
 		
 		/*form elements */
 		
-		var historicAddress = 'Historic street address:<br><input type="text" name="historicAddress"><br>';
-		var buildingCode = 'Is this a: <br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br>';
-		var designation = 'If provided, please enter the title of the building on the map (e.g. Pabst Theater, Dormitory, Bowling Alley, etc.):<br><input type="text" name="designation"><br>';
-		var historicBlogs = 'Link to article or blog related to history of this property<br><input type="text" name="historicBlogs"><br>';
+		var historicAddress = 'Historic street address:<br><input type="text" name="historicAddress"><br><br>';
+		var buildingCode = 'Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>';
+		var designation = 'If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>';
+		var historicBlogs = 'Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br>';
 		var comments = 'Tell us something about this property<br><input type="text" name="comments"><br>';
 		var submitHistory =  '<input type="submit" value="Submit">'
 		

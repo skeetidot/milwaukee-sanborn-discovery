@@ -442,7 +442,7 @@ h4 {
 
 /* BOUNDARY POPUP STUFF */
 
-#makeHistoryText{
+.makeHistoryText{
 	font-weight:700;
 	font-size: 15px;
 }
@@ -481,6 +481,17 @@ h4 {
 
 
 #hint{
+	font-style:italic;
+}
+
+#designation p{
+	font-style:italic;
+	margin-top:none;
+	padding-top:none;
+}
+
+.leaflet-popup-content p{
+	margin:0;
 	font-style:italic;
 }
 
