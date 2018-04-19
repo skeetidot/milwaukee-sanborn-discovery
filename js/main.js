@@ -376,7 +376,22 @@ function getData(map) {
 		var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View in UWM Digital Collections</a></div>';
 		var makeHistoryButton = "<div id = 'makeHistoryText'>Add information about historic building:</div>"
 		var hint = "<div id = 'hint'>Hint: make sure the marker is placed directly on the building.</div>"
-        var info = (sheetname + businesses + view + makeHistoryButton + hint );
+		
+		
+		/*form elements */
+		
+		var histAddress = 'Historic street address:<br><input type="text" name="histAddress value = "e.g. 619 Wells Street"><br>';
+		var buildingCode = 'Is this a: <br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Not Sure<br>';
+		var designation = 'If provided, please enter the title of the building on the map (e.g. Pabst Theater, Dormitory, Bowling Alley, etc.):<br><input type="text" name="designation"><br>';
+		var historicBlogs = 'Link to article or blog related to history of this property<br><input type="text" name="historicBlogs"><br>';
+		var comments = 'Tell us something about this property<br><input type="text" name="comments"><br>';
+		var submitHistory =  '<input type="submit" value="Submit">'
+		
+		
+		
+		
+		
+        var info = (sheetname + businesses + view + makeHistoryButton + hint + histAddress + buildingCode + designation + historicBlogs + comments + submitHistory);
 		
 		
 		
@@ -386,7 +401,7 @@ function getData(map) {
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
         var popup = L.responsivePopup().setContent(info);	
-        sheetBoundaries.bindPopup(popup, {offset: new L.Point(20, 20)}).openPopup();
+        sheetBoundaries.bindPopup(popup, {offset: new L.Point(80, 80)}).openPopup();
     }
 	
 	

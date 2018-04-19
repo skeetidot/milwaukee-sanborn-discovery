@@ -317,7 +317,7 @@ margin-top:0px;}
     height: 7em;
     width: 9.5em;
     z-index: 100000;
-    background-color: rgba(226, 140, 169, 0.8);
+    background-color: rgba(226, 140, 169, 0.90);
     padding-left: .5em;
     padding-bottom: .5em;
     color: black;
@@ -495,9 +495,33 @@ h4 {
     font-size: 14px;
     line-height: 24px;
     width: auto;
-    height: auto;
+    height: 300px;
 	overflow:auto;
 }
+
+
+.custom-popup .leaflet-popup-content-wrapper::-webkit-scrollbar {
+  width: 5px;
+  opacity:.75;
+
+}
+
+
+.custom-popup .leaflet-popup-content-wrapper::-webkit-scrollbar-track {
+  background: #ddd;
+  opacity:.75;
+}
+
+
+.custom-popup .leaflet-popup-content-wrapper::-webkit-scrollbar-thumb {
+  background: #666; 
+  opacity:.75;
+  border-radius:3px;
+}
+
+
+
+
 
 .custom-popup .leaflet-popup-content {
     margin: 1em;
