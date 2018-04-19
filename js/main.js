@@ -375,7 +375,9 @@ function getData(map) {
 		var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
 		var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View in UWM Digital Collections</a></div>';
 		var makeHistoryButton = "<div id = 'makeHistoryText'>Add information about historic building:</div>"
-        var info = (sheetname + repository + businesses + view + makeHistoryButton );
+		var hint = "<div id = 'hint'>Hint: make sure the marker is placed directly on the building.</div>"
+        var info = (sheetname + businesses + view + makeHistoryButton + hint );
+		
 		
 		
 
