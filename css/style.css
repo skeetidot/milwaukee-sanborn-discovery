@@ -2,9 +2,10 @@
 
 /* CSS TO STYLE THE WHOLE PAGE */
 
-html, body {
+html,
+body {
     margin: 0;
-    padding: 0;    
+    padding: 0;
     height: 100%;
     width: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -17,7 +18,7 @@ html, body {
     top: 0;
     bottom: 0;
     right: 0;
-    width: 100%;   
+    width: 100%;
 }
 
 
@@ -27,7 +28,7 @@ body {
     margin: 0;
 }
 
-#opacity-slider{
+#opacity-slider {
     touch-action: auto;
     -ms-touch-action: auto;
 }
@@ -67,7 +68,6 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     color: rgb(255, 189, 0);
-
 }
 
 /* BROWSER INTERPRETS TITLE AS H1, SO USE THIS FOR STYLING THE TITLE */
@@ -83,16 +83,11 @@ h1 {
 
 
 
-
-
-
-
-
 /**********************************************************************/
 
-/* CSS TO STYLE THE MENU LINKS POSITIONING */
+/* CSS TO STYLE THE MENU ITEMS */
 
-/*CONTAINER FOR ALL BUTTONS, MOBILE & DESKTOP */
+/* CONTAINER FOR ALL BUTTONS, MOBILE & DESKTOP */
 
 #top-buttons {
     position: fixed;
@@ -115,7 +110,7 @@ h1 {
 }
 
 
-/* MENU ITEM STYLING */
+/* ABOUT MENU ITEM STYLING */
 
 #about-button {
     cursor: pointer;
@@ -130,7 +125,7 @@ h1 {
     color: rgb(255, 189, 0);
 }
 
-/* MENU ITEM STYLING */
+/* DATA MENU ITEM STYLING */
 
 #data-button {
     cursor: pointer;
@@ -228,8 +223,6 @@ h1 {
 
 /* CSS FOR OPACITY SLIDER */
 
-
-
 .opacity-slider {
     -webkit-appearance: none;
     height: .005em;
@@ -240,7 +233,7 @@ h1 {
     -webkit-transition: .2s;
     transition: opacity .2s;
     margin-top: 0px;
-    margin-right:6.5em;
+    margin-right: 6.5em;
     padding: 2px 1px 4px 1px;
 }
 
@@ -248,22 +241,24 @@ h1 {
     width: 94%;
 }
 
-.opacity-slider: hover{
+.opacity-slider: hover {
     opacity: 1;
 }
 
 
-.opacity-slider .leaflet-control{
-margin-top:0px;}
+.opacity-slider .leaflet-control {
+    margin-top: 0px;
+}
 
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+
 .opacity-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 18px;
     height: 18px;
-    border:gray;
+    border: gray;
     border-radius: 50%;
     background: rgba(253, 255, 254, 1);
     cursor: pointer;
@@ -289,75 +284,69 @@ margin-top:0px;}
 
 /* BACKGROUND DIV OF THE MAKE HISTORY WINDOW */
 
-
 .custom-popup .leaflet-popup-content-wrapper {
     max-width: 300px;
-	overflow: auto;
+    overflow: auto;
+    overflow-x: auto
 }
 
-.leaflet-popup{
-	margin-top:20px;
+.leaflet-popup {
+    margin-top: 20px;
 
 }
-
-
-
-
-
-
-
 
 
 #make-history-box {
     display: block;
     position: fixed;
-    right: 2%;
+    right: 20px;
     top: 9em;
     border-radius: 4px;
+    border: 1px;
     height: 7em;
-    width: 9.5em;
+    width: 198px;
     z-index: 100000;
     background-color: rgba(226, 140, 169, 0.90);
     padding-left: .5em;
     padding-bottom: .5em;
-    color: black;
+    color: #333;
     font-weight: 500;
     font-size: 20px;
     text-decoration: none;
     box-shadow: 0 0 2px 2px #707070;
+    
 }
 
 
 /* MAKE BACKGROUND DIV CHANGE COLOR */
 
-
-#make-history-box p{
-	margin-bottom: 10px;
+#make-history-box p {
+    margin-bottom: 10px;
 }
 
 /* STYLE MAKE HISTORY TEXT */
+
 h4 {
-    margin:0;
-    font-size:14px;
+    margin: 0;
+    font-size: 14px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color:#303030;
+    color: #303030;
 }
 
-#options{
-	font-size:14px;
-	/* text-align: center; */
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color:#303030;
-	margin-left:0px;
-	font-weight:700;
-	line-height: 1.25em;
-	
+#options {
+    font-size: 14px;
+    /* text-align: center; */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #303030;
+    margin-left: 0px;
+    font-weight: 700;
+    line-height: 1.25em;
 }
 
-#options p{
-	font-size:16px;
-	margin-top:.5em;
-	margin-bottom: .8em;
+#options p {
+    font-size: 16px;
+    margin-top: .5em;
+    margin-bottom: .8em;
 }
 
 
@@ -393,44 +382,42 @@ h4 {
 
 
 .leaflet-top .leaflet-left .leaflet-control-zoom {
-	display:none;
-}
-
- 
-.leaflet-left{
-        width:320px;
-    }
-	
-.leaflet-top{
-	height:800px;
-	bottom:0;
+    display: none;
 }
 
 
-.leaflet-control-layers{
-    background: rgba(255,255,255,1);
-	box-shadow: 0 0 2px 2px #707070;
+.leaflet-left {
+    width: 320px;
+}
+
+.leaflet-top {
+    height: 800px;
+    bottom: 0;
+}
+
+
+.leaflet-control-layers {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 2px 2px #707070;
     font-size: 16px;
-    font-weight:bold;
+    font-weight: bold;
+    right: 0.25em;
 }
 
 
-.leaflet-control-layers-expanded{
-    background-color: rgba(255,255,255,1);
+.leaflet-control-layers-expanded {
+    background-color: rgba(255, 255, 255, 1);
     border-bottom-color: rgba (255, 255, 255, 1);
-    right: 2%;
+    right: 0.25em;
 }
 
 .leaflet-touch .leaflet-control-layers {
-	border: 1.3px solid rgba(96, 96, 96, .6)
+    border: 1.3px solid rgba(96, 96, 96, .6)
 }
 
 .leaflet-touch .leaflet-bar {
-	border: 1.3px solid rgba(96,96,96,.6);
+    border: 1.3px solid rgba(96, 96, 96, .6);
 }
-
-
-
 
 
 
@@ -442,9 +429,9 @@ h4 {
 
 /* BOUNDARY POPUP STUFF */
 
-.makeHistoryText{
-	font-weight:700;
-	font-size: 15px;
+.makeHistoryText {
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .item-key {
@@ -461,38 +448,38 @@ h4 {
 .item-link {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin-top: 12px;
-	padding:3px 3px 3px 3px;
-	margin-bottom:12px;
-	font-weight:bold;
-	background-color: rgba(255, 189, 0, .95);
-	border-radius: 4px;
-	cursor:pointer;
-	height: 1.5em;
-	width: 85%;
+    padding: 3px 3px 3px 3px;
+    margin-bottom: 12px;
+    font-weight: bold;
+    background-color: rgba(255, 189, 0, .95);
+    border-radius: 4px;
+    cursor: pointer;
+    height: 1.5em;
+    width: 85%;
 }
 
-.item-link:hover{
-	background-color: rgba(255, 189, 0, 1);
+.item-link:hover {
+    background-color: rgba(255, 189, 0, 1);
 }
 
-.item-link a{
-	margin-left: 5px;
+.item-link a {
+    margin-left: 5px;
 }
 
 
-#hint{
-	font-style:italic;
+#hint {
+    font-style: italic;
 }
 
-#designation p{
-	font-style:italic;
-	margin-top:none;
-	padding-top:none;
+#designation p {
+    font-style: italic;
+    margin-top: none;
+    padding-top: none;
 }
 
-.leaflet-popup-content p{
-	margin:0;
-	font-style:italic;
+.leaflet-popup-content p {
+    margin: 0;
+    font-style: italic;
 }
 
 
@@ -507,32 +494,28 @@ h4 {
     line-height: 24px;
     width: auto;
     max-height: 300px;
-	overflow-x:auto;
-	overflow-y:none;
+    overflow-x: auto;
+    overflow-y: none;
 }
 
 
 .custom-popup .leaflet-popup-content-wrapper::-webkit-scrollbar {
-  width: 5px;
-  opacity:.75;
-
+    width: 5px;
+    opacity: .75;
 }
 
 
 .custom-popup .leaflet-popup-content-wrapper::-webkit-scrollbar-track {
-  background: #ddd;
-  opacity:.75;
+    background: #ddd;
+    opacity: .75;
 }
 
 
 .custom-popup .leaflet-popup-content-wrapper::-webkit-scrollbar-thumb {
-  background: #666; 
-  opacity:.75;
-  border-radius:3px;
+    background: #666;
+    opacity: .75;
+    border-radius: 3px;
 }
-
-
-
 
 
 .custom-popup .leaflet-popup-content {
@@ -556,12 +539,10 @@ h4 {
 
 /* Search bar */
 
-
-
-.geocoder-control{
-    left: 1em;
-    top:-.3em;
-    position:absolute;
+.geocoder-control {
+    left: 0.25em;
+    top: 0em;
+    position: absolute;
 }
 
 
@@ -588,16 +569,13 @@ h4 {
     h1 {
         font-size: 34px;
     }
-
 }
 
 @media (max-width: 1198px) {
     h1 {
         font-size: 32px;
     }
-
 }
-
 
 @media (max-width: 1160px) {
     h1 {
@@ -609,7 +587,6 @@ h4 {
     h1 {
         font-size: 30px;
     }
-
 }
 
 @media (max-width: 1072px) {
@@ -618,244 +595,210 @@ h4 {
     }
 
 
-@media (max-width: 1024px) {
-    h1 {
-        font-size: 26px;
-    }
-	
-	.leaflet-control-layers{
-    background: rgba(255,255,255,1);
-	box-shadow: 0 0 2px 2px #707070;
-    font-size: 16px;
-    font-weight:bold;
-}
-	
-	.leaflet-control-layers{
-		font-size:12px;
-		font-weight: normal;
-        display:block;
-        left: 5px;
-        top:-.5em;
-        width: 45% !important;
-    }
+    @media (max-width: 1024px) {
+        h1 {
+            font-size: 26px;
+        }
 
-    .leaflet-right{
-        width:320px;
-        left:0;
-    }
+        .leaflet-control-layers {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 0 2px 2px #707070;
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-    .leaflet-left{
-        width:320px;
-        left:0;
-    }
+        .leaflet-control-layers {
+            font-size: 12px;
+            font-weight: normal;
+            display: block;
+            left: 5px;
+            top: -.5em;
+            width: 45% !important;
+        }
 
-    .leaflet-top{
-        height:400px;
-    }
+        .leaflet-right {
+            width: 320px;
+            left: 0;
+        }
 
+        .leaflet-left {
+            width: 320px;
+            left: 0;
+        }
 
-    .geocoder-control{
-        top:2.25em;
-        left:5px;
-        width: 70% !important;
-    }
+        .leaflet-top {
+            height: 400px;
+        }
 
-    .leaflet-left .leaflet-control{
-        margin-left:0px;
-    }
-    .leaflet-right .leaflet-control{
-        margin-left:0px;
-        float:left;
-    }
-	
-	
-	#opacity-slider{
-        display: none;
-    }
-	
-	#make-history-box{
-		display: none;
-	}
-	
+        .geocoder-control {
+            top: 2.25em;
+            left: 5px;
+            width: 70% !important;
+        }
 
-	
-	
-	
+        .leaflet-left .leaflet-control {
+            margin-left: 0px;
+        }
+        .leaflet-right .leaflet-control {
+            margin-left: 0px;
+            float: left;
+        }
 
-}
+        #opacity-slider {
+            display: none;
+        }
 
+        #make-history-box {
+            display: none;
+        }
 
-@media (max-width: 900px) {
-
-}
-
-
-@media (max-width: 880px) {
-    h1 {
-        font-size: 22px;
-    }
-
-}
-
-@media (max-width: 821px) {
-    h1 {
-        font-size: 20px;
-    }
-
-}
-
-
-
-
-/* MAKE MENU BUTTONS SMALLER AS PORT GETS SMALLER */
-
-@media (max-width: 946px) {
-    h1 {
-        font-size: 24px;
-    }
-
-    #about-button {
-        float: right;
-        font-size: 16px;
-        padding-right: 50px;
-        padding-top: 1em;
-    }
-
-    #data-button {
-        float: right;
-        font-size: 16px;
-        padding-right: 50px;
-        padding-top: 1em;
-    }
-}
-
-
-@media (max-width: 758px) {
-    #title {
-        padding-bottom: 10px;
     }
 
 
-    h1 {
-        margin-bottom: 0;
-        font-size: 22px;
+    @media (max-width: 900px) {}
+
+
+    @media (max-width: 880px) {
+        h1 {
+            font-size: 22px;
+        }
     }
 
-    #about-button {
-        float: right;
-        font-size: 12px;
-        padding-right: 30px;
-        padding-top: 1em;
+    @media (max-width: 821px) {
+        h1 {
+            font-size: 20px;
+        }
     }
 
-    #data-button {
-        float: right;
-        font-size: 12px;
-        padding-right: 30px;
-        padding-top: 1em;
+    
+
+    /* MAKE MENU BUTTONS SMALLER AS PORT GETS SMALLER */
+    @media (max-width: 946px) {
+        h1 {
+            font-size: 24px;
+        }
+
+        #about-button {
+            float: right;
+            font-size: 16px;
+            padding-right: 50px;
+            padding-top: 1em;
+        }
+
+        #data-button {
+            float: right;
+            font-size: 16px;
+            padding-right: 50px;
+            padding-top: 1em;
+        }
     }
-}
-
-@media (max-width: 720px) {
 
 
+    @media (max-width: 758px) {
+        #title {
+            padding-bottom: 10px;
+        }
 
-}
+        h1 {
+            margin-bottom: 0;
+            font-size: 22px;
+        }
 
+        #about-button {
+            float: right;
+            font-size: 12px;
+            padding-right: 30px;
+            padding-top: 1em;
+        }
 
+        #data-button {
+            float: right;
+            font-size: 12px;
+            padding-right: 30px;
+            padding-top: 1em;
+        }
+    }
 
-/**********************************************************************/
-
-/* PHONE SCREEN SIZES (600px OR LESS) */
-
-@media (max-width: 600px) {
-	
-	
-/* POPUP STUFF */	
-.custom-popup .leaflet-popup-content-wrapper {
-    background-color: rgba(0, 0, 0, .80);
-    color: white;
-	margin-top:20px;
-    border-radius: 8px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    max-width: 200px;
-	overflow: auto;
-	max-height: 100px;
-	bottom: 5px;
-}
-
-.leaflet-popup{
-	margin-top:20px;
-
-}
-
-
-.leaflet-container a.leaflet-popup-close-button{
-	padding:22px 0 0;
-}
+    @media (max-width: 720px) {}
 
 
 
-.leaflet-control-layers{
-	top:.6em;
-}
-	
-	
-/* POSITION SEARCH BAR FOR MOBILE */
-.geocoder-control{
-    top:3.5em;
-}
+    /**********************************************************************/
+    /* PHONE SCREEN SIZES (600px OR LESS) */
+    @media (max-width: 600px) {
 
-	
+        /* POPUP STUFF */
+        .custom-popup .leaflet-popup-content-wrapper {
+            background-color: rgba(0, 0, 0, .80);
+            color: white;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 24px;
+            max-width: 200px;
+            overflow: auto;
+            max-height: 100px;
+            bottom: 5px;
+        }
 
+        .leaflet-popup {
+            margin-top: 20px;
+        }
 
+        .leaflet-container a.leaflet-popup-close-button {
+            padding: 22px 0 0;
+        }
 
-/* DIFFERENT FORMATTING OF HEADER TITLE ON MOBILE */
-#title {
-	display: none;
-}
-
-#mobile-title {
-	display: block;
-}
-
-
-/* STYLING MENU ITEMS */
-.mobile-buttons {
-	width: 5em;
-	float: right;
-}
-
-
-#about-button {
-	min-width: 3.7em;
-	padding-right: 1em;
-	font-size: 16px;
-	text-transform: none;
-	padding-top: .7em;
-}
-
-#data-button {
-	min-width: 3.7em;
-	padding-right: 1em;
-	font-size: 16px;
-	text-transform: none;
-	padding-top: 1em;
-
-}
+        .leaflet-control-layers {
+            top: .6em;
+        }
 
 
+        /* POSITION SEARCH BAR FOR MOBILE */
+        .geocoder-control {
+            top: 3.5em;
+        }
 
+        
+        /* DIFFERENT FORMATTING OF HEADER TITLE ON MOBILE */
+        #title {
+            display: none;
+        }
 
+        #mobile-title {
+            display: block;
+        }
 
+        
+        /* STYLING MENU ITEMS */
+        .mobile-buttons {
+            width: 5em;
+            float: right;
+        }
 
-/* TITLE */
-h1 {
-	font-size: 24px;
-	line-height: 1.3;
-	padding-left: .3em;
-}
-}
+        #about-button {
+            min-width: 3.7em;
+            padding-right: 1em;
+            font-size: 16px;
+            text-transform: none;
+            padding-top: .7em;
+        }
+
+        #data-button {
+            min-width: 3.7em;
+            padding-right: 1em;
+            font-size: 16px;
+            text-transform: none;
+            padding-top: 1em;
+
+        }
+
+        /* TITLE */
+        h1 {
+            font-size: 24px;
+            line-height: 1.3;
+            padding-left: .3em;
+        }
+    }
