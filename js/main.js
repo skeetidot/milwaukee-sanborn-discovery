@@ -380,7 +380,7 @@ function getData(map) {
 		for (var business in feature.properties){
 			var value = feature.properties['Business_P'];
 			if (value !== null){
-				businesses = "<div class= 'item-key' id = 'business'><b>Nearby Businesses in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
+				businesses = "<div class= 'item-key' id = 'business'><b>Nearby Landmarks in 1910: </b></div><div class='item-value'>" + feature.properties['Business_P'] + "</div>";
 			}
 		}
 		var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
