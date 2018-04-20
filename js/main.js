@@ -44,6 +44,18 @@ var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest
 });
 
 
+// CREATE MARKER
+// MODIFIED FROM AN ICON CREATED BY ALEX KWA, THE NOUN PROJECT
+// SOURCE: https://thenounproject.com/term/map-marker/39497/
+var goldMarker = L.icon({
+    //iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+    iconUrl: 'css/gold_marker_noun_39497_cc.svg',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    shadowSize: [41, 41]
+});
 
 
 // SET THE MAP OPTIONS
@@ -54,7 +66,7 @@ var mapOptions = {
     maxZoom: 21,
     maxBounds: L.latLngBounds([42.84, -87.82], [43.19, -88.07]), // panning bounds so the user doesn't pan too far away from Milwaukee
     bounceAtZoomLimits: false, // Set it to false if you don't want the map to zoom beyond min/max zoom and then bounce back when pinch-zooming
-    layers: [Esri_WorldGrayCanvas, sanborn] // Set the layers to build into the layer control
+    layers: [Esri_WorldGrayCanvas, sanborn], // Set the layers to build into the layer control
 }
 
 
@@ -62,6 +74,7 @@ var mapOptions = {
 var map = L.map('map', mapOptions);
 
 
+// ADD THE ZOOM CONTROL IN THE BOTTOM RIGHT CORNER
 map.zoomControl.setPosition('bottomright');
 
 
@@ -116,14 +129,12 @@ $(".leaflet-control-layers input:checkbox").change(function() {
 
 
 
-
-
-
 // $("#make-history-text").change(function (e) {
     // var ischecked = e.currentTarget.checked;
     // if (ischecked) 
         // checking.unbindPopup(popup);              
 // });
+
 
 
 
@@ -266,7 +277,7 @@ function getData(map) {
         for (var i = data.results.length - 1; i >= 0; i--) {
 
             // CREATE A MARKER AT THE RESULT AND ADD IT TO THE MAP
-            searchResultMarker = L.marker(data.results[i].latlng);
+            searchResultMarker = L.marker(data.results[i].latlng, {icon: goldMarker});
             searchResultMarker.addTo(map);
             
             // BUILD A POPUP WITH THE RESULT ADDRESS AND OPEN IT
@@ -350,7 +361,7 @@ function getData(map) {
              // */
 
             // BUILD A POPUP WITH THE MATCH ADDRESS (BUSINESS NAME AND ADDRESS)
-            // currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + result.address.LongLabel; + "</div>";
+            // currentAddress = "<div class='item-key'><b>Current Address:</b></div> <div class='item-value'>" + result.address.LongLabel + "</div>";
 
         // });
 
@@ -362,7 +373,7 @@ function getData(map) {
 		
 		
 		
-		/********************************************************************************/
+		/********************************************************************************/        
 		/* GET THE FEATURES FROM THE GEOJSON AND ADD TO A POPUP */
         var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
 		var businesses = '';
@@ -408,7 +419,7 @@ function getData(map) {
 	
 	function addMarker(e){
 		// Add marker to map at click location; add popup window
-		var newMarker = new L.marker(e.latlng).addTo(map);
+		var newMarker = new L.marker(e.latlng, {icon: goldMarker}).addTo(map);
 		map.on('popupclose', function(e){
 				map.removeLayer(newMarker);
 			});
