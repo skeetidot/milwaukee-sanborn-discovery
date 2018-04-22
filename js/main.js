@@ -396,11 +396,11 @@ function getData(map) {
 		var designation = 'If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>';
 		var historicBlogs = 'Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br>';
 		var comments = 'Tell us something about this property<br><input type="text" name="comments"><br>';
-		var submitHistory =  '<input type="submit" value="Submit">'
+		var submitHistory =  '<input type="submit" id="submitHistory" value="Submit">'
 		
 		
 		
-		var form = '<form id = "contribute-history-form">Historic street address:<br><input type="text" name="historicAddress"><br><br>Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br> Tell us something about this property<br><input type="text" name="comments"><br><input type="submit" value="Submit"></form>';
+		var form = '<form id = "contribute-history-form">Historic street address:<br><input type="text" name="historicAddress"><br><br>Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br> Tell us something about this property<br><input type="text" name="comments"><br><input type="submit" id="submitHistory" value="Submit"></form>';
 		        
 		
 		
