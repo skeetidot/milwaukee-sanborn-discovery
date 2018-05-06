@@ -45,6 +45,8 @@
 
     <!-- JQUERY -->
     <script type="text/javascript" src="lib/jquery/jquery-3.1.1.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.touch-punch.min.js"></script> 
 
     <!--<! &#45;&#45; TOUCH EVENT LIBRARY &ndash;&gt;-->
     <!--<script src="//rawgit.com/ngryman/jquery.finger/v0.1.2/dist/jquery.finger.js"></script>-->
@@ -87,10 +89,7 @@
     <!--MAKE HISTORY -->
     <div id ="make-history-box">
 		<div id = "options">
-		<p>Click on a building to:</p>
-			<li>Get library information &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;about the map sheet</li>
-			<br>
-			<li>Contribute historic &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;information about the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;building</li>
+		<p>Click on the map to get item information.</p>
 		</div>
     </div>
 
@@ -99,8 +98,8 @@
     <!-- NAVBAR LINKS-->
     <div id="top-buttons">
         <div class="mobile-buttons">
-            <div id="data-button">Data</div>
-            <div id="about-button">About</div>
+            <!-- <div id="data-button">Data</div> -->
+            <div id="about-button">About the project</div>
         </div>
     </div>
     
@@ -110,25 +109,43 @@
         <!-- ABOUT MODAL CONTENT -->
         <div class="modal-content">
             <span class="close-about">&times;</span>
-            <p>Placeholder element for development. </p>
-            <p>Information about Sanborns, AGSL & project will go here.</p>
-            <p>Marker based on a design created by Alex Kwa from the Noun Project</p>
+			<div class = "custom-header">Contact</div>
+			<p>Questions? Comments? Reach out to us at agsl@uwm.edu or on <a href="https://twitter.com/agslib?lang=en">Twitter</a>.</p>
+			<div class = "custom-header">About the Maps </div>
+            <p>The Sanborn Maps of Milwaukee are fire insurance atlases held by the American Geographical Society Library (AGSL). This 1910 atlas includes eight volumes, consisting of 830 map sheets. Sanborn maps were designed to assist fire insurance agents with insuring property. Produced for over 12,000 urbanized areas in the United States, Sanborn maps have been described by the Library of Congress as "the single most important record of urban growth and development in the United States during the past one hundred years." The American Geographical Society Library holds Sanborn maps dating back to 1894.</p>
+            <div class = "custom-header">About the Project</div>
+			<p>In their original format, the 830 sheets are 25 inches tall by 22.5 inches wide. Each sheet exists as an individual map item, and a particular city block can be found by referencing a paper key. The maps were digitized and uploaded to the library’s <a href = "https://uwm.edu/lib-collections/sanborn/">Digital Collections</a> in 2007. To find an area, one must reference a digitized map key.</p>
+			<p>Finding information in these incredibly detailed and valuable map sheets is hindered by the segmented viewing process of having to cross-reference map sheets with keys. This process of navigating thumbnails in a digital collection does not lend itself to a truly immersive experience, where one can get a feel for what the city was like at the time, or conceptualize how one map sheet fits in with others. For that reason, the American Geographical Society Library identified this project as a goal for the library. </p>
+			<p>In 2017 Milwaukee County Land Information Office (MCLIO) georeferenced the American Geographical Society’s 1910 Sanborn atlas sheets. Adding geographic location to these library items has opened doors for many exciting ways that scholars can access historic information from these sources. Now, the sheets appear as one seamless map, but each sheet can be isolated and linked to the individual item in the digital collection. This project is one of many the AGSL is envisioning for these resources, so stay tuned for more to come.</p>
+			<div class = "custom-header">About the Software</div>
+				<p>Have an idea for a mapping project using this atlas? The mosaiced sheets are published and available as a map service <a href="http://webgis.uwm.edu/arcgisuwm/rest/services/AGSL/SanbornMaps/MapServer">here</a>.</p>
+				<p>These sheets were georeferenced using ArcMap, and published on the UWM ArcGIS server. The application was built using Leaflet, a light-weight, flexible Javascript library created for web mapping.</p>
+				<p><a href="https://github.com/bellegis/sanborn-agsl">Project Github</a></p>
+			<div class = "custom-header">Credits</div>
+				<p>Belle Lipton: Designer / Developer</p>
+				<p>Lauren Winkler: Designer / Developer</p>
+				<p>Marker based on a design created by Alex Kwa from the Noun Project</p>
+			<div class = "custom-header">Special Thanks</div>
+			<p>Stephen Appel – Geospatial Information Specialist, American Geographical Society Library</p>
+			<p>Chris Scheele – Department of Geography, University of Wisconsin Madison</p>
+			<p>Emily Berth – GIS Technician, Milwaukee County Land Information Office</p>
+			<p>Kurt Meigast – IT Manager, UWM School of Architecture and Urban Planning</p>
         </div>
     </div>
     <!-- ABOUT MODAL ENDS HERE (THESE ARE GOING TO BE LONG) -->
 
 
-    <!-- DATA MODAL -->
-    <div id="data-modal" class="modal">
-        <!-- DATA MODAL CONTENT -->
-        <div class="modal-content">
-            <span class="close-data">&times;</span>
-            <p>Placeholder element for development. </p>
-            <p>Information about community-generated GIS data will go here.</p>
-            <p>We want to know what you want to tell us about your city.</p>
-        </div>
-    </div>
-    <!-- DATA MODAL ENDS HERE (THESE ARE GOING TO BE LONG) -->
+    <!-- <!-- DATA MODAL --> -->
+    <!-- <div id="data-modal" class="modal"> -->
+        <!-- <!-- ABOUT MODAL CONTENT --> -->
+        <!-- <div class="modal-content"> -->
+            <!-- <span class="close-data">&times;</span> -->
+            <!-- <p>Placeholder element for development. </p> -->
+            <!-- <p>Information about community-generated GIS data will go here.</p> -->
+            <!-- <p>We want to know what you want to tell us about your city.</p> -->
+        <!-- </div> -->
+    <!-- </div> -->
+    <!-- <!-- DATA MODAL ENDS HERE (THESE ARE GOING TO BE LONG) --> -->
 
 
     <!-- LINK TO MAIN JAVASCRIPT-->

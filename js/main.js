@@ -173,6 +173,11 @@ $(".leaflet-control-layers input:checkbox").change(function() {
 
     // ADD THE CONTROL OBJECT CONTAINING THE SLIDER ELEMENT TO THE MAP
     sliderControl.addTo(map);
+	
+	
+	if (navigator.msMaxTouchPoints) {
+		$('#opacity-sliderslider').addClass('ms-touch');
+}
 
 })();
 // END OF OPACITY SLIDER JAVASCRIPT
@@ -396,16 +401,16 @@ function getData(map) {
 		var designation = 'If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>';
 		var historicBlogs = 'Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br>';
 		var comments = 'Tell us something about this property<br><input type="text" name="comments"><br>';
-		var submitHistory =  '<input type="submit" id="submitHistory" value="Submit">'
+		var submitHistory =  '<input type="submit" value="Submit">'
 		
 		
 		
-		var form = '<form id = "contribute-history-form">Historic street address:<br><input type="text" name="historicAddress"><br><br>Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br> Tell us something about this property<br><input type="text" name="comments"><br><input type="submit" id="submitHistory" value="Submit"></form>';
+		// var form = '<form id = "contribute-history-form">Historic street address:<br><input type="text" name="historicAddress"><br><br>Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br> Tell us something about this property<br><input type="text" name="comments"><br><input type="submit" value="Submit"></form>';
 		        
 		
 		
 		
-        var info = (sheetname + businesses + view + makeHistoryButton + hint + historicAddress + buildingCode + designation + historicBlogs + comments + submitHistory);
+        var info = (sheetname + businesses + view);
 		
 		
 		
@@ -415,7 +420,7 @@ function getData(map) {
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
         var popup = L.responsivePopup().setContent(info);	
-        sheetBoundaries.bindPopup(popup, {offset: new L.Point(80, 80)}).openPopup();
+        sheetBoundaries.bindPopup(popup, {offset: new L.Point(60, 60)}).openPopup();
     }
 	
 	
@@ -476,31 +481,27 @@ function getData(map) {
 
 // GET THE MODALS
 var aboutModal = document.getElementById('about-modal');
-var dataModal = document.getElementById('data-modal');
 
 // GET THE IDS OF THE BUTTONS THAT OPEN THE MODALS
 var aboutBtn = document.getElementById("about-button");
-var dataBtn = document.getElementById("data-button");
+
+
 
 // GET THE <SPAN> ELEMENT THAT CLOSES THE MODAL
 var aboutSpan = document.getElementsByClassName("close-about")[0];
-var dataSpan = document.getElementsByClassName("close-data")[0];
 
 // WHEN THE USER CLICKS ON THE BUTTONS, OPEN EITHER MODAL
 aboutBtn.onclick = function () {
     aboutModal.style.display = "block";
-}
-dataBtn.onclick = function () {
-    dataModal.style.display = "block";
 }
 
 // WHEN THE USER CLICKS ON THE <SPAN> (X), CLOSE THE MODAL
 aboutSpan.onclick = function () {
     aboutModal.style.display = "none";
 }
-dataSpan.onclick = function () {
-    dataModal.style.display = "none";
-}
+
+
+
 
 
 

@@ -96,7 +96,7 @@ h1 {
     left: 0;
     width: 100%;
     padding-top: 10px;
-    padding-bottom: .5;
+    padding-bottom: .45;
 }
 
 /* MENU ITEMS TEXT STYLING */
@@ -106,7 +106,7 @@ h1 {
     font-size: 20px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
-    color: rgb(255, 189, 0);
+    color: rgb(141, 141, 142);
 }
 
 
@@ -116,13 +116,13 @@ h1 {
     cursor: pointer;
     text-transform: uppercase;
     float: right;
-    padding-right: 50px;
+    padding-right: 20px;
     padding-top: 20px;
     font-size: 20px;
     text-decoration: none;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
-    color: rgb(255, 189, 0);
+    color:rgb(80,80,80);
 }
 
 /* DATA MENU ITEM STYLING */
@@ -177,13 +177,36 @@ h1 {
 /* MODAL CONTENT BOX */
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: rgba(0, 0, 0, .9);
+	color: white;
+	max-width:650px;
+	border-radius: 8px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+    font-size: 16px;
+	line-height: 24px;
+	overflow-x: auto;
+    overflow-y: none;
     /* 15% FROM THE TOP AND CENTERED */
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
     width: 80%;
 }
+
+.custom-header{
+	color:#ffbd00;
+	font-weight:300;
+	font-size:24px;
+	padding-left:none;
+	margin-left:none !impportant;
+}
+
+.modal a:link {
+	font-size:16px !important;
+	color:background-color: rgb(226, 140, 169) !important;
+}	
+
+
 
 /* MODAL CLOSE BUTTON */
 
@@ -303,7 +326,7 @@ h1 {
     top: 9em;
     border-radius: 4px;
     border: 1px;
-    height: 7em;
+    height: 2.3em;
     width: 198px;
     z-index: 100000;
     background-color: rgba(226, 140, 169, 0.90);
@@ -317,11 +340,16 @@ h1 {
     
 }
 
+#make-history-box li{
+	margin-left: .75em;
+}
+
 
 /* MAKE BACKGROUND DIV CHANGE COLOR */
 
 #make-history-box p {
     margin-bottom: 10px;
+	line-height:1.3em;
 }
 
 /* STYLE MAKE HISTORY TEXT */
@@ -425,6 +453,7 @@ h4 {
 
 
 
+
 /**********************************************************************/
 
 /* BOUNDARY POPUP STUFF */
@@ -455,7 +484,7 @@ h4 {
     border-radius: 4px;
     cursor: pointer;
     height: 1.5em;
-    width: 85%;
+    width: 90%;
 }
 
 .item-link:hover {
@@ -492,7 +521,7 @@ h4 {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
-    width: auto;
+    width: 290px;
     max-height: 300px;
     overflow-x: auto;
     overflow-y: none;
@@ -557,6 +586,17 @@ h4 {
     h1 {
         font-size: 38px;
     }
+	
+  #opacity-slider {
+		display: none;
+	}
+
+	#make-history-box {
+		top:7.25em;
+	}
+			
+		
+	
 }
 
 @media (max-width: 1320px) {
@@ -600,7 +640,89 @@ h4 {
             font-size: 26px;
         }
 
-        .leaflet-control-layers {
+       
+
+    }
+
+
+    @media (max-width: 900px) {}
+
+
+    @media (max-width: 880px) {
+        h1 {
+            font-size: 22px;
+        }
+    }
+
+    @media (max-width: 821px) {
+        h1 {
+            font-size: 20px;
+        }
+    }
+
+    
+
+    /* MAKE MENU BUTTONS SMALLER AS PORT GETS SMALLER */
+    @media (max-width: 946px) {
+        h1 {
+            font-size: 24px;
+        }
+
+        #about-button {
+            float: right;
+            font-size: 16px;
+            padding-right: 50px;
+            padding-top: 1em;
+        }
+		
+		top-buttons{
+			width:auto;
+		}
+
+        #data-button {
+            float: right;
+            font-size: 16px;
+            padding-right: 50px;
+            padding-top: 1em;
+        }
+    }
+
+
+    @media (max-width: 758px) {
+        #title {
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            margin-bottom: 0;
+            font-size: 22px;
+        }
+
+        #about-button {
+            float: right;
+            font-size: 12px;
+            padding-right: 30px;
+            padding-top: 1em;
+        }
+
+        #data-button {
+            float: right;
+            font-size: 12px;
+            padding-right: 30px;
+            padding-top: 1em;
+        }
+    }
+
+    @media (max-width: 720px) {}
+
+
+
+    /**********************************************************************/
+    /* PHONE SCREEN SIZES (600px OR LESS) */
+    @media (max-width: 600px) {
+		
+		
+		 .leaflet-control-layers {
             background: rgba(255, 255, 255, 1);
             box-shadow: 0 0 2px 2px #707070;
             font-size: 16px;
@@ -644,88 +766,9 @@ h4 {
             float: left;
         }
 
-        #opacity-slider {
-            display: none;
-        }
-
-        #make-history-box {
-            display: none;
-        }
-
-    }
-
-
-    @media (max-width: 900px) {}
-
-
-    @media (max-width: 880px) {
-        h1 {
-            font-size: 22px;
-        }
-    }
-
-    @media (max-width: 821px) {
-        h1 {
-            font-size: 20px;
-        }
-    }
-
-    
-
-    /* MAKE MENU BUTTONS SMALLER AS PORT GETS SMALLER */
-    @media (max-width: 946px) {
-        h1 {
-            font-size: 24px;
-        }
-
-        #about-button {
-            float: right;
-            font-size: 16px;
-            padding-right: 50px;
-            padding-top: 1em;
-        }
-
-        #data-button {
-            float: right;
-            font-size: 16px;
-            padding-right: 50px;
-            padding-top: 1em;
-        }
-    }
-
-
-    @media (max-width: 758px) {
-        #title {
-            padding-bottom: 10px;
-        }
-
-        h1 {
-            margin-bottom: 0;
-            font-size: 22px;
-        }
-
-        #about-button {
-            float: right;
-            font-size: 12px;
-            padding-right: 30px;
-            padding-top: 1em;
-        }
-
-        #data-button {
-            float: right;
-            font-size: 12px;
-            padding-right: 30px;
-            padding-top: 1em;
-        }
-    }
-
-    @media (max-width: 720px) {}
-
-
-
-    /**********************************************************************/
-    /* PHONE SCREEN SIZES (600px OR LESS) */
-    @media (max-width: 600px) {
+  
+		
+		
 
         /* POPUP STUFF */
         .custom-popup .leaflet-popup-content-wrapper {
@@ -742,6 +785,20 @@ h4 {
             max-height: 100px;
             bottom: 5px;
         }
+		
+		
+		.item-link {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			margin-top: 12px;
+			padding: 3px 3px 3px 3px;
+			margin-bottom: 12px;
+			font-weight: bold;
+			background-color: rgba(255, 189, 0, .95);
+			border-radius: 4px;
+			cursor: pointer;
+			height: 2.7em;
+			width: auto;
+		}
 
         .leaflet-popup {
             margin-top: 20px;
@@ -774,16 +831,16 @@ h4 {
         
         /* STYLING MENU ITEMS */
         .mobile-buttons {
-            width: 5em;
+            width: 6em;
             float: right;
         }
 
         #about-button {
             min-width: 3.7em;
-            padding-right: 1em;
+            padding-right: .1em;
             font-size: 16px;
             text-transform: none;
-            padding-top: .7em;
+            padding-top: 1em;
         }
 
         #data-button {
