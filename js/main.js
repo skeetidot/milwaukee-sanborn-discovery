@@ -78,8 +78,6 @@ var map = L.map('map', mapOptions);
 map.zoomControl.setPosition('bottomright');
 
 
-
-
 // SET THE BASEMAP
 // ONLY INCULDE ONE BASEMAP SO IT IS NOT PART OF THE LAYER LIST
 var baseMaps = {
@@ -110,32 +108,6 @@ $(".leaflet-control-layers input:checkbox").change(function() {
     if(ischecked)
         $('.opacity-slider').show();
 });
-
-
-
-
-// /* CREATE GETLAYER FUNCTION TO RETURN GEOJSON GLOBALLY AS "BOUNDARY LAYER" */
-// function getLayer (layer, sheetBoundaries){
-	// var boundaryLayer = layer;
-	// return boundaryLayer;
-// };
-
-
-// /* SET UP LISTENER -- ON LAYERADD TO THE MAP, CALL GET LAYER FUNCTION */
-// /* ON LAYER ADD: RETURN THE GEOJSON LAYER AS A GLOBAL VARIABLE */
-// /* ASSIGN THAT RETURNED LAYER TO VARIABLE "GLOBALLAYER"  */
-// var globalLayer = map.on('layeradd', getLayer);
-// console.log(globalLayer);
-
-
-
-// $("#make-history-text").change(function (e) {
-    // var ischecked = e.currentTarget.checked;
-    // if (ischecked) 
-        // checking.unbindPopup(popup);              
-// });
-
-
 
 
 /********************************************************************************/
@@ -183,7 +155,7 @@ $(".leaflet-control-layers input:checkbox").change(function() {
 // END OF OPACITY SLIDER JAVASCRIPT
 
 
-
+// TOUCH EVENTS
 function touchHandler(event) {
     var touch = event.changedTouches[0];
 
@@ -201,6 +173,7 @@ function touchHandler(event) {
     event.preventDefault();
 }
 
+// INITIALIZE THE TOUCH EVENTS
 function init() {
     document.addEventListener("touchstart", touchHandler, true);
     document.addEventListener("touchmove", touchHandler, true);
@@ -235,10 +208,8 @@ function getData(map) {
     /********************************************************************************/
     /* JAVASCRIPT RELATED TO SEARCH BAR AND GEOCODING */
 
-    /*SEARCH BAR (BETA VERSION -- EXPLORING BEST ROUTE TO TAKE)
-    ADD ESRI LEAFLET SEARCH CONTROL */
+    // ADD ESRI LEAFLET SEARCH CONTROL
     var searchControl = document.getElementById('search')
-
 
     // CREATE THE GEOCODING CONTROL AND ADD IT TO THE MAP
     var searchControl = L.esri.Geocoding.geosearch({
@@ -265,18 +236,13 @@ function getData(map) {
     // CREATE AN EMPTY LAYER GROUP TO STORE THE RESULTS AND ADD TO MAP
     var results = L.layerGroup().addTo(map);
 
-
-
-    /********************************************************************************/
-    /* TO BE EVALUATED. EITHER GET A BETTER GEOCODER, OR DON'T ADD POINT
-    LISTEN FOR RESULTS EVENT AND ADD EVERY RESULT TO THE MAP */
+    // WHEN THE USER SELECTS A RESULT FROM THE SEARCH CONTROL, ADD IT TO THE MAP
     searchControl.on("results", function (data) {
         
         // IF THERE IS AN EXISTING SEARCH RESULT MARKER, REMOVE IT
         if (searchResultMarker != null) {
             searchResultMarker.remove();
         }
-        
         
         // LOOP THROUGH ALL SEARCH RESULTS
         for (var i = data.results.length - 1; i >= 0; i--) {
@@ -293,20 +259,12 @@ function getData(map) {
             searchResultMarker.on('popupclose', function (e) {
                 searchResultMarker.remove();
             });
-
         }
     });
 
 
-
-
-
-
     /********************************************************************************/
     /* JAVASCRIPT TO HIDE SEARCH BAR WHEN POPUPS ARE ENABLED IN MOBILE
-    DEFINITELY NOT PERFECT, CAN BE SLEEKER IN LATER ITERATIONS. IF SEARCH BAR CODE CHANGES,
-    JUST REPLACE .GEOCODER-CONTROL-INPUT WITH THE DIV CLASS OF THE NEW SEARCH BAR
-    (WHICH YOU CAN FIND BY LOOKING WITH THE CHROME INSPECTOR) */
     if ($(window).width() < 600) {
         map.on('popupopen', function (e) {
             $('.geocoder-control-input').hide();
@@ -315,7 +273,6 @@ function getData(map) {
             $('.geocoder-control-input').show();
         });
     }
-
 
 
     /********************************************************************************/
@@ -342,7 +299,6 @@ function getData(map) {
                 layer.on('click', function (e) {
                     buildPopupContent(feature, layer, e);
 					addMarker(e)
-                    //sheetExtent(feature, layer);
                 });
             }
         }).addTo(map);
@@ -374,10 +330,6 @@ function getData(map) {
 		// var popupHistoricSubheading = "<div class='item-key'><b>THIS LOCATION IN 1910</b></div>"
 
         
-		
-		
-		
-		
 		/********************************************************************************/        
 		/* GET THE FEATURES FROM THE GEOJSON AND ADD TO A POPUP */
         var sheetname = "<div class= 'item-key'><b>Sheet Number:</b></div> <div class='item-value'>" + feature.properties['Sheet_Numb'] + "</div>";
@@ -390,32 +342,18 @@ function getData(map) {
 		}
 		var repository = "<div class= 'item-key'><b>Repository: </b></div><div class='item-value'>" + feature.properties['Repository'] + "</div>";
 		var view = "<div class= 'item-link'>" + '<a href="' + feature.properties['Reference'] + '" target= "_blank">' + 'View in UWM Digital Collections</a></div>';
-		var makeHistoryButton = "<div class = 'makeHistoryText'>Add information about historic building:</div>"
-		var hint = "<div id = 'hint'>Hint: make sure the marker is placed directly on the building.</div><br>"
-		
-		
-		/*form elements */
-		
-		var historicAddress = 'Historic street address:<br><input type="text" name="historicAddress"><br><br>';
-		var buildingCode = 'Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>';
-		var designation = 'If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>';
-		var historicBlogs = 'Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br>';
-		var comments = 'Tell us something about this property<br><input type="text" name="comments"><br>';
-		var submitHistory =  '<input type="submit" value="Submit">'
-		
-		
-		
-		// var form = '<form id = "contribute-history-form">Historic street address:<br><input type="text" name="historicAddress"><br><br>Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br> Tell us something about this property<br><input type="text" name="comments"><br><input type="submit" value="Submit"></form>';
-		        
-		
-		
+        
+        /* COMMENTED OUT USER CONTRIBUTION POPUP ELEMENTS */
+        // var makeHistoryButton = "<div class = 'makeHistoryText'>Add information about historic building:</div>"
+        // var hint = "<div id = 'hint'>Hint: make sure the marker is placed directly on the building.</div><br>"		
+        // var historicAddress = 'Historic street address:<br><input type="text" name="historicAddress"><br><br>';
+        // var buildingCode = 'Is this a:<br> <input type="radio" name="buildingCode" value="D" checked>D - Dwelling<br><input type="radio" name="buildingCode" value="S">S - Store <br><input type="radio" name="buildingCode" value="F">F - Flat <br><input type="radio" name="buildingCode" value="O">Other -- Not marked with D, S, or F<br><br>';
+        // var designation = 'If provided, please enter the title of the building on the map: <p>(e.g. Pabst Theater, Street Car Barn, Bowling Alley, etc.)<br><input type="text" name="designation"></p><br><br>';
+        // var historicBlogs = 'Link to article or blog related to history of this property:<br><input type="text" name="historicBlogs"><br><br>';
+        // var comments = 'Tell us something about this property<br><input type="text" name="comments"><br>';
+        // var submitHistory =  '<input type="submit" value="Submit">';
 		
         var info = (sheetname + businesses + view);
-		
-		
-		
-
-
 		
         /* PUSH INFO TO POPUP USING RESPONSIVE POPUP PLUGIN SO THAT POPUPS ARE CENTERED ON MOBILE
         EVALUATE EFFICACY OF THIS PLUGIN -- IS THERE SOMETHING MORE EFFECTIVE OUT THERE? */
@@ -423,8 +361,7 @@ function getData(map) {
         sheetBoundaries.bindPopup(popup, {offset: new L.Point(60, 60)}).openPopup();
     }
 	
-	
-	
+    // ADD THE MARKER TO THE MAP AT THE CLICKED LOCATION
 	function addMarker(e){
 		// Add marker to map at click location; add popup window
 		var newMarker = new L.marker(e.latlng, {icon: goldMarker}).addTo(map);
@@ -433,19 +370,6 @@ function getData(map) {
 			});
 	}
 	
-
-	
-	
-	
-	
-
-
-
-    //    /* BRACKET CLOSING ASYNCHRONOUS GETJSON () METHOD
-    //    ANY CODE THAT ENGAGES WITH THE BOUNDARY DATA LATER MUST BE IN THE FUNCTION THAT HAS JUST ENDED*/
-    //});
-
-
     /********************************************************************************/
     /* JAVASCRIPT RELATED TO UPDATING THE HISTORIC MAPS WHEN OPACITY SLIDER IS INITIATED */
     function updateOpacity(sanborn, currentOpacity) {
@@ -464,16 +388,11 @@ function getData(map) {
 
             });
         //BRACKET CLOSING UPDATE OPACITY
-        //WHATEVER FUNCTION IS LAST PLEASE ADD COMMENT DENOTING END OF FUNCTION
-        //THIS IS WHERE IT CAN GET CONFUSING
     }
 
 
     // BRACKET CLOSING THE GETDATA FUNCTION
 }
-
-
-
 
 
 /********************************************************************************/
@@ -500,14 +419,4 @@ aboutSpan.onclick = function () {
     aboutModal.style.display = "none";
 }
 
-
-
-
-
-
-
-
 //*************************************END OF MAIN.JS***********************************/
-
-/* LAST LINE */
-//$(document).ready(createMap);
