@@ -567,6 +567,7 @@ h4 {
     left: 0.25em;
     top: 0em;
     position: absolute;
+    z-index: 100;
 }
 
 

@@ -201,7 +201,7 @@ function getData(map) {
     sanborn.addTo(map);
 
 
-    //CALL THE UPDATEOPACITY() FUNCTION TO UPDATE THE MAP AS THE USER MOVES THE YEAR SLIDER
+    //CALL THE UPDATEOPACITY() FUNCTION TO UPDATE THE MAP AS THE USER MOVES THE OPACITY SLIDER
     updateOpacity(sanborn, currentOpacity);
 
 
