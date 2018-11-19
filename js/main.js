@@ -132,7 +132,7 @@ $(".leaflet-control-layers input:checkbox").change(function() {
             map.dragging.disable();
         });
 
-        // WHEN THE USER CLICKS ON THE SLIDER ELEMENT
+        // WHEN THE USER HOVERS OFF OF THE SLIDER ELEMENT
         L.DomEvent.addListener(slider, 'mouseout', function (e) {
             //ALLOW THE USER TO DRAG THE MAP WHEN THEY MOVE OFF OF THE OPACITY SLIDER
             map.dragging.enable();
